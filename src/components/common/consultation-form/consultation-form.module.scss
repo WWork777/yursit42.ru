@@ -1,0 +1,68 @@
+.consultation_form_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.consultation_form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.consultation_form_top_inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 7%;
+  width: 90%;
+}
+
+.consultation_form_bottom_inputs {
+  width: 90%;
+}
+
+.consultation_form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #A47764;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  font-family: Montserrat, sans-serif;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  outline: none;
+}
+
+.consultation_form input:focus {
+  border-bottom: 1px solid #d1b19a;
+}
+
+.consultation_form button {
+  background-color: transparent;
+  background-color: #A47764;
+  border: 1px solid #d7ac8a;
+  border-radius: 10px;
+  padding: 20px 60px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease-in-out;
+  font-family: var(--font-montserrat);
+  p{
+    color: white;
+  }
+  &:hover {
+    background-color: #ac8365;
+  }
+}
+

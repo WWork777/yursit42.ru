@@ -1,0 +1,95 @@
+.purpose {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.purpose_left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 35%;
+}
+
+.purpose_left_text {
+  line-height: 25px;
+  letter-spacing: 0em;
+}
+
+.purpose_card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 40px 30px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &:nth-child(1),
+  &:nth-child(4) {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  &:nth-child(2),
+  &:nth-child(3) {
+    background-color: #d7ac8a4d;
+  }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+    &:nth-child(1):hover,
+    &:nth-child(4):hover {
+      background: linear-gradient(to bottom, white, #f5f5f5);
+      box-shadow: 0 10px 20px rgba(215, 172, 138, 0.2);
+    }
+
+    &:nth-child(2):hover,
+    &:nth-child(3):hover {
+      background: #d7ac8a70;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #d7ac8a, #a37a56);
+      z-index: 2;
+    }
+
+    img {
+      transform: scale(1.05);
+    }
+
+    h4 {
+      color: #a37a56;
+    }
+  }
+
+  img {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  h4 {
+    transition: color 0.3s ease;
+  }
+}
+
+.purpose_right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 65%;
+}
+
+.purposeCardSvg {
+  width: 100px;
+  height: 100px;
+}

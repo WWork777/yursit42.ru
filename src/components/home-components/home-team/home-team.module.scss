@@ -1,0 +1,127 @@
+.title_container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 100px;
+}
+
+.custom_navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.mySwiper {
+  overflow: visible !important;
+}
+
+.custom_prev,
+.custom_next {
+  position: static !important;
+  width: 50px !important;
+  height: 50px !important;
+  margin-top: 0 !important;
+  background: #292c3b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+
+  &::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+  }
+
+  &:active {
+    transform: scale(2);
+  }
+}
+
+.custom_prev::after {
+  transform: rotate(135deg);
+  margin-right: -2px;
+}
+
+.custom_next::after {
+  transform: rotate(-45deg);
+  margin-left: -2px;
+}
+
+.home_team_slider {
+  margin-top: 50px;
+  border-radius: 15px;
+
+  .swiper-wrapper {
+    border-radius: 15px;
+  }
+}
+
+.home_team_slider_card {
+  background: linear-gradient(to left, #d7ac8a, #83869f);
+  width: 100%;
+  border-radius: 20px;
+  aspect-ratio: 550/400;
+  display: flex;
+  min-width: 400px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.home_team_slider_card_image {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;  
+  object-fit: contain;
+  transition: all 0.3s ease-in-out;
+}
+
+.team_img1{
+  margin-top: 100px;
+}
+
+.team_img4{
+  margin-top: 100px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+.home_team_slider_card_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 550px;
+  max-width: 550px;
+}
+
+.home_team_slider_card_text {
+  width: 100%;
+  padding: 15px 0;
+  box-sizing: border-box;
+}
+
+.home_team_slider_card_text_title,
+.home_team_slider_card_text h5 {
+  width: 100%;
+  text-align: left;
+}
+
+.home_team_slider_card_text h5 {
+  word-wrap: break-word;
+  white-space: normal;
+  margin-top: 10px;
+}
