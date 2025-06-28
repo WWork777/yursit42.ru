@@ -1,0 +1,95 @@
+.practice{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 50px;
+    select{
+        width: 100px;
+        height: 30px;
+        border: none;
+        background-color: inherit;
+        border-bottom: 1px solid black;
+        font-family: var(--font-montserrat), sans-serif;
+    }
+}
+
+.practice_card{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px 0px #AFAFC0BF;
+    h5, h4{
+        color: #292C3B;
+    }
+    p{
+        color:#D7AC8A;
+        font-size: 16px;
+    }
+    button{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: center;
+        width: 55%;
+        padding: 10px 20px;
+        background-color: #6E719E;
+        color: white;
+        border: none;
+        border-radius: 7px;
+        font-family: var(--font-montserrat), sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.practice_list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.pagination_container {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin-top: 2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.page_number {
+  background: none;
+  border: none;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  color: #292C3B;
+  flex: 1;
+  text-align: center;
+  position: relative;
+
+}
+
+.pagination_line {
+  position: relative;
+  height: 2px;
+  background: #AFAFC0;
+  width: 100%;
+}
+
+.active_line {
+  position: absolute;
+  height: 2px;
+  background: #D7AC8A;
+  transition: left 0.3s ease;
+}

@@ -1,0 +1,15 @@
+.contacts_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.contacts_title_text {
+  width: 50%;
+    font-size: 18px;
+    text-align: right;
+    font-weight: 500;
+    color: #292C3B;
+}

@@ -3,18 +3,20 @@ import styles from "./home-help.module.scss";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const SvgLeft = ({ liText }) => {
+
+
+const SvgLeft = ({ liText,link }) => {
   return (
-    <Link href={""} className={styles.li_text_link_left}>
+    <Link href={`services/grajdanam/${link}`} className={styles.li_text_link_left}>
       <img src="/svg/home-help/li.svg" alt="list icon" />
       <p style={{ margin: 0 }}>{liText}</p>
     </Link>
   );
 };
 
-const SvgRight = ({ liText }) => {
+const SvgRight = ({ liText, link }) => {
   return (
-    <Link href={""} className={styles.li_text_link_right}>
+    <Link href={`services/biznes/${link}`} className={styles.li_text_link_right}>
       <img src="/svg/home-help/li2.svg" alt="list icon" />
       <p style={{ margin: 0 }}>{liText}</p>
     </Link>
@@ -26,18 +28,18 @@ const LiSvgLeft = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgLeft liText="Юрист по банкротству" />
-          <SvgLeft liText="Семейное право" />
-          <SvgLeft liText="Наследство" />
-          <SvgLeft liText="Жилищное право" />
-          <SvgLeft liText="Зеельное право" />
+          <SvgLeft liText="Юрист по банкротству" link="bankrotstvo"/>
+          <SvgLeft liText="Семейное право" link="semeynoe-pravo"/>
+          <SvgLeft liText="Наследство" link="nasledstvo"/>
+          <SvgLeft liText="Жилищное право" link="zilishnoe-pravo"/>
+          <SvgLeft liText="Земельное право" link="zemelnoe-pravo"/>
         </div>
         <div className={styles.li_right}>
-          <SvgLeft liText="Арбитражные споры" />
-          <SvgLeft liText="Автоюрист" />
-          <SvgLeft liText="Защита прав потребителей" />
-          <SvgLeft liText="Финансы" />
-          <SvgLeft liText="Гражданское право" />
+          <SvgLeft liText="Арбитражные споры" link="arbitrazh-spory"/>
+          <SvgLeft liText="Автоюрист" link="avtoyurist"/>
+          <SvgLeft liText="Защита прав потребителей" link="zashchita-prav-potrebiteley"/>
+          <SvgLeft liText="Финансы" link="finansy"/>
+          <SvgLeft liText="Гражданское право" link="grajdanoe-pravo"/>
         </div>
       </div>
     </div>
@@ -49,11 +51,10 @@ const LiSvgRight = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgRight liText="Юрист по банкротству" />
-          <SvgRight liText="Семейное право" />
-          <SvgRight liText="Наследство" />
-          <SvgRight liText="Жилищное право" />
-          <SvgRight liText="Зеельное право" />
+          <SvgRight liText="Споры с государственными органами" link="spory-s-gosudarstvennymi-organami"/>
+          <SvgRight liText="Услуги для бизнеса" link="uslugi-dlya-biznessa"/>
+          <SvgRight liText="Банкротство" link="bankrotstvobz"/>
+          <SvgRight liText="Аутсорсинг" link="autsorsbz"/>
         </div>
       </div>
     </div>
@@ -69,17 +70,17 @@ const HelpBlockLeft = ({ homeHelpTitle, homeHelpSvg }) => {
       transition={{ duration: 0.8 }}
       className={`${styles.home_help_block} ${styles.home_help_block_left}`}
     >
-      <Link href={""}>
+      <Link href={"/services?type=gr"}>
         <img
           src="/svg/home-help/link.svg"
           alt="link"
           className={styles.home_help_block_link}
-        />
+        />  
       </Link>
 
       <div className={styles.home_help_block_top}>
         <img src={homeHelpSvg} alt="icon" />
-        <h3>{homeHelpTitle}</h3>
+        <Link href={"/services?type=gr"}><h3>{homeHelpTitle}</h3></Link>
       </div>
       <div className={styles.home_help_block_bottom}>
         <LiSvgLeft />
@@ -97,7 +98,7 @@ const HelpBlockRight = ({ homeHelpTitle, homeHelpSvg }) => {
       transition={{ duration: 0.8, delay: 0.3 }}
       className={`${styles.home_help_block} ${styles.home_help_block_right}`}
     >
-      <Link href={""}>
+      <Link href={"/services?type=bz"}>
         <img
           src="/svg/home-help/link2.svg"
           alt="link"
@@ -107,7 +108,7 @@ const HelpBlockRight = ({ homeHelpTitle, homeHelpSvg }) => {
 
       <div className={styles.home_help_block_top}>
         <img src={homeHelpSvg} alt="phone" />
-        <h3>{homeHelpTitle}</h3>
+        <Link href={"/services?type=bz"}><h3>{homeHelpTitle}</h3></Link>
       </div>
       <div className={styles.home_help_block_bottom}>
         <LiSvgRight />

@@ -8,7 +8,6 @@
 .hero {
   width: 100vw;
   height: 100vh;
-  background: url("../../../../public/common/hero-background.jpg");
   background-size: cover;
   background-position: center;
   color: white !important;
@@ -37,6 +36,7 @@
 .hero_title {
   line-height: 70px;
   letter-spacing: 0em;
+  width: 60%;
 }
 .hero_button {
   background-color: transparent;
@@ -66,6 +66,7 @@
 .hero_text {
   line-height: 35px;
   color: white;
+  width: 50%;
 }
 
 .hero_bottom_block {

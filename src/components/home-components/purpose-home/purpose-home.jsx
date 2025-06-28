@@ -53,9 +53,9 @@ export default function PurposeHome({ purposeTitle, purposeText }) {
               viewport: { once: true },
               transition: { duration: 0.6, delay: 0.6 },
             }}
-            purposeCardSvg="/svg/home-purpose/cardSvg1.svg"
-            purposeCardTitle="ПРОЗРАЧНОСТЬ"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardSvg="/svg/home-purpose/cardSvg2.svg"
+            purposeCardTitle="КОМПЛЕКСНЫЙ ПОДХОД"
+            purposeCardText="Берём дело под ключ — от первичной консультации до полного сопровождения в суде и исполнения решений."
           />
           <PurposeCard
             animationProps={{
@@ -64,8 +64,8 @@ export default function PurposeHome({ purposeTitle, purposeText }) {
               viewport: { once: true },
               transition: { duration: 0.8, delay: 0.8 },
             }}
-            purposeCardSvg="/svg/home-purpose/cardSvg1.svg"
-            purposeCardTitle="ПРОЗРАЧНОСТЬ"
+            purposeCardSvg="/svg/home-purpose/cardSvg3.svg"
+            purposeCardTitle="КОМФОРТ И ВНИМАНИЕ"
             purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
           />
           <PurposeCard
@@ -75,9 +75,9 @@ export default function PurposeHome({ purposeTitle, purposeText }) {
               viewport: { once: true },
               transition: { duration: 1, delay: 1 },
             }}
-            purposeCardSvg="/svg/home-purpose/cardSvg1.svg"
-            purposeCardTitle="ПРОЗРАЧНОСТЬ"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardSvg="/svg/home-purpose/cardSvg4.svg"
+            purposeCardTitle="ОТВЕТСТВЕННОСТЬ"
+            purposeCardText="Мы не обещаем невозможного и не перекладываем вину. Вникаем в детали и защищаем клиента как своего."
           />
         </div>
       </div>

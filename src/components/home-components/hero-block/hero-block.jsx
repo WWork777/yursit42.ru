@@ -1,7 +1,7 @@
 'use client'
 import styles from "./hero-block.module.scss";
 import { useEffect, useRef } from "react";
-
+import Link from "next/link";
 export default function HeroBlock({
   heroTitle,
   heroText,
@@ -12,6 +12,7 @@ export default function HeroBlock({
   firstBlockTextNumber,
   secondBlockTextNumber,
   thirdBlockTextNumber,
+  backgroundImageLink
 }) {
   const numberRefs = useRef([]);
 
@@ -61,7 +62,7 @@ export default function HeroBlock({
   }, []);
 
   return (
-    <div className={styles.hero}>
+    <div className={styles.hero} style={{ backgroundImage: `url(${backgroundImageLink})` }}>
       <div className={styles.hero_container}>
         <b
           className={styles.hero_title}
@@ -72,7 +73,7 @@ export default function HeroBlock({
           dangerouslySetInnerHTML={{ __html: heroText }}
         ></p>
         <button className={styles.hero_button}>
-          <h4>{buttonText}</h4>
+          <Link href="#form"><h4>{buttonText}</h4></Link>
         </button>
         <div className={styles.hero_bottom_block}>
           <div className={styles.hero_bottom_block_text}>

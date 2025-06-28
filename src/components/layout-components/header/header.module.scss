@@ -12,6 +12,35 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+.dark {
+  border-bottom: none !important; 
+  box-shadow: 0px 0px 50px 0px #83869F40;
+
+  p, h5 {
+    color: black !important;
+    &:hover {
+      color: #d7ac8a !important; 
+    }
+  }
+}
+
+.dark_contacts_link{
+  border: 1px solid black !important;
+  &:hover{
+    border: 1px solid #d7ac8a !important;
+    h5{
+      color: black !important;
+    }
+  }
+}
+
+.darkText {
+  color: black !important;
+  &:hover {
+    color: #d7ac8a !important;
+  }
+}
+
 .header_logo {
   img {
     width: 300px;

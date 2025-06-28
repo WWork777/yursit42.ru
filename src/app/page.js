@@ -21,6 +21,7 @@ export default function Home() {
         secondBlockTextNumber="1100+"
         thirdBlockTextNumber="95%"
         buttonText="Бесплатная консультация"
+        backgroundImageLink={"/common/hero-background.jpg"}
       />
       <HomeHelp
         helpTitle="Помогаем юридическим <br> и физическим лицам"

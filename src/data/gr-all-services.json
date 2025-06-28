@@ -1,0 +1,155 @@
+[
+  {
+    "title": "Юрист по банкротству",
+    "slug": "bankrotstvo",
+    "description": "Защитим ваши интересы в процедуре банкротства. <br> Спишем долги законно — сохраним имущество.",
+    "items":[
+      {
+          "Списание долгов" : "gr-spisanie-dolgov",
+          "Как объявить банкротство" : "gr-kak-stat-bankrotom",
+          "МФЦ банкротство 2025" : "gr-bankrotstvo-mfts-2025",
+          "Судебное банкротство 2025" : "gr-bankrotstvo-sud-2025",
+          "Оспаривание сделок при банкротстве" : "gr-osparivanie-pri-bankrotstve",
+          "Реструктуризация долгов" : "gr-restrukturizatsiya-dolgov"
+      }
+    ]
+  },
+  {
+    "title": "Семейное право",
+    "slug": "semeynoe-pravo",
+    "description": "Защитим ваши права и интересы в семейных спорах. <br> Развод, алименты, раздел имущества — решим цивилизованно.",
+    "items":[
+      {
+          "Раздел имущества" : "gr-razdel-imushchestva",
+          "Сопровождение разводов" : "gr-razvody",
+          "Взыскание алиментов" : "gr-alimenty",
+          "Лишение родительских прав" : "gr-lishenie-prav",
+          "Восстановление родительских прав" : "gr-vosstanovlenie-prav",
+          "Оспаривание отцовства" : "gr-ottsovstvo",
+          "Место жительства ребенка" : "gr-mesto-rebenka",
+          "Порядок общения с ребенком" : "gr-obshchenie-rebenkom"
+      }
+    ]
+  },
+  {
+    "title": "Наследство",
+    "slug": "nasledstvo",
+    "description": "Наследственные дела требуют опыта. <br> Доверьте их профессионалу — сохраните нервы и деньги.",
+    "items":[
+      {
+          "Раздел наследства" : "gr-razdel-nasledstva",
+          "Пропущенные сроки" : "gr-propushchennye-sroki",
+          "Недостойные наследники" : "gr-nedostoinye-nasledniki"
+      }
+    ]
+  },
+  {
+    "title": "Жилищное право",
+    "slug": "zilishnoe-pravo",
+    "description": "Отстоим ваши жилищные права в любой ситуации! <br> Выселение, раздел лицевого счёта, споры с управляющей компанией — решим в вашу пользу.",
+    "items":[
+      {
+          "Аварийное жилье" : "gr-avarijnoe-zhile",
+          "Затопления" : "gr-zatopleniya",
+          "Реконструкция" : "gr-rekonstruktsiya",
+          "Перевод в нежилой фонд" : "gr-perevod-v-nezhiloi",
+          "Социальный найм" : "gr-sotsialnyi-naim",
+          "Жилье для льготников" : "gr-lgotnoe-zhile",
+          "Самовольные постройки" : "gr-samovolnye-stroeniya",
+          "Регистрация домов" : "gr-registratsiya-domov",
+          "Приватизация" : "gr-privatizatsiya",
+          "Оспаривание кадастра" : "gr-osparivanie-kadastra"
+      }
+    ]
+  },
+  {
+    "title": "Земельное право",
+    "slug": "zemelnoe-pravo",
+    "description": "Отстоим ваши права на землю! <br> Споры с соседями, оформление собственности, снос построек — решим в вашу пользу.",
+     "items":[
+      {
+          "Права на землю" : "gr-zemlya-prava",
+          "Аренда с КУГИ" : "gr-kugi-arenda",
+          "Кадастровая стоимость" : "gr-kadastrovaya-stoimost",
+          "Границы участков" : "gr-granitsy-uchastkov",
+          "Назначение участка" : "gr-naznachenie-uchastka"
+      }
+    ]
+  },
+  {
+    "title": "Арбитражные споры",
+    "slug": "arbitrazh-spory",
+    "description": "Выигрываем сложные арбитражные споры. <br> Долги, контракты, банкротство контрагентов — защитим ваши интересы в суде.",
+    "items":[
+      {
+          "УАиГ" : "gr-uaig",
+          "КУМИ" : "gr-kumi",
+          "КУГИ" : "gr-kugi",
+          "Досудебный и судебный порядок" : "gr-dosudebnyi-sudebnyi",
+          "Арендные споры" : "gr-arendnye-spory",
+          "Неосновательное обогащение" : "gr-obogashchenie"
+      }
+    ]
+  },
+  {
+    "title": "Автоюрист",
+    "slug": "avtoyurist",
+    "description": "Попали в ДТП или лишают прав? Вернем справедливость! <br> Споры со страховой, обжалование штрафов, возврат водительского удостоверения.",
+    "items":[
+      {
+          "ДТП — ущерб" : "gr-dtp-ushcherb",
+          "Кто виноват в ДТП" : "gr-vinovnik-dtp",
+          "Статья 12.8 КоАП РФ" : "gr-koap-12-8"
+      }
+    ]
+  },
+  {
+    "title": "Защита прав потребителей",
+    "slug": "zashchita-prav-potrebiteley",
+    "description": "Вас обманули? Вернем деньги! <br> Возврат товаров, некачественные услуги, навязанные договоры — защитим ваши права.",
+    "items":[
+      {
+          "Защита при заключении договоров" : "gr-zpp-dogovory",
+          "Неустойки" : "gr-neustoiki",
+          "Некачественный товар" : "gr-nekachestvennyi-tovar",
+          "Неоказанные услуги" : "gr-neokazannye-uslugi",
+          "Некачественные услуги" : "gr-nekachestvennye-uslugi",
+          "Недобросовестные юристы" : "gr-nedobrosovestnye-yuristy"
+      }
+    ]
+  },
+  {
+    "title": "Финансы",
+    "slug": "finansy",
+    "description": "Финансовые споры? Вернем ваши деньги! <br> Взыскание долгов, оспаривание кредитных договоров, защита от коллекторов — работаем до результата.",
+    "items":[
+      {
+          "Кредитные споры" : "gr-kreditnye-spory",
+          "Налоги" : "gr-nalogi",
+          "Кредиты и инвестиции" : "gr-kredity-i-investitsii",
+          "Финансовое планирование" : "gr-fin-plan",
+          "Правовая оценка документов" : "gr-pravovaya-otsenka",
+          "Права должника" : "gr-prava-dolzhnika",
+          "Недействительность договоров" : "gr-nedeystvitelnost-dogovorov",
+          "Оспаривание условий" : "gr-osparivanie-uslovii",
+          "Споры с коллекторами" : "gr-kollektory",
+          "Долги по аренде и подряду" : "gr-dolgi-arenda-podryad",
+          "Задолженность по услугам" : "gr-zadolzhennost-uslugi",
+          "Долг по расписке" : "gr-dolg-raspiska"
+      }
+    ]
+  },
+  {
+    "title": "Гражданское право",
+    "slug": "grajdanoe-pravo",
+    "description": "Защитим ваши интересы в любом гражданском споре! <br> Договоры, наследство, недвижимость, возмещение ущерба — решим вопрос законно и эффективно.",
+     "items":[
+      {
+          "Сопровождение сделок" : "gr-sdelki-soprovozhdenie",
+          "Расторжение сделок" : "gr-sdelki-rastorzhenie",
+          "Споры по договорам" : "gr-dogovory-spory",
+          "Возмещение ущерба" : "gr-vozmeshchenie-ushcherba"
+      }
+    ]
+  }
+]

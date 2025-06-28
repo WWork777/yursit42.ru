@@ -1,9 +1,9 @@
 import styles from './footer.module.scss'
 import Link from 'next/link'
 
-const SvgLeft = ({ liText }) => {
+const SvgLeft = ({ liText, link }) => {
   return (
-    <Link href={""} className={styles.li_text_link_left}>
+    <Link href={link} className={styles.li_text_link_left}>
       <img src="/svg/home-help/li.svg" alt="list icon" />
       <p style={{ margin: 0 }}>{liText}</p>
     </Link>
@@ -18,11 +18,11 @@ export default function Footer() {
                 <p>Политика конфиденциальности</p>
         </div>
         <div className={styles.footer_links}>
-            <SvgLeft liText="Главная" />    
-            <SvgLeft liText="Услуги" />    
-            <SvgLeft liText="Прайс-лист" />    
-            <SvgLeft liText="Практики" />    
-            <SvgLeft liText="Контакты" />    
+            <SvgLeft liText="Главная" link="/"/>    
+            <SvgLeft liText="Услуги" link="/services"/>    
+            <SvgLeft liText="Прайс-лист" link="/price-list"/>    
+            <SvgLeft liText="Практики" link="/practices"/>    
+            <SvgLeft liText="Контакты" link="/contacts"/>    
         </div>
         <div className={styles.footer_contacts}>
             <h5>Главный офис</h5>

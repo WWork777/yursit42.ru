@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function ConsultationForm({consultationTitle, consultationText}) {
     return (
-        <section className="section-second">
+        <section className="section-second" id='form'>
             <div className={styles.consultation_form_container}>
                 <h2 dangerouslySetInnerHTML={{ __html: consultationTitle }}></h2>
                 <h4 dangerouslySetInnerHTML={{ __html: consultationText }}></h4>
