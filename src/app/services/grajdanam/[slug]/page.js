@@ -7,6 +7,32 @@ import Link from "next/link";
 import styles from './style.module.scss'
 import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
 
+export async function generateMetadata({ params }) {
+  const service = servicesData.find((item) => item.slug === params.slug);
+  
+  if (!service) return {};
+
+  return {
+    title: service.titleSeo || service.title,
+    description: service.descriptionSeo || service.description,
+    keywords: service.keywords || "",
+    alternates: {
+      canonical: `https://yurist42.ru/services/grajdanam/${params.slug}`
+    },
+    openGraph: {
+      title: service.titleSeo || service.title,
+      description: service.descriptionSeo || service.description,
+      url: `https://yurist42.ru/services/grajdanam/${params.slug}`,
+      images: [
+        {
+          url: `/favicon/favicon-96x96.png`,
+          alt: `yurist42.ru`,
+        },
+      ],  
+    },
+  };
+}
+
 export async function generateStaticParams() {
   try {
     if (!Array.isArray(servicesData)) {
@@ -44,7 +70,7 @@ export default function Page({ params }) {
         secondBlockTextNumber="1100+"
         thirdBlockTextNumber="95%"
         buttonText="Бесплатная консультация"
-        backgroundImageLink="/common/hero-background2.jpg"
+        backgroundImageLink="/common/hero-background2.webp"
       />
       
       <section className="section-main">

@@ -12,7 +12,8 @@ export default function HeroBlock({
   firstBlockTextNumber,
   secondBlockTextNumber,
   thirdBlockTextNumber,
-  backgroundImageLink
+  backgroundImageLink,
+  heroTextMobile
 }) {
   const numberRefs = useRef([]);
 
@@ -71,6 +72,10 @@ export default function HeroBlock({
         <p
           className={styles.hero_text}
           dangerouslySetInnerHTML={{ __html: heroText }}
+        ></p>
+         <p
+          className={styles.hero_text_mobile}
+          dangerouslySetInnerHTML={{ __html: heroTextMobile }}
         ></p>
         <button className={styles.hero_button}>
           <Link href="#form"><h4>{buttonText}</h4></Link>

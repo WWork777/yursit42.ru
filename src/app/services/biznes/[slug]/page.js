@@ -4,15 +4,43 @@ import HeroBlock from "@/components/home-components/hero-block/hero-block";
 import servicesData from "@/data/bz-all-services.json";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import styles from './style.module.scss'
+import styles from "./style.module.scss";
 import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
+
+
+export async function generateMetadata({ params }) {
+  const service = servicesData.find((item) => item.slug === params.slug);
+  
+  if (!service) return {};
+
+  return {
+    title: service.titleSeo || service.title,
+    description: service.descriptionSeo || service.description,
+    keywords: service.keywords || "",
+    alternates: {
+      canonical: `https://yurist42.ru/services/biznes/${params.slug}`
+    },
+    openGraph: {
+      title: service.titleSeo || service.title,
+      description: service.descriptionSeo || service.description,
+      url: `https://yurist42.ru/services/biznes/${params.slug}`,
+      images: [
+        {
+          url: `/favicon/favicon-96x96.png`,
+          alt: `yurist42.ru`,
+        },
+      ],  
+    },
+  };
+}
+
 
 export async function generateStaticParams() {
   try {
     if (!Array.isArray(servicesData)) {
       return [];
     }
-    
+
     const slugs = servicesData.map((service) => ({ slug: service.slug }));
     return slugs;
   } catch (error) {
@@ -31,7 +59,11 @@ export default function Page({ params }) {
   if (!service) {
     return notFound();
   }
-    const breadcrumbs = [{ label: "Главная", path: "/", }, { label: "Услуги юридическим лицам", path: "/services?type=bz" }, { label: service.title }];
+  const breadcrumbs = [
+    { label: "Главная", path: "/" },
+    { label: "Услуги юридическим лицам", path: "/services?type=bz" },
+    { label: service.title },
+  ];
   return (
     <>
       <HeroBlock
@@ -44,30 +76,75 @@ export default function Page({ params }) {
         secondBlockTextNumber="1100+"
         thirdBlockTextNumber="95%"
         buttonText="Бесплатная консультация"
-        backgroundImageLink="/common/hero-background2.jpg"
+        backgroundImageLink="/common/hero-background2.webp"
       />
-      
+
       <section className="section-main">
         <BreadCrumble items={breadcrumbs} />
-        <h1>Ключевые услуги</h1>
-        <div className={styles.service_list}>
-          {service.items && service.items.length > 0 && service.items.map((itemGroup, index) => (
-            <div key={index} className={styles.service_list_group}>
-              {Object.entries(itemGroup).map(([serviceName, servicePath]) => (
-                <Link 
-                  key={servicePath} 
-                  href={`/services/${servicePath}`}
-                  className={styles.service_list_item}
-                >
-                    <p>{serviceName}</p>
-                </Link>
-              ))}
+        {service.slug !== "autsorsbz" ? (
+          <>
+            <h1>Ключевые услуги</h1>
+            <div className={styles.service_list}>
+              {service.items &&
+                service.items.length > 0 &&
+                service.items.map((itemGroup, index) => (
+                  <div key={index} className={styles.service_list_group}>
+                    {Object.entries(itemGroup).map(
+                      ([serviceName, servicePath]) => (
+                        <Link
+                          key={servicePath}
+                          href={`/services/${servicePath}`}
+                          className={styles.service_list_item}
+                        >
+                          <p>{serviceName}</p>
+                        </Link>
+                      )
+                    )}
+                  </div>
+                ))}
             </div>
-          ))}
-        </div>
+          </>
+        ) : (
+            <>
+            <h1>Аутсорсинг юридической компании КодексЪ</h1>
+            <div className={styles.service_list}>
+              {service.items &&
+                service.items.length > 0 &&
+                service.items.map((itemGroup, index) => (
+                  <div key={index} className={styles.service_list_group}>
+                    {Object.entries(itemGroup).map(
+                      ([serviceName, servicePath]) => (
+                        <div
+                          key={servicePath}
+                          className={styles.service_list_item_autsors}
+                        >
+                          <p>{serviceName}</p>
+                        </div>
+                      )
+                    )}
+                  </div>
+                ))}
+            </div>
+            <h1>Наши клиенты</h1>
+            <div className={styles.clients_list}>
+                <div className={styles.clients_list_item}>
+                    <h4>ООО "Сибирский мыловар"</h4>
+                </div>
+                <div className={styles.clients_list_item}>
+                    <h4>ООО ИК "КВАРТАЛ 12"</h4>
+                </div>
+                <div className={styles.clients_list_item}>
+                    <h4>ООО "Базовское"</h4>
+                </div>
+                <div className={styles.clients_list_item}>
+                    <h4>ООО "Ужанихинсккий Молзавод"</h4>
+                </div>
+            </div>
+          </>
+        )}
       </section>
-      
-      <ConsultationForm 
+
+      <ConsultationForm
         consultationTitle="Получите консультацию"
         consultationText="Оценим шансы, предложим решение и стоимость"
       />

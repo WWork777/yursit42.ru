@@ -4,7 +4,11 @@
   align-items: stretch;
   gap: 2rem;
   padding-top: 50px;
-}
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    padding-top: 10px;
+  }
+} 
 
 .home_practice_image {
   background: linear-gradient(to left, #d7ac8a, #83869f);
@@ -21,6 +25,9 @@
   &:hover {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
   }
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .home_practice_image_image {
@@ -28,8 +35,11 @@
   width: 100% !important;
   height: 100% !important;
   transform: scaleX(-1);
-  margin-top: 100px;
+  margin-top: 0px;
   transition: all 0.3s ease-in-out;
+  @media (max-width: 1000px) {
+    margin-top: 0px;
+  }
 }
 
 .home_practice_text {
@@ -38,6 +48,12 @@
   flex-direction: column;
   gap: 2rem;
   min-height: 400px;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 }
 
 .home_practice_text_button {
@@ -60,5 +76,14 @@
     p{
       color: white;
     }
+  }
+  @media (max-width: 1865px) {
+    width: 50%;
+  }
+  @media (max-width: 1140px){
+    padding: 20px 30px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
   }
 }

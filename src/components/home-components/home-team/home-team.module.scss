@@ -3,6 +3,15 @@
   align-items: center;
   width: 100%;
   gap: 100px;
+  @media (max-width: 1000px) {
+    gap: 50px;
+  }
+  @media (max-width: 600px) {
+    gap: 25px;
+  }
+  @media (max-width: 480px) {
+    gap: 20px;
+  }
 }
 
 .custom_navigation {
@@ -27,7 +36,10 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-
+  @media (max-width: 600px) {
+    width: 40px !important;
+    height: 40px !important;
+  }
   &::after {
     content: "";
     width: 10px;
@@ -58,6 +70,9 @@
   .swiper-wrapper {
     border-radius: 15px;
   }
+  @media (max-width: 600px) {
+    margin-top: 10px;
+  }
 }
 
 .home_team_slider_card {
@@ -77,6 +92,9 @@
   &:hover {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
   }
+  @media (max-width: 586px) {
+    min-width: 50px !important;
+  }
 }
 
 .home_team_slider_card_image {
@@ -92,7 +110,8 @@
 }
 
 .team_img4{
-  margin-top: 100px;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .swiper-button-next,
@@ -106,6 +125,10 @@
   width: 100%;
   min-width: 550px;
   max-width: 550px;
+  @media (max-width: 586px) {
+    min-width: 50px !important;
+    max-width: 550px;
+  }
 }
 
 .home_team_slider_card_text {

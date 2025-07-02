@@ -4,6 +4,27 @@ import ContactPageYandexMap from "@/components/common/contact-page-map/map";
 import ContactsTextBlock from "@/components/contacts-components/contacts-components";
 import ConsultationForm from "@/components/common/consultation-form/comsultation-form";
 
+
+export const metadata = {
+  title: "Контакты юриста в Кемерово | Запись на консультацию",
+  description: "Адрес, телефоны и форма обратной связи. Работаем ежедневно, включая выходные.",
+  keywords:"контакты юриста, запись к юристу, юридическая консультация",
+  alternates: {
+    canonical: `https://yurist42.ru/contacts`
+  },
+  openGraph: {
+      title: `Контакты юриста в Кемерово | Запись на консультацию`,
+      description: `Адрес, телефоны и форма обратной связи. Работаем ежедневно, включая выходные.`,
+      url: `https://yurist42.ru/contacts`,
+      images: [
+          {
+              url: `/favicon/favicon-96x96.png`,
+              alt: `yurist42.ru`,
+          },
+      ],
+  },
+};
+
 export default function ContactPage() {
   const breadcrumbs = [{ label: "Главная", path: "/" }, { label: "Контакты" }];
   return (

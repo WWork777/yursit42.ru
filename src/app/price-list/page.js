@@ -2,6 +2,29 @@ import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
 import ConsultationForm from "@/components/common/consultation-form/comsultation-form";
 import YandexMap from "@/components/common/map/map";
 import PriceListTable from "@/components/price-list-components/price-list-table";
+
+
+export const metadata = {
+  title: "Цены на юридические услуги в Кемерово | Прайс-лист",
+  description: "Прозрачное ценообразование на юридические услуги. Доступные цены при 27-летнем опыте работы.",
+  keywords:"стоимость услуг юриста, прайс юриста, цены на юридические услуги",
+  alternates: {
+    canonical: `https://yurist42.ru/price-list`
+  },
+  openGraph: {
+      title: `Цены на юридические услуги в Кемерово | Прайс-лист`,
+      description: `Прозрачное ценообразование на юридические услуги. Доступные цены при 27-летнем опыте работы.`,
+      url: `https://yurist42.ru/price-list`,
+      images: [
+          {
+              url: `/favicon/favicon-96x96.png`,
+              alt: `yurist42.ru`,
+          },
+      ],
+  },
+};
+
+
 export default function PriceList() {
   const breadcrumbs = [
     { label: "Главная", path: "/" },

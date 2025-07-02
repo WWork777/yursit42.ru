@@ -16,7 +16,7 @@ const PriceListBlock = ({ priceListTitle, isDark, items = [] }) => {
         {items.map((item, index) => (
           <div key={index}>
             <div className={styles.price_list_table_content_item}>
-              <p>{item.text}</p>
+              <p className={styles.price_list_table_content_item_text}>{item.text}</p>
               <p>{item.price}</p>
             </div>
             <div className={styles.price_list_table_content_item_line}></div>
@@ -35,27 +35,26 @@ export default function PriceListTable() {
         isDark={true}
         items={[
           { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
-          { text: "Договор купли-продажи", price: "от 5 000 руб." },
+          { text: "Договор дарения", price: "от 5 000 руб." },
+          { text: "Судебный приказ", price: "от 5 000 руб." },
+          { text: "Отмена судебного приказа", price: "от 7 000 руб." },
+          { text: "Исковое заявление", price: "от 7 000 руб." },
+          { text: "Возражение на исковое заявление", price: "от 7 000 руб." },
+          { text: "Апелляционная жалоба", price: "от 10 000 руб." },
+          { text: "Возражение на апелляционную жалобу", price: "от 10 000 руб." },
+          { text: "Мировое соглашение", price: "от 10 000 руб." },
+          { text: "Кассационная жалоба", price: "от 10 000 руб." },
         ]}
       />
       <PriceListBlock
         priceListTitle="Судебное заседание"
         isDark={false}
         items={[
-          { text: "мировой суд", price: "от 10 000 руб." },
-          { text: "мировой суд", price: "от 10 000 руб." },
-          { text: "мировой суд", price: "от 10 000 руб." },
-          { text: "мировой суд", price: "от 10 000 руб." },
-          { text: "мировой суд", price: "от 10 000 руб." },
+          { text: "Мировой суд", price: "от 10 000 руб." },
+          { text: "Суд общей юрисдикции", price: "от 12 000 руб." },
+          { text: "Расмотрение дела по существу", price: "от 15 000 руб." },
+          { text: "Аппеляционный суд", price: "от 15 000 руб." },
+          { text: "Кассационный суд", price: "от 15 000 руб." },
         ]}
       />
     </>

@@ -17,6 +17,21 @@
     background-size: 20px 2px;
     background-repeat: repeat-x;
     z-index: 0;
+    @media (max-width: 1000px) {
+      width: 2px;
+      height: 110%;
+      background-image: linear-gradient(to bottom, #000 50%, transparent 50%);
+      background-size: 2px 20px;
+      background-repeat: repeat-y;
+      left: 60px;
+      top: -25px;
+    }
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: start;
+    margin-top: 50px;
   }
 }
 
@@ -26,6 +41,11 @@
   flex-direction: column;
   align-items: center;
   z-index: 1;
+  @media (max-width: 1000px) {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
 }
 
 .home_problems_circle {
@@ -47,9 +67,17 @@
     transform: scale(1.01);
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
   }
+  @media (max-width: 1000px) {
+    margin-bottom: 0px;
+    max-width: 120px;
+    min-width: 120px;
+  }
 }
 
 .problems_description {
   text-align: center;
   margin-top: 10px;
+  @media (max-width: 1000px) {
+    text-align: left;
+  }
 }

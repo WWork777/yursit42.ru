@@ -28,12 +28,16 @@ export default function Footer() {
             <h5>Главный офис</h5>
             <p>г. Кемерово, ул. Красная, д. 13</p>
             <h5>Телефон</h5>
-            <p>+7 (960) 930-91-91</p>
+            <Link href="tel:+79609309191"><p>+7 (960) 930-91-91</p></Link>
             <h5>Почта</h5>
-            <p>kodeks_yrist@mail.ru</p>
+            <Link href="mailto:kodeks_yrist@mail.ru"><p>kodeks_yrist@mail.ru</p></Link>
             <div className={styles.footer_social}>
-                <Link href={""}><img src="/svg/contacts/wa.svg" className={styles.footer_svg} /></Link>
-                <Link href={""}><img src="/svg/contacts/tg.svg" className={styles.footer_svg} /></Link>
+                <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0"><img src="/svg/contacts/wa.svg" className={styles.footer_svg} /></Link>
+                <Link href="https://telegram.me/yurist42_kodeks"><img src="/svg/contacts/tg.svg" className={styles.footer_svg} /></Link>
+            </div>
+            <div className={styles.footer_bottom}>
+              <h5>1997-2025 КОДЕКСЪ. Все права защищены.</h5>
+                <p>Политика конфиденциальности</p>
             </div>
         </div>
     </div>

@@ -59,14 +59,26 @@ export default function HomeTeam({ teamTitle }) {
               slidesPerView: 1,
               spaceBetween: 20,
             },
-            768: {
+            850: {
               slidesPerView: 2,
-              spaceBetween: 150,
+              spaceBetween: 200,
             },
-            1024: {
-              slidesPerView: 3,
+            1000: {
+              slidesPerView: 2,
+              spaceBetween: 250,
+            },
+            1200: {
+              slidesPerView: 2,
               spaceBetween: 350,
             },
+            1400: {
+              slidesPerView: 2,
+              spaceBetween: 350,
+            },
+            1600: {
+              slidesPerView: 3,
+              spaceBetween: 350,
+            }
           }}
           onInit={(swiper) => {
             swiper.navigation.init();
@@ -75,7 +87,7 @@ export default function HomeTeam({ teamTitle }) {
         >
           <SwiperSlide>
             <SliderCard
-              sliderImageSrc="/home/team/team1.png"
+              sliderImageSrc="/home/team/team1.webp"
               sliderTitle="Прозоров Александр"
               sliderText="Юрист с более чем 27-ми летним опытом юридической практики, имеет высшее юридическое образование московского ВУЗа"
               imageClass={styles.team_img1}
@@ -83,7 +95,7 @@ export default function HomeTeam({ teamTitle }) {
           </SwiperSlide>
           <SwiperSlide>
             <SliderCard
-              sliderImageSrc="/home/team/team2.png"
+              sliderImageSrc="/home/team/team2.webp"
               sliderTitle="Масленников Дмитрий"
               sliderText="Самый педантичный и внимательный юрист. Имеет разносторонний опыт по юридической специальности"
               imageClass={styles.team_img2}
@@ -91,7 +103,7 @@ export default function HomeTeam({ teamTitle }) {
           </SwiperSlide>
           <SwiperSlide>
             <SliderCard
-              sliderImageSrc="/home/team/team3.png"
+              sliderImageSrc="/home/team/team3.webp"
               sliderTitle="Котилевская Диана"
               sliderText="Специалист в области права с акцентом на семейные и корпоративные дела. Обладает уникальным подходом к каждому клиенту."
               imageClass={styles.team_img3}
@@ -99,7 +111,7 @@ export default function HomeTeam({ teamTitle }) {
           </SwiperSlide>
           <SwiperSlide>
             <SliderCard
-              sliderImageSrc="/home/team/team1.png"
+              sliderImageSrc="/home/team/team4.webp"
               sliderTitle="Саймойлова Веста"
               sliderText="Хранитель процессуального кодекса <br> Отлично владеет знанием законодательства, идеально подбирает судебную практику"
               imageClass={styles.team_img4}

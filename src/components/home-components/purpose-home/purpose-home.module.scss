@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 }
 
 .purpose_left {
@@ -9,11 +12,17 @@
   flex-direction: column;
   gap: 2rem;
   width: 35%;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .purpose_left_text {
   line-height: 25px;
   letter-spacing: 0em;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .purpose_card {
@@ -26,7 +35,19 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-
+ @media (max-width: 660px) {
+      gap: 0.5rem;
+      padding: 20px 15px !important;
+      &:nth-child(1),
+      &:nth-child(3) {
+        background-color: white !important;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      &:nth-child(2),
+  &:nth-child(4) {
+    background-color: #d7ac8a4d !important;
+  }
+    }
   &:nth-child(1),
   &:nth-child(4) {
     background-color: white;
@@ -71,6 +92,8 @@
     h4 {
       color: #a37a56;
     }
+
+   
   }
 
   img {
@@ -87,6 +110,14 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   width: 65%;
+  @media (max-width: 1000px) {
+    width: 100%;
+    margin-top: 30px;
+    gap: 1rem;
+  }
+  @media (max-width: 660px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .purposeCardSvg {

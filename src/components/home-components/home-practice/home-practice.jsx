@@ -23,12 +23,13 @@ export default function HomePractice({ practiceTitle }) {
           className={styles.home_practice_image}
           >
           <Image
-            src="/home/practice/practiceImage.png"
+            src="/home/practice/practiceimage (2).webp"
             alt="Практика"
-            fill
+            width={1000}
+            height={1000}
             className={styles.home_practice_image_image}
             style={{
-              objectFit: "contain",
+              objectFit: "cover",
             }}
           />
         </motion.div>
@@ -39,7 +40,7 @@ export default function HomePractice({ practiceTitle }) {
           className={styles.home_practice_text}
           viewport={{ once: true, margin: "-100px" }}
           >
-          <h3>Судимся за вас как за себя</h3>
+          <h3>Судьба клиента — наша репутация</h3>
           <p>
             Мы защищаем интересы клиентов - физических и юридических лиц - в
             судах всех инстанций.

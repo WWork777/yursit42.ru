@@ -1,6 +1,5 @@
 import styles from './breadCrumble.module.scss';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export default function BreadCrumble({ items }) {
   return (
@@ -12,7 +11,7 @@ export default function BreadCrumble({ items }) {
                 <h5>{item.label}</h5>
             </Link>
           ) : (
-            <h5 className={styles.currentPage}>{item.label}</h5>
+            <h4 className={styles.currentPage}>{item.label}</h4>
           )}
           {index < items.length - 1 && <span className={styles.separator}>/</span>}
         </span>

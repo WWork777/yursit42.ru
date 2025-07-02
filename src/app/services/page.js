@@ -5,6 +5,27 @@ import HomePractice from "@/components/home-components/home-practice/home-practi
 import HomeProblems from "@/components/home-components/home-problems/home-problems";
 import ServicesMainBlock from "@/components/services-components/services-main-block/services-main-block";
 
+
+export const metadata = {
+  title: "Юридические услуги в Кемерово | Консультации, защита в суде, оформление документов",
+  description: "Профессиональные юридические услуги в Кемерово для физических и юридических лиц. Консультации, представительство в суде, составление договоров, защита прав. Опытные юристы с индивидуальным подходом к каждому клиенту.",
+  keywords:"юрист Кемерово, юридические услуги, консультация юриста, адвокат Кемерово, помощь юриста, судебные споры, оформление документов, защита прав, юридическая помощь, семейный юрист, трудовые споры, жилищные вопросы",
+  alternates: {
+    canonical: `https://yurist42.ru/services`
+  },
+  openGraph: {
+      title: `Юридические услуги в Кемерово | Консультации, защита в суде, оформление документов`,
+      description: `Профессиональные юридические услуги в Кемерово для физических и юридических лиц. Консультации, представительство в суде, составление договоров, защита прав. Опытные юристы с индивидуальным подходом к каждому клиенту.`,
+      url: `https://yurist42.ru/services`,
+      images: [
+          {
+              url: `/favicon/favicon-96x96.png`,
+              alt: `yurist42.ru`,
+          },
+      ],
+  },
+};
+
 export default function Services({ pageTitle, searchParams }) {
   const selectedType = searchParams.type || null;
   const breadcrumbs = [{ label: "Главная", path: "/" }, { label: "Услуги" }];

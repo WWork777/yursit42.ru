@@ -13,7 +13,7 @@ export default function ContactPageYandexMap() {
         <div className="ymaps">
           <Map
             className="map"
-            defaultState={{ center: [55.349312, 86.088006], zoom: 15.5 }}
+            defaultState={{ center: [55.363312, 86.088006], zoom: 13.5 }}
           >
             <Placemark
               geometry={[55.349312, 86.088006]}

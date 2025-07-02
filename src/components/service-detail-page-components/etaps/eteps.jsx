@@ -29,10 +29,10 @@ export default function Etaps({ etapsTitle, etapsText }) {
         transition={{ duration: 0.8 }}
         >
           <h1 dangerouslySetInnerHTML={{ __html: etapsTitle }}></h1>
-          <h5
+          <h4
             className={styles.purpose_left_text}
             dangerouslySetInnerHTML={{ __html: etapsText }}
-          ></h5>
+          ></h4>
         </motion.div>
         <div className={styles.purpose_right}>
           <PurposeCard
@@ -43,7 +43,7 @@ export default function Etaps({ etapsTitle, etapsText }) {
               transition: { duration: 0.4, delay: 0.4 },
             }}
             purposeCardTitle="Консультация и анализ ситуации"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardText="На данном этапе Вами передаются документы для детального анализа, Вы описываете суть проблемы и Ваше видение ситуации."
             formattedIndex="01"
           />
           <PurposeCard
@@ -54,7 +54,7 @@ export default function Etaps({ etapsTitle, etapsText }) {
               transition: { duration: 0.6, delay: 0.6 },
             }}
             purposeCardTitle="Подготовка стратегии"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardText="Подготовка всех необходимых справок, паспортов, выписок и пр. Юридический прогноз относительно перспективы дела."
             formattedIndex="02"
           />
           <PurposeCard
@@ -65,7 +65,7 @@ export default function Etaps({ etapsTitle, etapsText }) {
               transition: { duration: 0.8, delay: 0.8 },
             }}
             purposeCardTitle="Сбор документов"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardText="Заключение соглашение на представление Ваших интересов."
             formattedIndex="03"
           />
           <PurposeCard
@@ -76,7 +76,7 @@ export default function Etaps({ etapsTitle, etapsText }) {
               transition: { duration: 1, delay: 1 },
             }}
             purposeCardTitle="Представляем ваши интересы в суде"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardText="Подготовка процессуальных документов. (Заявления, иски, ходатайства, жалобы)."
             formattedIndex="04"
           />
           <PurposeCard
@@ -87,7 +87,7 @@ export default function Etaps({ etapsTitle, etapsText }) {
               transition: { duration: 1, delay: 1 },
             }}
             purposeCardTitle="Добиваемся результата в вашу пользу"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardText="Проведение досудебных переговоров с целью решения вопроса не ввязываясь в судебный процесс."
             formattedIndex="05"
           />
           <PurposeCard
@@ -98,7 +98,7 @@ export default function Etaps({ etapsTitle, etapsText }) {
               transition: { duration: 1, delay: 1 },
             }}
             purposeCardTitle="Контролируем исполнение решения"
-            purposeCardText="Мы объясняем суть дела без юридической шелухи. Клиенты всегда понимают, что происходит и за что платят."
+            purposeCardText="Представление Ваших интересов в суде."
             formattedIndex="06"
           />
         </div>

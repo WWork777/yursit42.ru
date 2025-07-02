@@ -14,7 +14,13 @@
   margin-top: 4rem;
   margin-bottom: 2rem;
   width: 100%;
-
+  @media (max-width: 900px) {
+    margin-top: 2rem;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
   .indicator_wrapper {
     position: absolute;
     bottom: 0;
@@ -78,17 +84,30 @@
   max-height: 450px;
   transition: all 0.3s ease-in-out;
   background-color: #d7ac8a4d;
+  @media (max-width: 1100px) {
+    max-width: none !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
+    height: 300px;
+    padding: 20px;
+  }
   p {
     font-size: 24px !important;
     font-weight: 600 !important;
     color: #292c3b;
+    @media (max-width: 1100px) {
+      font-size: 22px !important;
+    }
   }
 
   h5 {
     color: #292c3b;
     transition: all 0.3s ease-in-out;
-     font-weight: 400 !important;
+    font-weight: 400 !important;
     font-size: 19px !important;
+    @media (max-width: 1100px) {
+      font-size: 16px !important;
+    }
     &:hover {
       transform: scale(1.025);
     }
@@ -112,17 +131,30 @@
   max-height: 450px;
   transition: all 0.3s ease-in-out;
   background-color: #6e719e4d;
+  @media (max-width: 1100px) {
+    max-width: none !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
+    height: 300px;
+    padding: 20px;
+  }
   p {
-   font-size: 24px !important;
+    font-size: 24px !important;
     font-weight: 600 !important;
     color: #292c3bcc;
+     @media (max-width: 1100px) {
+      font-size: 22px !important;
+    }
   }
 
   h5 {
     color: #292c3bcc;
     font-size: 19px !important;
-     font-weight: 400 !important;
+    font-weight: 400 !important;
     transition: all 0.3s ease-in-out;
+    @media (max-width: 1100px) {
+      font-size: 16px !important;
+    }
     &:hover {
       transform: scale(1.025);
     }
@@ -139,6 +171,14 @@
   gap: 1rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 0rem;
+  }
+  @media (max-width: 660px) {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 0rem;
+  }
 }
 
 .card_content {

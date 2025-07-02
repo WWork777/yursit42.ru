@@ -13,13 +13,26 @@
         color: #A47764;
         font-size: 22px;
         font-weight: 600;
+        @media (max-width: 1000px) {
+            font-size: 20px;
+        }
     }
     span{
         color: #A47764;
+        @media (max-width: 1000px) {
+            font-size: 18px;
+        }
     }
     p{
         color: #292C3B;
         font-size: 16px;
         font-weight: 500;
+        @media (max-width: 1000px) {
+            font-size: 14px;
+        }
+    }
+    @media (max-width: 1000px) {
+        width: 96%;
+        padding: 20px;
     }
 }

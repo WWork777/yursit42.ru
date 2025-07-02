@@ -9,6 +9,36 @@ import ConsultationForm from "@/components/common/consultation-form/comsultation
 import YandexMap from "@/components/common/map/map";
 import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
 
+
+export async function generateMetadata({ params }) {
+  const allItems = [...servicesGrData, ...servicesBzData];
+  const service = allItems
+    .flatMap((c) => c.items)
+    .find((item) => item.slug === params.slug);
+
+  if (!service) return {};
+
+  return {
+    title: service.title || `${service.text} | Юридические услуги в Кемерово`,
+    description: service.descriptionSeo || service.description,
+    keywords: service.keywordsSeo || "",
+    alternates: {
+      canonical: `https://yurist42.ru/services/${params.slug}`
+    },
+    openGraph: {
+      title: service.title || `${service.text} | Юридические услуги в Кемерово`,
+      description: service.descriptionSeo || service.description,
+      url: `https://yurist42.ru/services/${params.slug}`,
+      images: [
+        {
+          url: `/favicon/favicon-96x96.png`,
+          alt: `yurist42.ru`,
+        },
+      ],
+    },
+  };
+}
+
 export async function generateStaticParams() {
   const allItems = [...servicesGrData, ...servicesBzData];
   const slugs = allItems.flatMap((category) =>
@@ -50,7 +80,7 @@ export default function ServicePage({ params }) {
         secondBlockTextNumber="1100+"
         thirdBlockTextNumber="95%"
         buttonText="Бесплатная консультация"
-        backgroundImageLink={"/common/hero-background2.jpg"}
+        backgroundImageLink={"/common/hero-background2.webp"}
       />
       <WeCan 
         weCanTitle="Мы поможем" 
