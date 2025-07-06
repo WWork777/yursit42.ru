@@ -24,9 +24,13 @@ export default function Header() {
 
   const isDarkPage =
     pathname === "/services" ||
-    pathname === "/price-list" ||
+    pathname === "/price" ||
     pathname === "/practices" ||
     pathname === "/contacts" ||
+    pathname === "/policy" ||
+    pathname === "/fiz" ||
+    pathname === "/yur" ||
+    pathname === "/privacy" ||
     pathname.startsWith("/practices/");
 
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
@@ -76,14 +80,14 @@ export default function Header() {
           </Link>
         </div>
         <div className={`${styles.mobile_menu_links}`}>
-          <Link href="/services" onClick={closeMenu}>
+          <Link href="/fiz" onClick={closeMenu}>
             <p
               className={isDarkPage && isScrolled ? styles.darkTextMobile : ""}
             >
               Услуги
             </p>
           </Link>
-          <Link href="/price-list" onClick={closeMenu}>
+          <Link href="/price" onClick={closeMenu}>
             <p
               className={isDarkPage && isScrolled ? styles.darkTextMobile : ""}
             >
@@ -134,10 +138,10 @@ export default function Header() {
 
       {/* Десктоп навигация */}
       <div className={styles.header_links}>
-        <Link href="/services">
+        <Link href="/fiz">
           <p className={isDarkPage ? styles.darkText : ""}>Услуги</p>
         </Link>
-        <Link href="/price-list">
+        <Link href="/price">
           <p className={isDarkPage ? styles.darkText : ""}>Прайс-лист</p>
         </Link>
         <Link href="/practices">

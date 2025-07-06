@@ -17,12 +17,12 @@ export async function generateMetadata({ params }) {
     description: service.descriptionSeo || service.description,
     keywords: service.keywords || "",
     alternates: {
-      canonical: `https://yurist42.ru/services/grajdanam/${params.slug}`
+      canonical: `https://yurist42.ru/category/${params.slug}`
     },
     openGraph: {
       title: service.titleSeo || service.title,
       description: service.descriptionSeo || service.description,
-      url: `https://yurist42.ru/services/grajdanam/${params.slug}`,
+      url: `https://yurist42.ru/category/${params.slug}`,
       images: [
         {
           url: `/favicon/favicon-96x96.png`,
@@ -82,7 +82,7 @@ export default function Page({ params }) {
               {Object.entries(itemGroup).map(([serviceName, servicePath]) => (
                 <Link 
                   key={servicePath} 
-                  href={`/services/${servicePath}`}
+                  href={`/${servicePath}`}
                   className={styles.service_list_item}
                 >
                     <p>{serviceName}</p>

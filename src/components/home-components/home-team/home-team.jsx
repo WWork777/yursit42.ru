@@ -113,7 +113,7 @@ export default function HomeTeam({ teamTitle }) {
             <SliderCard
               sliderImageSrc="/home/team/team4.webp"
               sliderTitle="Саймойлова Веста"
-              sliderText="Хранитель процессуального кодекса <br> Отлично владеет знанием законодательства, идеально подбирает судебную практику"
+              sliderText="Хранитель процессуального кодекса. Отлично владеет знанием законодательства, идеально подбирает судебную практику"
               imageClass={styles.team_img4}
             />
           </SwiperSlide>

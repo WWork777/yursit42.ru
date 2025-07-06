@@ -1,3 +1,5 @@
+'use client'
+
 import styles from './breadCrumble.module.scss';
 import Link from 'next/link';
 

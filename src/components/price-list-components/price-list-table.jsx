@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import styles from "./price-list.module.scss";
 import { motion } from "framer-motion";
 
@@ -6,8 +6,8 @@ const PriceListBlock = ({ priceListTitle, isDark, items = [] }) => {
   return (
     <motion.div
       className={`${styles.price_list_table} ${isDark ? styles.dark : styles.white}`}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
@@ -16,7 +16,9 @@ const PriceListBlock = ({ priceListTitle, isDark, items = [] }) => {
         {items.map((item, index) => (
           <div key={index}>
             <div className={styles.price_list_table_content_item}>
-              <p className={styles.price_list_table_content_item_text}>{item.text}</p>
+              <p className={styles.price_list_table_content_item_text}>
+                {item.text}
+              </p>
               <p>{item.price}</p>
             </div>
             <div className={styles.price_list_table_content_item_line}></div>
@@ -41,7 +43,10 @@ export default function PriceListTable() {
           { text: "Исковое заявление", price: "от 7 000 руб." },
           { text: "Возражение на исковое заявление", price: "от 7 000 руб." },
           { text: "Апелляционная жалоба", price: "от 10 000 руб." },
-          { text: "Возражение на апелляционную жалобу", price: "от 10 000 руб." },
+          {
+            text: "Возражение на апелляционную жалобу",
+            price: "от 10 000 руб.",
+          },
           { text: "Мировое соглашение", price: "от 10 000 руб." },
           { text: "Кассационная жалоба", price: "от 10 000 руб." },
         ]}

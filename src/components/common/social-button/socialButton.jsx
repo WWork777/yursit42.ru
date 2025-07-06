@@ -10,7 +10,7 @@ export default function SocialButton() {
       <div className={styles.social_icons}>
         <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0"><img src="/svg/wa.svg" className={styles.social_button_img} /></Link>
         <Link href="https://telegram.me/yurist42_kodeks"><img src="/svg/tg.svg" className={styles.social_button_img} /></Link>
-        <Link href="https://vk.com/kodeks42"><img src="/svg/vk.svg" className={styles.social_button_img} /></Link>
+        <Link href="tel:+79609309191"><img src="/svg/phone.png" className={styles.social_button_img} /></Link>
       </div>
     </div>
   );

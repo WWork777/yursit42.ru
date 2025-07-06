@@ -7,6 +7,7 @@ import ServicesMainBzLink from "../../../../public/svg/services-page/bzLink";
 import { motion } from "framer-motion";
 import servicesGrData from "@/data/services-gr.json";
 import servicesBzData from "@/data/services-bz.json";
+import { useRouter } from 'next/navigation';
 
 const ServicesMainBlockCardGr = ({
   servicesCardTitle,
@@ -14,13 +15,11 @@ const ServicesMainBlockCardGr = ({
   isDark = false,
 }) => {
   return (
-    <div
-      className={`${styles.services_main_block_card_gr}`}
-    >
+    <div className={`${styles.services_main_block_card_gr}`}>
       <p>{servicesCardTitle}</p>
       <div className={styles.card_content}>
         {items.map((item, index) => (
-          <Link key={index} href={`/services/${item.slug}`} className={styles.link}>
+          <Link key={index} href={`/fiz/${item.slug}`} className={styles.link}>
             <h5>{item.text}</h5>
           </Link>
         ))}
@@ -35,13 +34,11 @@ const ServicesMainBlockCardBz = ({
   isDark = false,
 }) => {
   return (
-    <div
-      className={`${styles.services_main_block_card_bz}`}
-    >
+    <div className={`${styles.services_main_block_card_bz}`}>
       <p>{servicesCardTitle}</p>
       <div className={styles.card_content}>
         {items.map((item, index) => (
-          <Link key={index} href={`/services/${item.slug}`} className={styles.link}>
+          <Link key={index} href={`/yur/${item.slug}`} className={styles.link}>
             <h5>{item.text}</h5>
           </Link>
         ))}
@@ -68,7 +65,7 @@ const ServicesMainBlockCardContainerGr = () => {
 const ServicesMainBlockCardContainerBz = () => {
   return (
     <div className={styles.services_main_block_container}>
-       {servicesBzData.map((card, index) => (
+      {servicesBzData.map((card, index) => (
         <ServicesMainBlockCardBz
           key={index}
           servicesCardTitle={card.title}
@@ -80,28 +77,26 @@ const ServicesMainBlockCardContainerBz = () => {
   );
 };
 
-export default function ServicesMainBlock({selectedType}) {
-  const [active, setActive] = useState(selectedType === "bz" ? "bz" : "gr");
+export default function ServicesMainBlock({ isFizPage }) {
+  const router = useRouter();
+  const [active, setActive] = useState(isFizPage ? "gr" : "bz");
 
-   useEffect(() => {
-    setActive(selectedType === "bz" ? "bz" : "gr");
-  }, [selectedType]);
+  const handleSwitch = (type) => {
+    router.push(type === "gr" ? "/fiz" : "/yur"); // Полноценный переход
+  };
 
   return (
     <div className={styles.services_main_block}>
-      <div
-        className={styles.services_main_block_switch}
-      
-      >
+      <div className={styles.services_main_block_switch}>
         <h2
-          onClick={() => setActive("gr")}
+          onClick={() => handleSwitch("gr")}
           style={{ color: active === "gr" ? "#292C3B" : "#292C3B80" }}
         >
           Гражданам
           <ServicesMainGrLink active={active === "gr"} />
         </h2>
         <h2
-          onClick={() => setActive("bz")}
+          onClick={() => handleSwitch("bz")}
           style={{ color: active === "bz" ? "#292C3B" : "#292C3B80" }}
         >
           Бизнесу

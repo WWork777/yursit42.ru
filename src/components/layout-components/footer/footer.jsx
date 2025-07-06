@@ -19,8 +19,8 @@ export default function Footer() {
         </div>
         <div className={styles.footer_links}>
             <SvgLeft liText="Главная" link="/"/>    
-            <SvgLeft liText="Услуги" link="/services"/>    
-            <SvgLeft liText="Прайс-лист" link="/price-list"/>    
+            <SvgLeft liText="Услуги" link="/fiz"/>    
+            <SvgLeft liText="Прайс-лист" link="/price"/>    
             <SvgLeft liText="Практики" link="/practices"/>    
             <SvgLeft liText="Контакты" link="/contacts"/>    
         </div>

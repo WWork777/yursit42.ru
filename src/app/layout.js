@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/components/layout-components/footer/footer";
 import Header from "@/components/layout-components/header/header";
 import SocialButton from "@/components/common/social-button/socialButton";
+import YandexMetrika from "@/components/common/YandexMetrika/YandexMEtrika";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -27,9 +28,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${montserrat.variable}`}>
       <Header />
+      
         {children}
         <SocialButton />
       <Footer />
+      <YandexMetrika />
       </body>
       
     </html>

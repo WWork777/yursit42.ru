@@ -236,10 +236,15 @@
   .line {
     width: 28px;
     height: 3px;
-    background-color: white;
+    background-color: white !important;
     border-radius: 2px;
     transition: all 0.3s ease;
     transform-origin: center;
+    @media (prefers-color-scheme: dark) {
+      .line {
+        background-color: white !important; /* Переопределить любые другие стили */
+      }
+}
   }
 
   /* Цвет линий для темных страниц */

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const SvgLeft = ({ liText,link }) => {
   return (
-    <Link href={`services/grajdanam/${link}`} className={styles.li_text_link_left}>
+    <Link href={`category/${link}`} className={styles.li_text_link_left}>
       <img src="/svg/home-help/li.svg" alt="list icon" />
       <p style={{ margin: 0 }}>{liText}</p>
     </Link>
@@ -16,7 +16,7 @@ const SvgLeft = ({ liText,link }) => {
 
 const SvgRight = ({ liText, link }) => {
   return (
-    <Link href={`services/biznes/${link}`} className={styles.li_text_link_right}>
+    <Link href={`category/${link}`} className={styles.li_text_link_right}>
       <img src="/svg/home-help/li2.svg" alt="list icon" />
       <p style={{ margin: 0 }}>{liText}</p>
     </Link>
@@ -28,18 +28,18 @@ const LiSvgLeft = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgLeft liText="Юрист по банкротству" link="bankrotstvo"/>
-          <SvgLeft liText="Семейное право" link="semeynoe-pravo"/>
+          <SvgLeft liText="Юрист по банкротству" link="yurist-po-bankrotstvu"/>
+          <SvgLeft liText="Семейное право" link="semeynoe"/>
           <SvgLeft liText="Наследство" link="nasledstvo"/>
-          <SvgLeft liText="Жилищное право" link="zilishnoe-pravo"/>
+          <SvgLeft liText="Жилищное право" link="zhilishnoe-pravo"/>
           <SvgLeft liText="Земельное право" link="zemelnoe-pravo"/>
         </div>
         <div className={styles.li_right}>
-          <SvgLeft liText="Арбитражные споры" link="arbitrazh-spory"/>
+          <SvgLeft liText="Арбитражные споры" link="arbitrazhnye-spori"/>
           <SvgLeft liText="Автоюрист" link="avtoyurist"/>
-          <SvgLeft liText="Защита прав потребителей" link="zashchita-prav-potrebiteley"/>
+          <SvgLeft liText="Защита прав потребителей" link="zashchita"/>
           <SvgLeft liText="Финансы" link="finansy"/>
-          <SvgLeft liText="Гражданское право" link="grajdanoe-pravo"/>
+          <SvgLeft liText="Гражданское право" link="grazhdanskoe-pravo"/>
         </div>
       </div>
     </div>
@@ -51,9 +51,9 @@ const LiSvgRight = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgRight liText="Споры с государственными органами" link="spory-s-gosudarstvennymi-organami"/>
-          <SvgRight liText="Услуги для бизнеса" link="uslugi-dlya-biznessa"/>
-          <SvgRight liText="Банкротство" link="bankrotstvobz"/>
+          <SvgRight liText="Споры с государственными органами" link="spory-s-gosudarstvennymi-organamis"/>
+          <SvgRight liText="Услуги для бизнеса" link="uslugi-dlya-biznesa"/>
+          <SvgRight liText="Банкротство" link="bankrotstvo"/>
           <SvgRight liText="Аутсорсинг" link="autsorsbz"/>
         </div>
       </div>
@@ -64,13 +64,13 @@ const LiSvgRight = () => {
 const HelpBlockLeft = ({ homeHelpTitle, homeHelpSvg }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
       className={`${styles.home_help_block} ${styles.home_help_block_left}`}
     >
-      <Link href={"/services?type=gr"}>
+      <Link href={"/fiz"}>
         <img
           src="/svg/home-help/link.svg"
           alt="link"
@@ -80,7 +80,7 @@ const HelpBlockLeft = ({ homeHelpTitle, homeHelpSvg }) => {
 
       <div className={styles.home_help_block_top}>
         <img src={homeHelpSvg} alt="icon" />
-        <Link href={"/services?type=gr"}><h3>{homeHelpTitle}</h3></Link>
+        <Link href={"/fiz"}><h3>{homeHelpTitle}</h3></Link>
       </div>
       <div className={styles.home_help_block_bottom}>
         <LiSvgLeft />
@@ -92,13 +92,13 @@ const HelpBlockLeft = ({ homeHelpTitle, homeHelpSvg }) => {
 const HelpBlockRight = ({ homeHelpTitle, homeHelpSvg }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, delay: 0.3 }}
+       initial={{ opacity: 0, }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
       className={`${styles.home_help_block} ${styles.home_help_block_right}`}
     >
-      <Link href={"/services?type=bz"}>
+      <Link href={"/yur"}>
         <img
           src="/svg/home-help/link2.svg"
           alt="link"
@@ -108,7 +108,7 @@ const HelpBlockRight = ({ homeHelpTitle, homeHelpSvg }) => {
 
       <div className={styles.home_help_block_top}>
         <img src={homeHelpSvg} alt="phone" />
-        <Link href={"/services?type=bz"}><h3>{homeHelpTitle}</h3></Link>
+        <Link href={"/yur"}><h3>{homeHelpTitle}</h3></Link>
       </div>
       <div className={styles.home_help_block_bottom}>
         <LiSvgRight />

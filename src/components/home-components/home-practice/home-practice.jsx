@@ -1,27 +1,28 @@
-'use client';
+"use client";
 import styles from "./home-practice.module.scss";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HomePractice({ practiceTitle }) {
   return (
     <section className="section-main">
-      <motion.h1 
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8 }}
-      className={styles.home_practice_title}
-      dangerouslySetInnerHTML={{ __html: practiceTitle }}
+      <motion.h1
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className={styles.home_practice_title}
+        dangerouslySetInnerHTML={{ __html: practiceTitle }}
       ></motion.h1>
       <div className={styles.home_practice}>
         <motion.div
           initial={{ opacity: 0, x: -200 }}
-          whileInView={{ opacity: 1 , x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
           viewport={{ once: true, margin: "-100px" }}
           className={styles.home_practice_image}
-          >
+        >
           <Image
             src="/home/practice/practiceimage (2).webp"
             alt="Практика"
@@ -34,12 +35,12 @@ export default function HomePractice({ practiceTitle }) {
           />
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 200 }}
-          whileInView={{ opacity: 1 , x: 0 }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className={styles.home_practice_text}
-          viewport={{ once: true, margin: "-100px" }}
-          >
+        >
           <h3>Судьба клиента — наша репутация</h3>
           <p>
             Мы защищаем интересы клиентов - физических и юридических лиц - в
@@ -57,7 +58,9 @@ export default function HomePractice({ practiceTitle }) {
             доверителей — и делаем это так, чтобы к нам возвращались.
           </p>
           <button className={styles.home_practice_text_button}>
-            <p>Запись на консультацию</p>
+            <Link href="#form">
+              <p>Запись на консультацию</p>
+            </Link>
           </button>
         </motion.div>
       </div>

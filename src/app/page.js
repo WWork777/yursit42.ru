@@ -9,14 +9,14 @@ import HomeTeam from "@/components/home-components/home-team/home-team";
 import PurposeHome from "@/components/home-components/purpose-home/purpose-home";
 
 export const metadata = {
-  title: "Юридическая помощь в Кемерово | Опыт 27 лет",
+  title: "Юрист Кемерово | Юридическая компания Кодексъ",
   description: "Профессиональные юридические услуги в Кемерово. Решение сложных вопросов, судебное сопровождение, защита прав. Бесплатная консультация.",
   keywords:"юрист Кемерово, юридическая помощь, консультация юриста, судебные споры",
   alternates: {
     canonical: `https://yurist42.ru/`
   },
   openGraph: {
-      title: `Юридическая помощь в Кемерово | Опыт 27 лет`,
+      title: `Юрист Кемерово | Юридическая компания Кодексъ`,
       description: `Профессиональные юридические услуги в Кемерово. Решение сложных вопросов, судебное сопровождение, защита прав. Бесплатная консультация.`,
       url: `https://yurist42.ru/`,
       images: [
@@ -51,7 +51,7 @@ export default function Home() {
         helpTitleRightBlock="БИЗНЕСУ"
       />
       <HomePractice practiceTitle="Юридическая практика <br> с 1997 года" />
-      <HomeProblems problemsTitle="Реашем ваши проблемы" />
+      <HomeProblems problemsTitle="Решаем Ваши проблемы" />
       <PurposeHome
         purposeTitle="Наши ценности"
         purposeText="«КодексЪ» на страже ваших прав <br> с 1997 года, за это время в компании <br> сформировались следующие принципы:"

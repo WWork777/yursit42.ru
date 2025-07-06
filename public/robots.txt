@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: https://yurist42.ru/sitemap.xml

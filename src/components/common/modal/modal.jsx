@@ -1,12 +1,8 @@
 "use client";
-import styles from "./consultation-form.module.scss";
+import styles from "./modal.module.scss";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useState } from "react";
-
-export default function ConsultationForm({
-  consultationTitle,
-  consultationText,
-}) {
+export default function Modal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -18,6 +14,17 @@ export default function ConsultationForm({
     phone: "",
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add(styles.noScroll);
+    } else {
+      document.body.classList.remove(styles.noScroll);
+    }
+
+    return () => {
+      document.body.classList.remove(styles.noScroll);
+    };
+  }, [isOpen]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -39,7 +46,6 @@ export default function ConsultationForm({
     let valid = true;
     const newErrors = { name: "", phone: "" };
 
-
     if (!formData.phone.trim()) {
       newErrors.phone = "Пожалуйста, введите ваш телефон";
       valid = false;
@@ -55,20 +61,23 @@ export default function ConsultationForm({
   const sendToTelegram = async (data) => {
     const TELEGRAM_BOT_TOKEN = "7933033563:AAGeVEYEzAQ6NUuVYkxNsXgANSi0xvRN4sg";
     const TELEGRAM_CHAT_ID = "-1002630836547";
-    
-    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || 'не указано'}`;
+
+    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
 
     try {
-      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: text,
-        }),
-      });
+      const response = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: text,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Ошибка при отправке сообщения");
@@ -81,7 +90,7 @@ export default function ConsultationForm({
     }
   };
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
   e.preventDefault();
 
   if (!validate()) return;
@@ -94,7 +103,7 @@ export default function ConsultationForm({
     if (isSent) {
       // Отправка цели в Яндекс.Метрику
       if (typeof window !== 'undefined' && window.ym) {
-        window.ym(56680159, 'reachGoal', 'Form');
+        window.ym(56680159, 'reachGoal', 'ModalForm');
       }
       
       alert(
@@ -113,10 +122,37 @@ export default function ConsultationForm({
 };
 
   return (
-    <section className="section-second" id="form">
-      <div className={styles.consultation_form_container}>
-        <h2 dangerouslySetInnerHTML={{ __html: consultationTitle }}></h2>
-        <h4 dangerouslySetInnerHTML={{ __html: consultationText }}></h4>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <button className={styles.closeButton} onClick={onClose}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18"
+              stroke="#A47764"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M6 6L18 18"
+              stroke="#A47764"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <h3 className={styles.modalTitle}>Оставить заявку</h3>
+        <p className={styles.modalSubtitle}>
+          Заполните форму и мы свяжемся с вами
+        </p>
+
         <form className={styles.consultation_form} onSubmit={handleSubmit}>
           <div className={styles.consultation_form_top_inputs}>
             <div className={styles.input_wrapper}>
@@ -147,26 +183,33 @@ export default function ConsultationForm({
             </div>
           </div>
           <div className={styles.consultation_form_bottom_inputs}>
-            <input
-              type="text"
+            <textarea
               placeholder="Сообщение"
               name="message"
               value={formData.message}
               onChange={handleChange}
+              rows="3"
             />
           </div>
-          <button type="submit" disabled={isLoading || !formData.phone.trim()}>
-            <p>{isLoading ? "Отправка..." : "Отправить заявку"}</p>
+          <button
+            type="submit"
+            disabled={isLoading || !formData.phone.trim()}
+            className={styles.submitButton}
+          >
+            {isLoading ? (
+              <span className={styles.loader}></span>
+            ) : (
+              "Отправить заявку"
+            )}
           </button>
         </form>
-        <h5>
-          Нажимая кнопку «Отправить заявку», вы автоматически соглашаетесь на
-          обработку{" "}
-          <Link href={"/privacy"} style={{ color: "#A47764" }}>
-            личных данных
+        <div className={styles.privacyNote}>
+          Нажимая кнопку «Отправить заявку», вы соглашаетесь с{" "}
+          <Link href={"/privacy"} className={styles.privacyLink}>
+            политикой конфиденциальности
           </Link>
-        </h5>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

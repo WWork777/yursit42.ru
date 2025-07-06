@@ -1,7 +1,8 @@
 'use client'
 import styles from "./hero-block.module.scss";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Modal from "@/components/common/modal/modal";
 export default function HeroBlock({
   heroTitle,
   heroText,
@@ -16,7 +17,10 @@ export default function HeroBlock({
   heroTextMobile
 }) {
   const numberRefs = useRef([]);
-
+ const [isModalOpen, setIsModalOpen] = useState(false);
+ const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
    useEffect(() => {
     const animateNumbers = () => {
       const observer = new IntersectionObserver((entries) => {
@@ -77,8 +81,8 @@ export default function HeroBlock({
           className={styles.hero_text_mobile}
           dangerouslySetInnerHTML={{ __html: heroTextMobile }}
         ></p>
-        <button className={styles.hero_button}>
-          <Link href="#form"><h4>{buttonText}</h4></Link>
+        <button className={styles.hero_button} onClick={toggleModal}>
+          <h4>{buttonText}</h4>
         </button>
         <div className={styles.hero_bottom_block}>
           <div className={styles.hero_bottom_block_text}>
@@ -117,8 +121,12 @@ export default function HeroBlock({
               {thirdBlockText}
             </p>
           </div>
+          
         </div>
       </div>
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={toggleModal} />
+      )}
     </div>
   );
 }
