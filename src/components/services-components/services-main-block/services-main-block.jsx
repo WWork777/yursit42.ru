@@ -7,16 +7,19 @@ import ServicesMainBzLink from "../../../../public/svg/services-page/bzLink";
 import { motion } from "framer-motion";
 import servicesGrData from "@/data/services-gr.json";
 import servicesBzData from "@/data/services-bz.json";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const ServicesMainBlockCardGr = ({
   servicesCardTitle,
+  link,
   items = [],
   isDark = false,
 }) => {
   return (
     <div className={`${styles.services_main_block_card_gr}`}>
-      <p>{servicesCardTitle}</p>
+      <Link href={`${link}`}>
+        <p>{servicesCardTitle}</p>
+      </Link>
       <div className={styles.card_content}>
         {items.map((item, index) => (
           <Link key={index} href={`/fiz/${item.slug}`} className={styles.link}>
@@ -31,11 +34,14 @@ const ServicesMainBlockCardGr = ({
 const ServicesMainBlockCardBz = ({
   servicesCardTitle,
   items = [],
+  link,
   isDark = false,
 }) => {
   return (
     <div className={`${styles.services_main_block_card_bz}`}>
-      <p>{servicesCardTitle}</p>
+      <Link href={`${link}`}>
+        <p>{servicesCardTitle}</p>
+      </Link>
       <div className={styles.card_content}>
         {items.map((item, index) => (
           <Link key={index} href={`/yur/${item.slug}`} className={styles.link}>
@@ -54,6 +60,7 @@ const ServicesMainBlockCardContainerGr = () => {
         <ServicesMainBlockCardGr
           key={index}
           servicesCardTitle={card.title}
+          link={card.link}
           items={card.items}
           isDark={card.isDark}
         />
@@ -69,6 +76,7 @@ const ServicesMainBlockCardContainerBz = () => {
         <ServicesMainBlockCardBz
           key={index}
           servicesCardTitle={card.title}
+          link={card.link}
           items={card.items}
           isDark={card.isDark}
         />

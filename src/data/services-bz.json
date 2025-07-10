@@ -2,6 +2,7 @@
   {
     "title": "СПОРЫ С ГОСУДАРСТВЕННЫМИ ОРГАНАМИ",
     "isDark": false,
+    "link": "/category/spory-s-gosudarstvennymi-organamis",
     "items": [
       {
         "text": "Корпоративные споры",
@@ -141,6 +142,7 @@
   {
     "title": "СПОРЫ С ГОСУДАРСТВЕННЫМИ ОРГАНАМИ",
     "isDark": false,
+    "link": "/category/spory-s-gosudarstvennymi-organamis",
     "items": [
       {
         "text": "КУМИ",
@@ -239,6 +241,7 @@
   {
     "title": "СПОРЫ С ГОСУДАРСТВЕННЫМИ ОРГАНАМИ",
     "isDark": false,
+    "link": "/category/spory-s-gosudarstvennymi-organamis",
     "items": [
       {
         "text": "Ознакомление с материалами гражданского дела в арбитражном суде",
@@ -293,6 +296,7 @@
   {
     "title": "УСЛУГИ ДЛЯ БИЗНЕСА",
     "isDark": false,
+    "link": "/category/uslugi-dlya-biznesa",
     "items": [
       {
         "text": "Регистрация сделок",
@@ -395,6 +399,7 @@
   {
     "title": "УСЛУГИ ДЛЯ БИЗНЕСА",
     "isDark": false,
+    "link": "/category/uslugi-dlya-biznesa",
     "items": [
       {
         "text": "Акты ввода в эксплуатацию",
@@ -465,6 +470,7 @@
   {
     "title": "БАНКРОТСТВО",
     "isDark": false,
+    "link": "/category/bankrotstvo",
     "items": [
       {
         "text": "Представительство при банкротстве",

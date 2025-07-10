@@ -10,24 +10,25 @@ import PurposeHome from "@/components/home-components/purpose-home/purpose-home"
 
 export const metadata = {
   title: "Юрист Кемерово | Юридическая компания Кодексъ",
-  description: "Профессиональные юридические услуги в Кемерово. Решение сложных вопросов, судебное сопровождение, защита прав. Бесплатная консультация.",
-  keywords:"юрист Кемерово, юридическая помощь, консультация юриста, судебные споры",
+  description:
+    "Профессиональные юридические услуги в Кемерово. Решение сложных вопросов, судебное сопровождение, защита прав. Бесплатная консультация.",
+  keywords:
+    "юрист Кемерово, юридическая помощь, консультация юриста, судебные споры",
   alternates: {
-    canonical: `https://yurist42.ru/`
+    canonical: `https://yurist42.ru/`,
   },
   openGraph: {
-      title: `Юрист Кемерово | Юридическая компания Кодексъ`,
-      description: `Профессиональные юридические услуги в Кемерово. Решение сложных вопросов, судебное сопровождение, защита прав. Бесплатная консультация.`,
-      url: `https://yurist42.ru/`,
-      images: [
-          {
-              url: `/favicon/favicon-96x96.png`,
-              alt: `yurist42.ru`,
-          },
-      ],
+    title: `Юрист Кемерово | Юридическая компания Кодексъ`,
+    description: `Профессиональные юридические услуги в Кемерово. Решение сложных вопросов, судебное сопровождение, защита прав. Бесплатная консультация.`,
+    url: `https://yurist42.ru/`,
+    images: [
+      {
+        url: `/favicon/favicon-96x96.png`,
+        alt: `yurist42.ru`,
+      },
+    ],
   },
 };
-
 
 export default function Home() {
   return (
@@ -58,7 +59,10 @@ export default function Home() {
       />
       <HomeTeam teamTitle="Команда КодексЪ" />
       <HomeDiplom diplomTitle="Дипломы и сертификаты" />
-      <ConsultationForm consultationTitle="Получите консультацию" consultationText="Оценим шансы, предложим решение и стоимость"/>
+      <ConsultationForm
+        consultationTitle="Получите консультацию"
+        consultationText="Оценим шансы, предложим решение и стоимость"
+      />
       <YandexMap />
     </>
   );
