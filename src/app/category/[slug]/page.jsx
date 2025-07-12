@@ -4,12 +4,12 @@ import HeroBlock from "@/components/home-components/hero-block/hero-block";
 import servicesData from "@/data/gr-all-services.json";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import styles from './style.module.scss'
+import styles from "./style.module.scss";
 import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
 
 export async function generateMetadata({ params }) {
   const service = servicesData.find((item) => item.slug === params.slug);
-  
+
   if (!service) return {};
 
   return {
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
     description: service.descriptionSeo || service.description,
     keywords: service.keywords || "",
     alternates: {
-      canonical: `https://yurist42.ru/category/${params.slug}`
+      canonical: `https://yurist42.ru/category/${params.slug}`,
     },
     openGraph: {
       title: service.titleSeo || service.title,
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
           url: `/favicon/favicon-96x96.png`,
           alt: `yurist42.ru`,
         },
-      ],  
+      ],
     },
   };
 }
@@ -38,7 +38,7 @@ export async function generateStaticParams() {
     if (!Array.isArray(servicesData)) {
       return [];
     }
-    
+
     const slugs = servicesData.map((service) => ({ slug: service.slug }));
     return slugs;
   } catch (error) {
@@ -57,12 +57,17 @@ export default function Page({ params }) {
   if (!service) {
     return notFound();
   }
-    const breadcrumbs = [{ label: "Главная", path: "/", }, { label: "Услуги физическим лицам", path: "/services?type=gr" }, { label: service.title }];
+  const breadcrumbs = [
+    { label: "Главная", path: "/" },
+    { label: "Услуги физическим лицам", path: "/services?type=gr" },
+    { label: service.title },
+  ];
   return (
     <>
       <HeroBlock
         heroTitle={service.title}
         heroText={service.description}
+        heroTextMobile={service.description}
         firstBlockText="лет юридической практики"
         secondBlockText="успешно выигранных дел"
         thirdBlockText="дел разрешаем в пользу клиента"
@@ -72,28 +77,30 @@ export default function Page({ params }) {
         buttonText="Бесплатная консультация"
         backgroundImageLink="/common/hero-background2.webp"
       />
-      
+
       <section className="section-main">
         <BreadCrumble items={breadcrumbs} />
         <h1>Ключевые услуги</h1>
         <div className={styles.service_list}>
-          {service.items && service.items.length > 0 && service.items.map((itemGroup, index) => (
-            <div key={index} className={styles.service_list_group}>
-              {Object.entries(itemGroup).map(([serviceName, servicePath]) => (
-                <Link 
-                  key={servicePath} 
-                  href={`/${servicePath}`}
-                  className={styles.service_list_item}
-                >
+          {service.items &&
+            service.items.length > 0 &&
+            service.items.map((itemGroup, index) => (
+              <div key={index} className={styles.service_list_group}>
+                {Object.entries(itemGroup).map(([serviceName, servicePath]) => (
+                  <Link
+                    key={servicePath}
+                    href={`/${servicePath}`}
+                    className={styles.service_list_item}
+                  >
                     <p>{serviceName}</p>
-                </Link>
-              ))}
-            </div>
-          ))}
+                  </Link>
+                ))}
+              </div>
+            ))}
         </div>
       </section>
-      
-      <ConsultationForm 
+
+      <ConsultationForm
         consultationTitle="Получите консультацию"
         consultationText="Оценим шансы, предложим решение и стоимость"
       />

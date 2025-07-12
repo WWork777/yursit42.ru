@@ -3,9 +3,7 @@ import styles from "./home-help.module.scss";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-
-
-const SvgLeft = ({ liText,link }) => {
+const SvgLeft = ({ liText, link }) => {
   return (
     <Link href={`category/${link}`} className={styles.li_text_link_left}>
       <img src="/svg/home-help/li.svg" alt="list icon" />
@@ -16,7 +14,7 @@ const SvgLeft = ({ liText,link }) => {
 
 const SvgRight = ({ liText, link }) => {
   return (
-    <Link href={`category/${link}`} className={styles.li_text_link_right}>
+    <Link href={`yur/${link}`} className={styles.li_text_link_right}>
       <img src="/svg/home-help/li2.svg" alt="list icon" />
       <p style={{ margin: 0 }}>{liText}</p>
     </Link>
@@ -28,18 +26,17 @@ const LiSvgLeft = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgLeft liText="Юрист по банкротству" link="yurist-po-bankrotstvu"/>
-          <SvgLeft liText="Семейное право" link="semeynoe"/>
-          <SvgLeft liText="Наследство" link="nasledstvo"/>
-          <SvgLeft liText="Жилищное право" link="zhilishnoe-pravo"/>
-          <SvgLeft liText="Земельное право" link="zemelnoe-pravo"/>
+          <SvgLeft liText="Юрист по банкротству" link="yurist-po-bankrotstvu" />
+          <SvgLeft liText="Гражданское право" link="grazhdanskoe-pravo" />
+          <SvgLeft liText="Семейное право" link="semeynoe" />
+          <SvgLeft liText="Финансовое право" link="finansy" />
+          <SvgLeft liText="Автоюрист" link="avtoyurist" />
+          <SvgLeft liText="Земельное право" link="zemelnoe-pravo" />
         </div>
         <div className={styles.li_right}>
-          <SvgLeft liText="Арбитражные споры" link="arbitrazhnye-spori"/>
-          <SvgLeft liText="Автоюрист" link="avtoyurist"/>
-          <SvgLeft liText="Защита прав потребителей" link="zashchita"/>
-          <SvgLeft liText="Финансы" link="finansy"/>
-          <SvgLeft liText="Гражданское право" link="grazhdanskoe-pravo"/>
+          <SvgLeft liText="Наследство" link="nasledstvo" />
+          <SvgLeft liText="Жилищное право" link="zhilishnoe-pravo" />
+          <SvgLeft liText="Защита прав потребителей" link="zashchita" />
         </div>
       </div>
     </div>
@@ -51,10 +48,48 @@ const LiSvgRight = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgRight liText="Споры с государственными органами" link="spory-s-gosudarstvennymi-organamis"/>
-          <SvgRight liText="Услуги для бизнеса" link="uslugi-dlya-biznesa"/>
-          <SvgRight liText="Банкротство" link="bankrotstvo"/>
-          <SvgRight liText="Аутсорсинг" link="autsorsbz"/>
+          <SvgRight liText="Споры с ФНС" link="spory-s-fns" />
+          <SvgRight
+            liText="Споры с гос. ораганами"
+            link="spory-s-gosorganami"
+          />
+          <SvgRight liText="Подрядные споры" link="podryadnye-spory" />
+          <SvgRight liText="Корпоративные споры" link="korporativnye-spory" />
+          <SvgRight
+            liText="Арбитражные споры"
+            link="vedenye-sudebnyh-del-v-arbitrazhnom-sude-pervaya-instancia"
+          />
+
+          <Link
+            href={`category/autsorsbz`}
+            className={styles.li_text_link_right}
+          >
+            <img src="/svg/home-help/li2.svg" alt="list icon" />
+            <p style={{ margin: 0 }}>Аутсорс</p>
+          </Link>
+        </div>
+        <div className={styles.li_right}>
+          <SvgRight
+            liText="Ликвидация юр. лиц"
+            link="likvidaciya-yuridicheskih-lic"
+          />
+          <SvgRight liText="Банкротство" link="bankrotstvo-yuridicheskih-lic" />
+          <SvgRight
+            liText="Защита при субсидиальной ответственности"
+            link="pryvlechenye-k-subsidyarnoy-otvetstvennosty"
+          />
+          <SvgRight
+            liText="Привлечение ЛПР к субсидиальной ответственности"
+            link="privlechenie-lpr-k-subsidiarnoj-otvetstvennosti"
+          />
+          <SvgRight
+            liText="Взыскание через банкротство"
+            link="vzyskanie-cherez-bankrotstvo"
+          />
+          <SvgRight
+            liText="Оспаривание сделок в банкротстве"
+            link="vzyskanie-cherez-bankrotstvo"
+          />
         </div>
       </div>
     </div>
@@ -64,7 +99,7 @@ const LiSvgRight = () => {
 const HelpBlockLeft = ({ homeHelpTitle, homeHelpSvg }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, }}
+      initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
@@ -75,12 +110,14 @@ const HelpBlockLeft = ({ homeHelpTitle, homeHelpSvg }) => {
           src="/svg/home-help/link.svg"
           alt="link"
           className={styles.home_help_block_link}
-        />  
+        />
       </Link>
 
       <div className={styles.home_help_block_top}>
         <img src={homeHelpSvg} alt="icon" />
-        <Link href={"/fiz"}><h3>{homeHelpTitle}</h3></Link>
+        <Link href={"/fiz"}>
+          <h3>{homeHelpTitle}</h3>
+        </Link>
       </div>
       <div className={styles.home_help_block_bottom}>
         <LiSvgLeft />
@@ -92,7 +129,7 @@ const HelpBlockLeft = ({ homeHelpTitle, homeHelpSvg }) => {
 const HelpBlockRight = ({ homeHelpTitle, homeHelpSvg }) => {
   return (
     <motion.div
-       initial={{ opacity: 0, }}
+      initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
@@ -108,7 +145,9 @@ const HelpBlockRight = ({ homeHelpTitle, homeHelpSvg }) => {
 
       <div className={styles.home_help_block_top}>
         <img src={homeHelpSvg} alt="phone" />
-        <Link href={"/yur"}><h3>{homeHelpTitle}</h3></Link>
+        <Link href={"/yur"}>
+          <h3>{homeHelpTitle}</h3>
+        </Link>
       </div>
       <div className={styles.home_help_block_bottom}>
         <LiSvgRight />
@@ -131,8 +170,7 @@ export default function HomeHelp({
         transition={{ duration: 0.8 }}
         className={styles.home_help_title}
         dangerouslySetInnerHTML={{ __html: helpTitle }}
-        >
-      </motion.h1>
+      ></motion.h1>
       <div className={styles.home_help}>
         <HelpBlockLeft
           homeHelpTitle={helpTitleLeftBlock}

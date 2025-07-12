@@ -6,13 +6,13 @@ import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
 
 export async function generateMetadata({ params }) {
   const practice = practiceData.find((item) => item.slug === params.slug);
-  
+
   return {
     title: practice.title,
     description: practice.description,
     keywords: practice.keywords,
     alternates: {
-      canonical: `https://yurist42.ru/practices/${params.slug}`
+      canonical: `https://yurist42.ru/practices/${params.slug}`,
     },
     openGraph: {
       title: practice.title,
@@ -36,12 +36,16 @@ export default function PracticePage({ params }) {
   if (!practice) {
     return <div>Практика не найдена</div>;
   }
- const breadcrumbs = [{ label: "Главная", path: "/", }, { label: "Практики", path: "/practices" }, { label: practice.practice }];
+  const breadcrumbs = [
+    { label: "Главная", path: "/" },
+    { label: "Практики", path: "/practices" },
+    { label: practice.practice },
+  ];
   return (
     <>
       <section className="section-main secondary-page">
         <div className={styles.practice_container}>
-            <BreadCrumble items={breadcrumbs} />
+          <BreadCrumble items={breadcrumbs} />
           <h1 className={styles.practice_title}>{practice.practice}</h1>
           <h3 className={styles.practice_subtitle}>{practice.practiceTitle}</h3>
           <p className={styles.practice_date}>Дата: {practice.practiceDate}</p>

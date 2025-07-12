@@ -8,12 +8,30 @@
     "description": "Защитим ваши интересы в процедуре банкротства. <br> Спишем долги законно — сохраним имущество.",
     "items": [
       {
-        "Списание долгов": "fiz/kakie-dolgi-mozhno-spisat-zakonno",
-        "Как объявить банкротство": "fiz/kogda-mozhno-obyavit-sya-bankrotom",
         "МФЦ банкротство 2025": "fiz/bankrotstvo-fizicheskikh-lic-cherzhe-mfc",
         "Судебное банкротство 2025": "fiz/bankrotstvo-fizicheskikh-lic-cherzhe-sud",
         "Оспаривание сделок при банкротстве": "fiz/osparyvanie-sdelok-pri-bankrotstve-fizicheskikh-lic",
         "Реструктуризация долгов": "fiz/restrukturizatsiya-dolgov-v-protsedure-bankrotstva-fizicheskikh-lic"
+      }
+    ]
+  },
+  {
+    "title": "Гражданское право",
+    "slug": "grazhdanskoe-pravo",
+    "titleSeo": "Юридические услуги Кемерово | Юридическая консультация",
+    "descriptionSeo": "Специалисты из разных областей права помогут разобраться в юридических тонкостях",
+    "keywords": "Гражданское право",
+    "description": "Защитим ваши интересы в любом гражданском споре! <br> Договоры, наследство, недвижимость, возмещение ущерба — решим вопрос законно и эффективно.",
+    "items": [
+      {
+        "Оспаривание сделок": "fiz/osparivanie-sdelok",
+        "Возмещение ущерба": "fiz/vzyskanye-usherba",
+        "Признание права собственности": "fiz/priznanie-prava-sobstvennosti",
+        "Возмещение убытков": "fiz/vozmeschenie-ubytkov",
+        "Выселение из жилого помещения": "fiz/vyselenie-iz-zhilogo-pomescheniya",
+        "Интеллектуальное право": "fiz/intellektualnoe-pravo",
+        "Определение порядка пользования имуществом": "fiz/opredelenie-poryadka-polzovaniya-imuschestvom",
+        "Споры по договорам подряда": "fiz/spory-po-dogovoram-arendy-podryady-kupli-prodazhi"
       }
     ]
   },
@@ -27,13 +45,12 @@
     "items": [
       {
         "Раздел имущества": "fiz/razdel",
-        "Сопровождение разводов": "fiz/razvod",
-        "Взыскание алиментов": "fiz/alimenty",
-        "Лишение родительских прав": "fiz/lishenye-roditel-prav",
-        "Восстановление родительских прав": "fiz/vosstanovlenye-roditel-prav",
+        "Определение места жительства ребенка": "fiz/opredelenye-mestazhitelsta",
+        "Порядок общения с ребенком": "fiz/alimenty",
+        "Взыскание алиментов": "fiz/lishenye-roditel-prav",
         "Оспаривание отцовства": "fiz/ustanovlenye-osparivanye",
-        "Место жительства ребенка": "fiz/opredelenye-mestazhitelsta",
-        "Порядок общения с ребенком": "fiz/opredelenye-poryadka-obshenya"
+        "Лишение родительских прав": "fiz/lishenye-roditel-prav",
+        "Восстановление родительских прав": "fiz/vosstanovlenye-roditel-prav"
       }
     ]
   },
@@ -46,9 +63,10 @@
     "description": "Наследственные дела требуют опыта. <br> Доверьте их профессионалу — сохраните нервы и деньги.",
     "items": [
       {
-        "Раздел наследства": "fiz/razdel-nasledstvennogo-imuchestva",
         "Пропущенные сроки": "fiz/propushenie-sroki",
-        "Недостойные наследники": "fiz/pryznanye-naslednykov-nedostoynymy"
+        "Фактическое принятие наследства": "fiz/fakticheskoe-prinyatie-nasledstva",
+        "Недостойные наследники": "fiz/pryznanye-naslednykov-nedostoynymy",
+        "Раздел наследства": "fiz/razdel-nasledstvennogo-imuchestva"
       }
     ]
   },
@@ -61,16 +79,12 @@
     "description": "Отстоим ваши жилищные права в любой ситуации! <br> Выселение, раздел лицевого счёта, споры с управляющей компанией — решим в вашу пользу.",
     "items": [
       {
-        "Аварийное жилье": "fiz/avaryinoe-zhilye",
+        "Споры с управляющими компаниями": "fiz/spory-s-upravlyayushchimi-kompaniyami",
         "Затопления": "fiz/spory-po-zatoplenyam",
+        "Аварийное жилье": "fiz/avaryinoe-zhilye",
         "Реконструкция": "fiz/reconstrukcya-i-reshenie-na-stroitelstvo",
-        "Перевод в нежилой фонд": "fiz/perevod-iz-nezhilogo-v-zhiloy",
-        "Социальный найм": "fiz/socialny-naym",
-        "Жилье для льготников": "fiz/pomosh-v-vydelenii-shilya",
         "Самовольные постройки": "fiz/oformlenye-samovolnyh-stroeny",
-        "Регистрация домов": "fiz/registracya-zhilyh-domov",
-        "Приватизация": "fiz/privatizacia",
-        "Оспаривание кадастра": "fiz/osparyvanye-kadastrovoy-stoimosty"
+        "Приватизация": "fiz/privatizacia"
       }
     ]
   },
@@ -84,28 +98,10 @@
     "items": [
       {
         "Права на землю": "fiz/oformlenye-prava-yf-zemlu",
-        "Аренда с КУГИ": "fiz/arendnye-spory-s-kugi",
-        "Кадастровая стоимость": "fiz/snyshenye-osparivanye-kadastrovoy-stoimosti",
-        "Границы участков": "fiz/spory-po-granicam-uchastka",
-        "Назначение участка": "fiz/izmenenie-naznachenya-zemelhyh-ychasnkov"
-      }
-    ]
-  },
-  {
-    "title": "Арбитражные споры",
-    "slug": "arbitrazhnye-spori",
-    "titleSeo": "Арбитражные споры | Споры в арбитражном суде",
-    "descriptionSeo": "Юристы со специализацией в арбитражном прцессе",
-    "keywords": "арбитражные споры",
-    "description": "Выигрываем сложные арбитражные споры. <br> Долги, контракты, банкротство контрагентов — защитим ваши интересы в суде.",
-    "items": [
-      {
-        "УАиГ": "fiz/uaig",
-        "КУМИ": "fiz/kumi",
-        "КУГИ": "fiz/kugi",
-        "Досудебный и судебный порядок": "fiz/dosudebny-i-sudebny-poryadok",
-        "Арендные споры": "fiz/arendnyi-spory",
-        "Неосновательное обогащение": "fiz/neobosnovannoe-obogachenye"
+        "Изменение назначения участка": "fiz/izmenenie-naznachenya-zemelhyh-ychasnkov",
+        "Споры по границам участков": "fiz/spory-po-granicam-uchastka",
+        "Упрощенная регистрация земельного участка": "fiz/uproshchennaya-registraciya-zemelnogo-uchastka",
+        "Снижение кадастровой стоимости участка": "fiz/snyshenye-osparivanye-kadastrovoy-stoimosti"
       }
     ]
   },
@@ -120,7 +116,9 @@
       {
         "ДТП — ущерб": "fiz/dtp-vzyskanye-usherba",
         "Кто виноват в ДТП": "fiz/ustanovlenye-vynovnyka-dtp",
-        "Статья 12.8 КоАП РФ": "fiz/statya-12.8-koap-rf"
+        "Статья 12.8 КоАП РФ": "fiz/statya-12.8-koap-rf",
+        "Признание права собственности автомобиля": "fiz/priznanie-prava-sobstvennosti-avtomobilya",
+        "Страховые споры": "fiz/strahovye-spory-avto"
       }
     ]
   },
@@ -133,12 +131,8 @@
     "description": "Вас обманули? Вернем деньги! <br> Возврат товаров, некачественные услуги, навязанные договоры — защитим ваши права.",
     "items": [
       {
-        "Защита при заключении договоров": "fiz/zashchita-prav-potrebiteley-pri-zaklyuchenii-dogovorov",
-        "Неустойки": "fiz/neustoyki",
-        "Некачественный товар": "fiz/neokachestvennyy-tovar",
-        "Неоказанные услуги": "fiz/neokazannye-uslugi",
-        "Некачественные услуги": "fiz/neokachestvennye-uslugi",
-        "Недобросовестные юристы": "fiz/zashchita-ot-nedobrosovetsnyh-yuristov"
+        "Расторжение договоров": "fiz/rastorzhenie-dogovorov",
+        "Неоказанные услуги": "fiz/neokazannye-uslugi"
       }
     ]
   },
@@ -152,82 +146,31 @@
     "items": [
       {
         "Кредитные споры": "fiz/kreditnye-spory",
-        "Налоги": "fiz/optymyzacya-i-control",
-        "Кредиты и инвестиции": "fiz/consultacia-po-voprosam-kreditivanya",
-        "Финансовое планирование": "fiz/planyrovanye-finansovogo-sostoyanya",
-        "Правовая оценка документов": "fiz/pravovaya-ocenka-dokumentov",
-        "Права должника": "fiz/otstaivanie-prav-dolzhnika",
-        "Недействительность договоров": "fiz/priznanie-nedeystvitelnym-kreditnogo-dogovora",
-        "Оспаривание условий": "fiz/osparyvanie-nepravomernyh-usloviy",
-        "Споры с коллекторами": "fiz/pravovaya-zashita-ot-deystvyi-kollektorov",
-        "Долги по аренде и подряду": "fiz/vzyskanye-dolgov-po-dogovoru-arendy",
-        "Задолженность по услугам": "fiz/vzyskanye-zadolzhennostty-po-dogovoru-okazanya-uslug",
-        "Долг по расписке": "fiz/vzyskanye-dolga-po-raspiske"
+        "Налоговые споры": "fiz/nalogovye-spory",
+        "Взыскание задолженности": "fiz/vzyskanie-zadolzhennosti",
+        "Отмена судебного приказа": "fiz/otmena-sudebnogo-prikaza",
+        "Сопровождение исполнительного производства": "fiz/soprovozhdenie-ispolnitelnogo-proizvodstva",
+        "Страховые споры": "fiz/strahovye-spory"
       }
     ]
   },
   {
-    "title": "Гражданское право",
-    "slug": "grazhdanskoe-pravo",
-    "titleSeo": "Юридические услуги Кемерово | Юридическая консультация",
-    "descriptionSeo": "Специалисты из разных областей права помогут разобраться в юридических тонкостях",
-    "keywords": "Гражданское право",
-    "description": "Защитим ваши интересы в любом гражданском споре! <br> Договоры, наследство, недвижимость, возмещение ущерба — решим вопрос законно и эффективно.",
-    "items": [
-      {
-        "Сопровождение сделок": "fiz/soprovozhdenie-sdelok",
-        "Расторжение сделок": "fiz/rastorjenie-sdelok",
-        "Споры по договорам": "fiz/spory-po-dogovoram-arendy-podryady-kupli-prodazhi",
-        "Возмещение ущерба": "fiz/vzyskanye-usherba"
-      }
-    ]
-  },
-  {
-    "title": "Споры с государственными органами",
+    "title": "Споры с ФНС",
     "slug": "spory-s-gosudarstvennymi-organamis",
-    "titleSeo": "Споры с государственными органами | Юридические услуги в Кемерово",
-    "descriptionSeo": "Защита бизнеса в спорах с налоговыми и другими государственными органами.",
-    "keywords": "споры с госорганами, защита бизнеса",
-    "description": "Государство нарушает ваши права? Заставим чиновников играть по правилам! <br> Обжалование решений, отмена штрафов, защита в проверках — побеждаем в 90% споров.",
-    "items": [
-      {
-        "Корпоративные споры": "yur/korporativnye-spory",
-        "Арендные споры": "yur/arendnye-spory",
-        "Споры по договорам поставок": "yur/spory-po-dogovoram-postavok",
-        "Споры с ФНС": "yur/spory-s-fns",
-        "Споры с надзорными органами": "yur/spory-s-nadzornymy-organamy",
-        "Оформление самовольных построек (реконструкций) в судебном порядке": "yur/oformlenye-samovolnyh-postroek-v-sudebnom-poryadke",
-        "УАиГ (Управление Архитектуры и Градостроительства)": "yur/uaig-upravlenye-arhitectury-i-gradostraitelstva",
-        "КУМИ": "yur/yur-kumi",
-        "КУГИ": "yur/yur-kugi",
-        "Досудебный и судебный порядок": "yur/dosudebnyi-i-sudebny-poryadok",
-        "44 федеральный закон": "yur/44-federalny-zakon",
-        "Ведение судебных дел в арбитражном суде - первая инстанция": "yur/vedenye-sudebnyh-del-v-arbitrazhnom-sude-pervaya-instancia",
-        "Ознакомление с материалами гражданского дела в арбитражном суде": "yur/oznakomlenye-s-materyalami-grazhdanskogo-dela-v-arbitrazhnom-sude",
-        "Судебные дела — апелляция, кассация, надзор": "yur/vedenye-sudebnyh-del-v-arbitrazhnom-sude",
-        "Составление жалоб, отзывов, заявлений": "yur/sostavlenye-apellacionnoy-kasacionnoy-zhaloby"
-      }
-    ]
-  },
-  {
-    "title": "Услуги для бизнеса",
-    "slug": "uslugi-dlya-biznesa",
     "titleSeo": "Юридические услуги для бизнеса",
     "descriptionSeo": "Комплексное юридическое сопровождение предпринимательской деятельности.",
     "keywords": "юридические услуги для бизнеса, сопровождение",
     "description": "Полное юридическое сопровождение вашего бизнеса — от старта до масштабирования. <br> Предотвращаем риски, экономим ваши деньги и время.",
     "items": [
       {
-        "Регистрация сделок": "yur/regystracia-sdelok-v-organah-osuchestvlayushih-gos-regystracyu",
-        "Представительство интересов": "yur/predstavlenie-iskuschestva-v-organah-osuchestvlayushih-gos-regystracyu",
-        "Аудит бизнеса": "yur/audit-biznessa-finansovyh-poterya-pri-vedenii-del",
-        "Дистанционное обслуживание": "yur/distantsionnoe-obsluzhivanie",
-        "Переводы в нежилой фонд": "yur/oformlenie-perevoda-iz-zhilogo-fonda-v-nezhiloy",
-        "Разрешения на строительство": "yur/poluchenye-razrecheny-na-stroitelstvo",
-        "Акты ввода в эксплуатацию": "yur/poluchenye-actov-vvoda-v-expluatacyu",
-        "Экспертиза сделки": "yur/komplexnyi-analyz-sdelky",
-        "Протокол разногласий": "yur/sostavlenye-protocola-raznoglasyi",
-        "Приложения и допсоглашения": "yur/sostavlenye-prylozhenya-k-dogovoru"
+        "КУМИ": "yur/yur-kumi",
+        "КУГИ": "yur/yur-kugi",
+        "Подрядные споры": "yur/podryadnye-spory",
+        "Корпоративные споры": "yur/korporativnye-spory",
+        "Споры с гос. органами": "yur/spory-s-gosorganami",
+        "Ведение судебных дел в арбитражном суде - первая инстанция": "yur/vedenye-sudebnyh-del-v-arbitrazhnom-sude-pervaya-instancia",
+        "Аутсорсинг": "yur/autsorsing-yuridicheskih-uslug",
+        "Ликвидация юр. лиц": "yur/likvidaciya-yuridicheskih-lic"
       }
     ]
   },
@@ -240,8 +183,10 @@
     "description": "Спишем долги законно — вернём финансовую свободу! <br> Полное сопровождение процедуры банкротства с гарантией результата.",
     "items": [
       {
-        "Представительство при банкротстве": "yur/vystupaem-s-luboy-storony",
-        "Субсидиарная ответственность": "yur/pryvlechenye-k-subsidyarnoy-otvetstvennosty"
+        "Субсидиарная ответственность": "yur/pryvlechenye-k-subsidyarnoy-otvetstvennosty",
+        "Привлечение ЛПР к субсидиарной ответственности": "yur/privlechenie-lpr-k-subsidiarnoj-otvetstvennosti",
+        "Взыскание через банкротство": "yur/vzyskanie-cherez-bankrotstvo",
+        "Оспаривание сделок в банкротстве": "yur/osporivanie-sdelok-v-bankrotstve"
       }
     ]
   },

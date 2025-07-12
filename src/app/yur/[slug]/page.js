@@ -9,7 +9,6 @@ import ConsultationForm from "@/components/common/consultation-form/comsultation
 import YandexMap from "@/components/common/map/map";
 import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
 
-
 export async function generateMetadata({ params }) {
   const allItems = [...servicesGrData, ...servicesBzData];
   const service = allItems
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }) {
     description: service.descriptionSeo || service.description,
     keywords: service.keywordsSeo || "",
     alternates: {
-      canonical: `https://yurist42.ru/services/${params.slug}`
+      canonical: `https://yurist42.ru/services/${params.slug}`,
     },
     openGraph: {
       title: service.title || `${service.text} | Юридические услуги в Кемерово`,
@@ -73,6 +72,7 @@ export default function ServicePage({ params }) {
       <HeroBlock
         heroTitle={service.text}
         heroText={service.description}
+        heroTextMobile={service.description}
         firstBlockText="лет юридической практики"
         secondBlockText="успешно выигранных дел"
         thirdBlockText="дел разрешаем в пользу клиента"
@@ -82,10 +82,7 @@ export default function ServicePage({ params }) {
         buttonText="Бесплатная консультация"
         backgroundImageLink={"/common/hero-background2.webp"}
       />
-      <WeCan 
-        weCanTitle="Мы поможем" 
-        helpBlocks={helpBlocks} 
-      />
+      <WeCan weCanTitle="Мы поможем" helpBlocks={helpBlocks} />
       <HomePractice practiceTitle="Юридическая практика <br> с 1997 года" />
       <Etaps
         etapsTitle="Этапы нашей <br> с вами работы"
