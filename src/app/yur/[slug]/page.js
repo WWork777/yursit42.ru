@@ -8,6 +8,7 @@ import Etaps from "@/components/service-detail-page-components/etaps/eteps";
 import ConsultationForm from "@/components/common/consultation-form/comsultation-form";
 import YandexMap from "@/components/common/map/map";
 import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
+import Quiz from "@/components/common/quiz/quiz";
 
 export async function generateMetadata({ params }) {
   const allItems = [...servicesGrData, ...servicesBzData];
@@ -83,6 +84,7 @@ export default function ServicePage({ params }) {
         backgroundImageLink={"/common/hero-background2.webp"}
       />
       <WeCan weCanTitle="Мы поможем" helpBlocks={helpBlocks} />
+      <Quiz />
       <HomePractice practiceTitle="Юридическая практика <br> с 1997 года" />
       <Etaps
         etapsTitle="Этапы нашей <br> с вами работы"

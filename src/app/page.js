@@ -1,5 +1,6 @@
 import ConsultationForm from "@/components/common/consultation-form/comsultation-form";
 import YandexMap from "@/components/common/map/map";
+import Quiz from "@/components/common/quiz/quiz";
 import HeroBlock from "@/components/home-components/hero-block/hero-block";
 import HomeDiplom from "@/components/home-components/home-diplom/home-diplome";
 import HomeHelp from "@/components/home-components/home-help/home-help";
@@ -46,6 +47,7 @@ export default function Home() {
         buttonText="Бесплатная консультация"
         backgroundImageLink={"/common/hero-background.webp"}
       />
+      <Quiz />
       <HomeHelp
         helpTitle="Помогаем юридическим <br> и физическим лицам"
         helpTitleLeftBlock="ГРАЖДАНАМ"

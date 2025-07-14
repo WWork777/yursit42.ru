@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import styles from "./style.module.scss";
 import BreadCrumble from "@/components/common/breadCrumble/breadCrumble";
+import Quiz from "@/components/common/quiz/quiz";
 
 export async function generateMetadata({ params }) {
   const service = servicesData.find((item) => item.slug === params.slug);
@@ -99,7 +100,7 @@ export default function Page({ params }) {
             ))}
         </div>
       </section>
-
+      <Quiz />
       <ConsultationForm
         consultationTitle="Получите консультацию"
         consultationText="Оценим шансы, предложим решение и стоимость"
