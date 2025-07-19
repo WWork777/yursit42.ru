@@ -111,11 +111,22 @@ export default function Quiz() {
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
+
+    let processedValue = value;
+
+    if (name === "phone") {
+      // Удаляем все, кроме цифр
+      processedValue = value.replace(/[^\d]/g, "");
+    } else {
+      // Удаляем пробелы для имени
+      processedValue = value.replace(/\s/g, "");
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: processedValue,
     }));
-    setAnswers((prev) => ({ ...prev, [name]: value }));
+    setAnswers((prev) => ({ ...prev, [name]: processedValue }));
   };
 
   const handleSubmit = async (e) => {
