@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const SvgLeft = ({ liText, link }) => {
   return (
-    <Link href={`category/${link}`} className={styles.li_text_link_left}>
+    <Link href={`/${link}`} className={styles.li_text_link_left}>
       <img src="/svg/home-help/li.svg" alt="list icon" />
       <p style={{ margin: 0 }}>{liText}</p>
     </Link>
@@ -26,17 +26,30 @@ const LiSvgLeft = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgLeft liText="Юрист по банкротству" link="yurist-po-bankrotstvu" />
-          <SvgLeft liText="Гражданское право" link="grazhdanskoe-pravo" />
-          <SvgLeft liText="Семейное право" link="semeynoe" />
-          <SvgLeft liText="Финансовое право" link="finansy" />
-          <SvgLeft liText="Автоюрист" link="avtoyurist" />
-          <SvgLeft liText="Земельное право" link="zemelnoe-pravo" />
+          <SvgLeft
+            liText="Юрист по банкротству"
+            link="category/yurist-po-bankrotstvu"
+          />
+          <SvgLeft
+            liText="Гражданское право"
+            link="category/grazhdanskoe-pravo"
+          />
+          <SvgLeft liText="Семейное право" link="category/semeynoe" />
+          <SvgLeft liText="Финансовое право" link="category/finansy" />
+          <SvgLeft liText="Автоюрист" link="category/avtoyurist" />
+          <SvgLeft liText="Земельное право" link="category/zemelnoe-pravo" />
         </div>
         <div className={styles.li_right}>
-          <SvgLeft liText="Наследство" link="nasledstvo" />
-          <SvgLeft liText="Жилищное право" link="zhilishnoe-pravo" />
-          <SvgLeft liText="Защита прав потребителей" link="zashchita" />
+          <SvgLeft liText="Наследство" link="category/nasledstvo" />
+          <SvgLeft liText="Жилищное право" link="category/zhilishnoe-pravo" />
+          <SvgLeft
+            liText="Защита прав потребителей"
+            link="category/zashchita"
+          />
+          <SvgLeft
+            liText="Интеллектуальные споры"
+            link="fiz/intellektualnoe-pravo"
+          />
         </div>
       </div>
     </div>
