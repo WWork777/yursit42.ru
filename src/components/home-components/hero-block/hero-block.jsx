@@ -97,6 +97,26 @@ export default function HeroBlock({
     }
   };
 
+  const handlePhoneInput = (e) => {
+    const { value, name } = e.target;
+
+    // Разрешаем только цифры и знак "+"
+    const sanitizedValue = value.replace(/[^0-9+]/g, "");
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: sanitizedValue,
+    }));
+
+    // Очищаем ошибку, если поле не пустое
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+  };
+
   const validate = () => {
     let valid = true;
     const newErrors = { name: "", phone: "" };
@@ -215,11 +235,11 @@ export default function HeroBlock({
               </div>
               <div className={styles.input_wrapper}>
                 <input
-                  type="text"
+                  type="tel"
                   placeholder="Ваш телефон *"
                   name="phone"
                   value={formData.phone}
-                  onChange={handleChange}
+                  onChange={handlePhoneInput}
                   className={errors.phone ? styles.input_error : ""}
                 />
                 {errors.phone && (
