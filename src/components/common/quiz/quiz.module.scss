@@ -11,6 +11,32 @@
   width: 80%;
   background: white;
   transition: all 0.3s ease;
+  .agreement_checkbox {
+    label {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 12px;
+      @media (max-width: 768px) {
+        font-size: 12px;
+      }
+      @media (max-width: 480px) {
+        font-size: 12px;
+        gap: 4px;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 9px;
+        gap: 2px;
+      }
+    }
+
+    input[type="checkbox"] {
+      margin: 0;
+      width: 12px;
+      height: 12px;
+    }
+  }
   .button_next,
   .button_prev {
     font-family: inherit;

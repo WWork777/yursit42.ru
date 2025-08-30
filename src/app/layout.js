@@ -4,6 +4,7 @@ import Footer from "@/components/layout-components/footer/footer";
 import Header from "@/components/layout-components/header/header";
 import SocialButton from "@/components/common/social-button/socialButton";
 import YandexMetrika from "@/components/common/YandexMetrika/YandexMEtrika";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -31,6 +32,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Первый скрипт - с стратегией beforeInteractive для критически важного кода */}
+        <Script
+          id="ab-test-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: `window._ab_id_=162192` }}
+        />
+
+        {/* Второй скрипт - загружается с отложенной стратегией */}
+        <Script
+          src="https://cdn.botfaqtor.ru/one.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${montserrat.variable}`}>
         <Header />
 
