@@ -49,6 +49,9 @@ export default function Footer() {
           <Link href="https://vk.com/kodeks42">
             <img src="/svg/contacts/vk.svg" className={styles.footer_svg} />
           </Link>
+          <Link href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA">
+            <img src="/svg/contacts/max.svg" className={styles.footer_svg} />
+          </Link>
         </div>
         <div className={styles.footer_bottom}>
           <h5>1997-2025 КОДЕКСЪ. Все права защищены.</h5>
