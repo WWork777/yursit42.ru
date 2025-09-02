@@ -226,7 +226,7 @@ export default function Header() {
             <h5>Telegram</h5>
           </Link>
           <Link
-            href="https://telegram.me/yurist42_kodeks"
+            href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA"
             className={`${styles.header_contacts_link} ${
               isDarkPage ? styles.dark_contacts_link : ""
             }`}
