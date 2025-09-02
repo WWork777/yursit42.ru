@@ -356,11 +356,24 @@
 
 .header_contacts_bottom_mobile {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Ставим столбиком */
   gap: 1rem;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Первый ряд кнопок */
+.messenger_row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Второй ряд по центру */
+.messenger_row_center {
+  display: flex;
+  justify-content: center;
 }
 .header_contacts_link_mobile {
   display: flex;
