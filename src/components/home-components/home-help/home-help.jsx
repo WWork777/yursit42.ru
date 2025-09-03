@@ -26,30 +26,19 @@ const LiSvgLeft = () => {
     <div className={styles.li}>
       <div className={styles.li_container}>
         <div className={styles.li_left}>
-          <SvgLeft
-            liText="Юрист по банкротству"
-            link="category/yurist-po-bankrotstvu"
-          />
-          <SvgLeft
-            liText="Гражданское право"
-            link="category/grazhdanskoe-pravo"
-          />
+          <SvgLeft liText="Юрист по банкротству" link="category/yurist-po-bankrotstvu" />
+          <SvgLeft liText="Гражданское право" link="category/grazhdanskoe-pravo"/>
           <SvgLeft liText="Семейное право" link="category/semeynoe" />
           <SvgLeft liText="Финансовое право" link="category/finansy" />
           <SvgLeft liText="Автоюрист" link="category/avtoyurist" />
           <SvgLeft liText="Земельное право" link="category/zemelnoe-pravo" />
+          <SvgLeft liText="Наследство" link="category/nasledstvo" />
         </div>
         <div className={styles.li_right}>
-          <SvgLeft liText="Наследство" link="category/nasledstvo" />
+          
           <SvgLeft liText="Жилищное право" link="category/zhilishnoe-pravo" />
-          <SvgLeft
-            liText="Защита прав потребителей"
-            link="category/zashchita"
-          />
-          <SvgLeft
-            liText="Интеллектуальные споры"
-            link="fiz/intellektualnoe-pravo"
-          />
+          <SvgLeft liText="Защита прав потребителей" link="category/zashchita"/>
+          <SvgLeft liText="Интеллектуальные споры" link="fiz/intellektualnoe-pravo"/>
         </div>
       </div>
     </div>
@@ -62,47 +51,24 @@ const LiSvgRight = () => {
       <div className={styles.li_container}>
         <div className={styles.li_left}>
           <SvgRight liText="Споры с ФНС" link="spory-s-fns" />
-          <SvgRight
-            liText="Споры с гос. ораганами"
-            link="spory-s-gosorganami"
-          />
+          <SvgRight liText="Споры с гос. ораганами" link="spory-s-gosorganami"/>
           <SvgRight liText="Подрядные споры" link="podryadnye-spory" />
           <SvgRight liText="Корпоративные споры" link="korporativnye-spory" />
-          <SvgRight
-            liText="Арбитражные споры"
-            link="vedenye-sudebnyh-del-v-arbitrazhnom-sude-pervaya-instancia"
-          />
-
-          <Link
-            href={`category/autsorsbz`}
-            className={styles.li_text_link_right}
-          >
+          <SvgRight liText="Арбитражные споры" link="vedenye-sudebnyh-del-v-arbitrazhnom-sude-pervaya-instancia" />
+          <Link href={`category/autsorsbz`} className={styles.li_text_link_right}>
             <img src="/svg/home-help/li2.svg" alt="list icon" />
             <p style={{ margin: 0 }}>Аутсорс</p>
           </Link>
+          <SvgRight liText="Интеллектуальные споры" link="intellektualnye-spory" />
         </div>
         <div className={styles.li_right}>
-          <SvgRight
-            liText="Ликвидация юр. лиц"
-            link="likvidaciya-yuridicheskih-lic"
-          />
+          <SvgRight liText="Ликвидация юр. лиц" link="likvidaciya-yuridicheskih-lic" />
           <SvgRight liText="Банкротство" link="bankrotstvo-yuridicheskih-lic" />
-          <SvgRight
-            liText="Защита при субсидиальной ответственности"
-            link="pryvlechenye-k-subsidyarnoy-otvetstvennosty"
-          />
-          <SvgRight
-            liText="Привлечение ЛПР к субсидиальной ответственности"
-            link="privlechenie-lpr-k-subsidiarnoj-otvetstvennosti"
-          />
-          <SvgRight
-            liText="Взыскание через банкротство"
-            link="vzyskanie-cherez-bankrotstvo"
-          />
-          <SvgRight
-            liText="Оспаривание сделок в банкротстве"
-            link="vzyskanie-cherez-bankrotstvo"
-          />
+          <SvgRight liText="Защита при субсидиальной ответственности" link="pryvlechenye-k-subsidyarnoy-otvetstvennosty"/>
+          <SvgRight liText="Привлечение ЛПР к субсидиальной ответственности" link="privlechenie-lpr-k-subsidiarnoj-otvetstvennosti"/>
+          <SvgRight liText="Взыскание через банкротство" link="vzyskanie-cherez-bankrotstvo"/>
+          <SvgRight liText="Оспаривание сделок в банкротстве" link="vzyskanie-cherez-bankrotstvo"/>
+          
         </div>
       </div>
     </div>
