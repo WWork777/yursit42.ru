@@ -67,7 +67,7 @@ const LiSvgRight = () => {
           <SvgRight liText="Защита при субсидиальной ответственности" link="pryvlechenye-k-subsidyarnoy-otvetstvennosty"/>
           <SvgRight liText="Привлечение ЛПР к субсидиальной ответственности" link="privlechenie-lpr-k-subsidiarnoj-otvetstvennosti"/>
           <SvgRight liText="Взыскание через банкротство" link="vzyskanie-cherez-bankrotstvo"/>
-          <SvgRight liText="Оспаривание сделок в банкротстве" link="vzyskanie-cherez-bankrotstvo"/>
+          <SvgRight liText="Оспаривание сделок в банкротстве" link="osporivanie-sdelok-v-bankrotstve"/>
           
         </div>
       </div>
