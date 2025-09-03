@@ -1,0 +1,30 @@
+.contacts_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.contacts_title_text_mobile{
+  display: none;
+  @media (max-width: 1000px) {
+      display: block;
+      width: 50%;
+    font-size: 16px;
+    text-align: right;
+    font-weight: 400;
+    color: #292C3B;
+  }
+}
+
+.contacts_title_text {
+  width: 50%;
+    font-size: 18px;
+    text-align: right;
+    font-weight: 500;
+    color: #292C3B;
+    @media (max-width: 1000px) {
+        display: none;
+    }
+}

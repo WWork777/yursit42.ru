@@ -1,0 +1,4 @@
+User-Agent: *
+Clean-param: etext /
+Allow: /
+Sitemap: https://yurist42.ru/sitemap.xml
