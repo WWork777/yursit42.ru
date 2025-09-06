@@ -1,0 +1,35 @@
+.practice_subtitle{
+    margin-top: 50px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #292C3B;
+    margin-bottom: 20px;
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
+}
+.practice_date{
+    font-size: 18px;
+    font-weight: 500;
+    color: #292C3B;
+    margin-bottom: 20px;
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
+}
+
+.practice_text{
+    font-size: 18px;
+    font-weight: 500;
+    color: #292C3B;
+    margin-bottom: 20px;
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
+}
+
+.practice_container{
+    max-width: 1000px;
+    padding: 0 20px;
+    text-align: left;
+}

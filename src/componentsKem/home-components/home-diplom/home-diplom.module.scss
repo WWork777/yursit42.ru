@@ -1,0 +1,108 @@
+.title_container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 100px;
+    @media (max-width: 1000px) {
+    gap: 50px;
+  }
+  @media (max-width: 600px) {
+    gap: 25px;
+  }
+  @media (max-width: 480px) {
+    gap: 20px;
+  }
+}
+
+.custom_navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.custom_prev,
+.custom_next {
+  position: static !important;
+  width: 50px !important;
+  height: 50px !important;
+  margin-top: 0 !important;
+  background: #292c3b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+    @media (max-width: 600px) {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  &::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+  }
+
+  &:active {
+    transform: scale(2);
+  }
+}
+
+.mySwiper {
+  width: 80% !important;
+  @media (max-width: 600px) {
+    width: 100% !important;
+  }
+}
+
+.custom_prev::after {
+  transform: rotate(135deg);
+  margin-right: -2px;
+}
+
+.custom_next::after {
+  transform: rotate(-45deg);
+  margin-left: -2px;
+}
+
+.home_diplom_slider {
+  margin-top: 50px;
+  border-radius: 15px;
+
+  .swiper-wrapper {
+    border-radius: 15px;
+  }
+}
+
+.home_diplom_slider_card_image {
+  position: relative !important;
+  width: 350px !important;
+  height: 100% !important;
+  object-fit: contain;
+  transition: all 0.3s ease-in-out;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px 0px #AFAFC0BF;
+  @media (max-width: 600px) {
+    width: 60% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+.home_diplom_slider_card_container {
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  max-width: 500px;
+  margin: auto;
+ 
+}
+
+

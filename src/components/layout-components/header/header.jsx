@@ -3,12 +3,13 @@ import styles from "./header.module.scss";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useModal } from "@/components/common/changeSite/ModalProvider";
 
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { openChangeSiteModal } = useModal();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -126,42 +127,55 @@ export default function Header() {
           <Link href="tel:+79609309191">
             <p>+7 (960) 930-91-91</p>
           </Link>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+              justifyContent: "center",
+            }}
+          >
+            <svg viewBox="0 0 24 24" width="28" height="28">
+              <path
+                fill="currentColor"
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
+              />
+            </svg>
+            <p onClick={openChangeSiteModal}>Кемерово</p>
+          </div>
         </div>
-        
+
         <div className={styles.header_contacts_bottom_mobile}>
-        {/* Первый ряд */}
-        <div className={styles.messenger_row}>
-          <Link
-            href="https://api.whatsapp.com/send/?phone=79609309191"
-            className={styles.header_contacts_link_mobile}
-          >
-            <img src={"/svg/mobileheader/wa.svg"} alt="WhatsApp" />
-            <h5>Whatsapp</h5>
-          </Link>
+          {/* Первый ряд */}
+          <div className={styles.messenger_row}>
+            <Link
+              href="https://api.whatsapp.com/send/?phone=79609309191"
+              className={styles.header_contacts_link_mobile}
+            >
+              <img src={"/svg/mobileheader/wa.svg"} alt="WhatsApp" />
+              <h5>Whatsapp</h5>
+            </Link>
 
-          <Link
-            href="https://telegram.me/yurist42_kodeks"
-            className={styles.header_contacts_link_mobile}
-          >
-            <img src={"/svg/mobileheader/tg.svg"} alt="Telegram" />
-            <h5>Telegram</h5>
-          </Link>
+            <Link
+              href="https://telegram.me/yurist42_kodeks"
+              className={styles.header_contacts_link_mobile}
+            >
+              <img src={"/svg/mobileheader/tg.svg"} alt="Telegram" />
+              <h5>Telegram</h5>
+            </Link>
+          </div>
+
+          {/* Второй ряд */}
+          <div className={styles.messenger_row_center}>
+            <Link
+              href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA"
+              className={styles.header_contacts_link_mobile}
+            >
+              <img src={"/svg/mobileheader/max.svg"} alt="VK" />
+              <h5>Max</h5>
+            </Link>
+          </div>
         </div>
-
-        {/* Второй ряд */}
-        <div className={styles.messenger_row_center}>
-          <Link
-            href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA"
-            className={styles.header_contacts_link_mobile}
-          >
-            <img src={"/svg/mobileheader/max.svg"} alt="VK" />
-            <h5>Max</h5>
-          </Link>
-        </div>
-      </div>
-
-        
-        
       </div>
 
       {/* Десктоп навигация */}
@@ -191,6 +205,9 @@ export default function Header() {
           <Link href="tel:+79609309191">
             <h5>+7 (960) 930-91-91</h5>
           </Link>
+          <h5 style={{ cursor: "pointer" }} onClick={openChangeSiteModal}>
+            Кемерово
+          </h5>
         </div>
         <div className={styles.header_contacts_bottom}>
           <Link

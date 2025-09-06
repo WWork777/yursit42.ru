@@ -22,11 +22,11 @@ export default function FooterSib() {
         <p>Политика конфиденциальности</p>
       </div>
       <div className={styles.footer_links}>
-        <SvgLeft liText="Услуги" link="/fiz" />
-        <SvgLeft liText="Прайс-лист" link="/price" />
-        <SvgLeft liText="Практики" link="/practices" />
-        <SvgLeft liText="Новости" link="/news" />
-        <SvgLeft liText="Контакты" link="/contacts" />
+        <SvgLeft liText="Услуги" link="/novosibirsk/fiz" />
+        <SvgLeft liText="Прайс-лист" link="/novosibirsk/price" />
+        <SvgLeft liText="Практики" link="/novosibirsk/practices" />
+        <SvgLeft liText="Новости" link="/novosibirsk/news" />
+        <SvgLeft liText="Контакты" link="/novosibirsk/contacts" />
       </div>
       <div className={styles.footer_contacts}>
         <h5>Главный офис</h5>

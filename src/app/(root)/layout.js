@@ -5,6 +5,8 @@ import Header from "@/components/layout-components/header/header";
 import SocialButton from "@/components/common/social-button/socialButton";
 import YandexMetrika from "@/components/common/YandexMetrika/YandexMEtrika";
 import Script from "next/script";
+import { ModalProvider } from "@/components/common/changeSite/ModalProvider";
+import ChangeSite from "@/components/common/changeSite/changeSite";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -47,12 +49,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${montserrat.variable}`}>
-        <Header />
-
-        {children}
-        <SocialButton />
-        <Footer />
-        <YandexMetrika />
+        <ModalProvider>
+          <Header />
+          {children}
+          <SocialButton />
+          <Footer />
+          <YandexMetrika />
+        </ModalProvider>
       </body>
     </html>
   );

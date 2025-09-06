@@ -1,0 +1,264 @@
+:root {
+  --background-color: #ffffff;
+  --background-color2: #f0f0f3;
+}
+
+html,
+body {
+  max-width: 100vw;
+  font-family: var(--font-montserrat), sans-serif;
+  overflow-x: hidden;
+  background-color: var(--background-color2) !important;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+b {
+  font-weight: 700;
+  font-size: 58px;
+  @media (max-width: 1600px) {
+    font-size: 40px;
+  }
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
+  @media (max-width: 480px) {
+    font-size: 30px;
+  }
+  @media (max-width: 414px) {
+    font-size: 28px;
+  }
+  @media (max-width: 388px) {
+    font-size: 26px;
+  }
+}
+
+h1 {
+  font-size: 45px;
+  font-weight: 600;
+  color: #292c3b;
+  @media (max-width: 1350px) {
+    font-size: 40px;
+  }
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+  @media (max-width: 600px) {
+    font-size: 30px;
+  }
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
+  @media (max-width: 414px) {
+    font-size: 26px;
+  }
+  @media (max-width: 388px) {
+    font-size: 24px;
+  }
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 500;
+  color: #292c3bcc;
+  @media (max-width: 1350px) {
+    font-size: 36px;
+  }
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+  @media (max-width: 600px) {
+    font-size: 28px;
+  }
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
+  @media (max-width: 414px) {
+    font-size: 22px;
+  }
+  @media (max-width: 388px) {
+    font-size: 20px;
+  }
+}
+
+h3 {
+  font-size: 36px;
+  font-weight: 400;
+  color: #292c3bcc;
+  @media (max-width: 1350px) {
+    font-size: 32px;
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
+  @media (max-width: 480px) {
+    font-size: 22px;
+  }
+  @media (max-width: 414px) {
+    font-size: 20px;
+  }
+  @media (max-width: 388px) {
+    font-size: 18px;
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #292c3bcc;
+  @media (max-width: 1600px) {
+    font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+}
+
+h5 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #292c3bcc;
+  @media (max-width: 1600px) {
+    font-size: 16px;
+  }
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
+}
+
+h6 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #292c3bcc;
+  @media (max-width: 1600px) {
+    font-size: 28px;
+  }
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+  @media (max-width: 414px) {
+    font-size: 16px;
+  }
+  @media (max-width: 388px) {
+    font-size: 14px;
+  }
+}
+
+p {
+  font-size: 19px;
+  font-weight: 400;
+  color: #292c3bcc;
+  @media (max-width: 1600px) {
+    font-size: 18px;
+  }
+  @media (max-width: 1450px) {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+  @media (max-width: 400px) {
+    font-size: 13px;
+  }
+  @media (max-width: 388px) {
+    font-size: 12px;
+  }
+}
+
+section {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  @media (max-width: 1300px) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  @media (max-width: 1100px) {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.section-main {
+  background-color: var(--background-color2);
+  padding-top: 100px;
+  @media (max-width: 768px) {
+    padding-top: 50px;
+  }
+}
+
+.section-second {
+  background-color: var(--background-color);
+  margin-top: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-pagination {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  position: relative !important;
+  margin-top: 60px !important;
+
+  .swiper-pagination-bullet {
+    width: 100px !important;
+    height: 2px !important;
+    background-color: #292c3b80 !important;
+    opacity: 0.5 !important;
+    transition: all 0.3s ease !important;
+    border-radius: 2px !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #292c3b !important;
+    opacity: 1 !important;
+  }
+  @media (max-width: 600px) {
+    display: none !important;
+  }
+}
+
+.secondary-page {
+  padding-top: 200px;
+  @media (max-width: 768px) {
+    padding-top: 80px;
+  }
+}
