@@ -122,7 +122,7 @@ export default function ConsultationForm({
 
       if (isSent) {
         if (typeof window !== "undefined" && window.ym) {
-          window.ym(56680159, "reachGoal", "Form");
+          window.ym(56680159, "reachGoal", "FormKemerovo");
         }
 
         alert(

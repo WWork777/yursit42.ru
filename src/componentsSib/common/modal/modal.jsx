@@ -91,34 +91,34 @@ export default function Modal({ isOpen, onClose }) {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!validate()) return;
+    if (!validate()) return;
 
-  setIsLoading(true);
+    setIsLoading(true);
 
-  try {
-    const isSent = await sendToTelegram(formData);
+    try {
+      const isSent = await sendToTelegram(formData);
 
-    if (isSent) {
-      if (typeof window !== 'undefined' && window.ym) {
-        window.ym(91831377, 'reachGoal', 'ModalForm');
+      if (isSent) {
+        if (typeof window !== "undefined" && window.ym) {
+          window.ym(91831377, "reachGoal", "HeroForm");
+        }
+
+        alert(
+          "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время."
+        );
+        setFormData({ name: "", phone: "", message: "" });
+      } else {
+        alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
       }
-      
-      alert(
-        "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время."
-      );
-      setFormData({ name: "", phone: "", message: "" });
-    } else {
-      alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
+    } catch (error) {
+      console.error("Ошибка:", error);
+      alert("Произошла ошибка. Пожалуйста, попробуйте еще раз.");
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    console.error("Ошибка:", error);
-    alert("Произошла ошибка. Пожалуйста, попробуйте еще раз.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
     <div className={styles.modalOverlay}>

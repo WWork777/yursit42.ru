@@ -143,7 +143,7 @@ export default function Quiz() {
 
     if (isSent) {
       if (typeof window !== "undefined" && window.ym) {
-        window.ym(56680159, "reachGoal", "Quiz");
+        window.ym(56680159, "reachGoal", "QuizKemerovo");
       }
       alert(
         "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время."
