@@ -37,18 +37,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          id="ab-test-script"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: `window._ab_id_=162192` }}
-        />
-
-        <Script
-          src="https://cdn.botfaqtor.ru/one.js"
-          strategy="afterInteractive"
-        />
-      </head>
       <body className={`${montserrat.variable}`}>
         <ModalProvider>
           <HeaderKem />
