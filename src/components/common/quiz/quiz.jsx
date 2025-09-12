@@ -457,7 +457,7 @@ export default function Quiz() {
   };
 
   return (
-    <section className="section-main">
+    <section className="section-main" id="quiz">
       <div className={styles.quiz}>{renderStep()}</div>
     </section>
   );
