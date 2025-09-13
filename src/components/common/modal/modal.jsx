@@ -65,19 +65,17 @@ export default function Modal({ isOpen, onClose }) {
     const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
 
     try {
-      const response = await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: text,
-          }),
-        }
-      );
+      const response = await fetch("/api/telegram-proxi", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: "-1002630836547",
+          text: text,
+          parse_mode: "Markdown",
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Ошибка при отправке сообщения");
@@ -91,35 +89,35 @@ export default function Modal({ isOpen, onClose }) {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!validate()) return;
+    if (!validate()) return;
 
-  setIsLoading(true);
+    setIsLoading(true);
 
-  try {
-    const isSent = await sendToTelegram(formData);
+    try {
+      const isSent = await sendToTelegram(formData);
 
-    if (isSent) {
-      // Отправка цели в Яндекс.Метрику
-      if (typeof window !== 'undefined' && window.ym) {
-        window.ym(56680159, 'reachGoal', 'ModalForm');
+      if (isSent) {
+        // Отправка цели в Яндекс.Метрику
+        if (typeof window !== "undefined" && window.ym) {
+          window.ym(56680159, "reachGoal", "ModalForm");
+        }
+
+        alert(
+          "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время."
+        );
+        setFormData({ name: "", phone: "", message: "" });
+      } else {
+        alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
       }
-      
-      alert(
-        "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время."
-      );
-      setFormData({ name: "", phone: "", message: "" });
-    } else {
-      alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
+    } catch (error) {
+      console.error("Ошибка:", error);
+      alert("Произошла ошибка. Пожалуйста, попробуйте еще раз.");
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    console.error("Ошибка:", error);
-    alert("Произошла ошибка. Пожалуйста, попробуйте еще раз.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
     <div className={styles.modalOverlay}>

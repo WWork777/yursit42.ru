@@ -142,19 +142,17 @@ export default function HeroBlock({
     const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
 
     try {
-      const response = await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, // ✅ Убран пробел
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text,
-          }),
-        }
-      );
+      const response = await fetch("/api/telegram-proxi", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: "-1002630836547",
+          text: text,
+          parse_mode: "Markdown",
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Ошибка при отправке сообщения");
