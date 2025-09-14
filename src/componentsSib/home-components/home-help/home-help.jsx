@@ -63,7 +63,7 @@ const LiSvgLeft = () => {
           />
           <SvgLeft
             liText="Интеллектуальные споры"
-            link="/novosibirsk/fiz/intellektualnoe-pravo"
+            link="novosibirsk/fiz/intellektualnoe-pravo"
           />
         </div>
       </div>
