@@ -11,7 +11,9 @@
   width: 80%;
   background: white;
   transition: all 0.3s ease;
-
+  .phone_input {
+    color: black !important;
+  }
   .agreement_checkbox {
     label {
       display: flex;
@@ -38,7 +40,6 @@
       height: 12px;
     }
   }
-
   .button_next,
   .button_prev {
     font-family: inherit;
@@ -405,7 +406,9 @@
         .form_group {
           margin-bottom: 1.5rem;
 
-          input {
+          input,
+          .quiz_phone_input {
+            height: 52px !important;
             width: 100%;
             padding: 1rem;
             border: 1px solid #ddd;

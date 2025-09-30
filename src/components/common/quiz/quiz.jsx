@@ -2,6 +2,8 @@
 import styles from "./quiz.module.scss";
 import { useState } from "react";
 import Link from "next/link";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
 
 export default function Quiz() {
   const [step, setStep] = useState(0);
@@ -29,16 +31,28 @@ export default function Quiz() {
   const TELEGRAM_CHAT_ID =
     process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || "-1002630836547";
 
+  const isPhoneComplete = (phone) => {
+    if (!phone || phone.trim() === "") return false;
+
+    // Для российских номеров: код страны +7 и 10 цифр номера = минимум 11 символов
+    // Убираем все нецифровые символы для проверки
+    const digitsOnly = phone.replace(/\D/g, "");
+
+    // Российский номер: +7 (XXX) XXX-XX-XX = 11 цифр
+    // Международные номера могут быть длиннее, но для России достаточно 11 цифр
+    return digitsOnly.length >= 11;
+  };
+
   const sendToTelegram = async () => {
     setIsSending(true);
     try {
       const message = `
-        <b>Новая заявка с квиза (Кемерово)</b>\n
-        <b>Тип клиента:</b> ${answers.userType === "individual" ? "Физическое лицо" : "Юридическое лицо"}\n
-        <b>Тема вопроса:</b> ${answers.topic || "Не указано"}\n
-        <b>Комментарий:</b> ${answers.comment || "Не указано"}\n
-        <b>Имя:</b> ${answers.name}\n
-        <b>Телефон:</b> ${answers.phone}\n
+        Новая заявка с квиза (Кемерово)\n
+        Тип клиента: ${answers.userType === "individual" ? "Физическое лицо" : "Юридическое лицо"}\n
+        Тема вопроса: ${answers.topic || "Не указано"}\n
+        Комментарий:${answers.comment || "Не указано"}\n
+        Имя: ${answers.name}\n
+        Телефон: ${answers.phone}\n
       `;
 
       const response = await fetch("/api/telegram-proxi", {
@@ -120,6 +134,12 @@ export default function Quiz() {
     setAnswers((prev) => ({ ...prev, [name]: processedValue }));
   };
 
+  // Новая функция для обработки телефона через PhoneInput
+  const handlePhoneInput = (value) => {
+    setFormData((prev) => ({ ...prev, phone: value }));
+    setAnswers((prev) => ({ ...prev, phone: value }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -127,6 +147,11 @@ export default function Quiz() {
       alert(
         "Пожалуйста, подтвердите согласие с политикой обработки персональных данных."
       );
+      return;
+    }
+
+    if (!isPhoneComplete(formData.phone)) {
+      alert("Пожалуйста, введите полный номер телефона");
       return;
     }
 
@@ -261,6 +286,10 @@ export default function Quiz() {
     );
   };
 
+  // Проверяем, валидна ли форма для отправки
+  const isFormValid =
+    isPhoneComplete(formData.phone) && formData.name.trim() && isAgreed;
+
   const renderStep = () => {
     const currentStep = getCurrentStep();
     if (!currentStep) return null;
@@ -296,13 +325,14 @@ export default function Quiz() {
                     />
                   </div>
                   <div className={styles.form_group}>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Ваш телефон"
+                    <PhoneInput
+                      country={"ru"}
                       value={formData.phone}
-                      onChange={handleFormChange}
-                      required
+                      onChange={handlePhoneInput}
+                      disableDropdown={true}
+                      onlyCountries={["ru"]}
+                      inputClass={styles.quiz_phone_input}
+                      placeholder="Введите номер телефона"
                     />
                   </div>
 
@@ -326,7 +356,7 @@ export default function Quiz() {
                     <button
                       type="submit"
                       className={styles.button_next}
-                      disabled={isSending || !isAgreed}
+                      disabled={isSending || !isFormValid}
                     >
                       {isSending ? "Отправка..." : currentStep.buttonText}
                     </button>

@@ -62,7 +62,7 @@ export default function Modal({ isOpen, onClose }) {
     const TELEGRAM_BOT_TOKEN = "7933033563:AAGeVEYEzAQ6NUuVYkxNsXgANSi0xvRN4sg";
     const TELEGRAM_CHAT_ID = "-1002630836547";
 
-    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
+    const text = `Новая заявка с сайта (юристкемерово.рф):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
 
     try {
       const response = await fetch("/api/telegram-proxi", {

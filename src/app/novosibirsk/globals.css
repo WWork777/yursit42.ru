@@ -262,3 +262,8 @@ a {
     padding-top: 80px;
   }
 }
+
+.selected-flag,
+.flag-dropdown {
+  display: none !important;
+}

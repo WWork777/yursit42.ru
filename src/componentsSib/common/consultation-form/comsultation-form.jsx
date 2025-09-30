@@ -2,6 +2,8 @@
 import styles from "./consultation-form.module.scss";
 import Link from "next/link";
 import { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 export default function ConsultationForm({
   consultationTitle,
@@ -21,6 +23,19 @@ export default function ConsultationForm({
   const [isAgreed, setIsAgreed] = useState(false); // Состояние для чекбокса
   const [isLoading, setIsLoading] = useState(false);
 
+  // Функция проверки полноты номера телефона
+  const isPhoneComplete = (phone) => {
+    if (!phone || phone.trim() === "") return false;
+
+    // Для российских номеров: код страны +7 и 10 цифр номера = минимум 11 символов
+    // Убираем все нецифровые символы для проверки
+    const digitsOnly = phone.replace(/\D/g, "");
+
+    // Российский номер: +7 (XXX) XXX-XX-XX = 11 цифр
+    // Международные номера могут быть длиннее, но для России достаточно 11 цифр
+    return digitsOnly.length >= 11;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -36,21 +51,16 @@ export default function ConsultationForm({
     }
   };
 
-  const handlePhoneInput = (e) => {
-    const { value, name } = e.target;
-
-    // Разрешаем только цифры и знак "+"
-    const sanitizedValue = value.replace(/[^0-9+]/g, "");
-
+  const handlePhoneInput = (value) => {
     setFormData((prev) => ({
       ...prev,
-      [name]: sanitizedValue,
+      phone: value,
     }));
 
-    if (errors[name]) {
+    if (errors.phone) {
       setErrors((prev) => ({
         ...prev,
-        [name]: "",
+        phone: "",
       }));
     }
   };
@@ -61,6 +71,9 @@ export default function ConsultationForm({
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Пожалуйста, введите ваш телефон";
+      valid = false;
+    } else if (!isPhoneComplete(formData.phone)) {
+      newErrors.phone = "Введите полный номер телефона";
       valid = false;
     } else if (!/^[\d\+][\d\(\)\ -]{4,17}\d$/.test(formData.phone)) {
       newErrors.phone = "Введите корректный номер телефона";
@@ -75,7 +88,11 @@ export default function ConsultationForm({
     const TELEGRAM_BOT_TOKEN = "7933033563:AAGeVEYEzAQ6NUuVYkxNsXgANSi0xvRN4sg";
     const TELEGRAM_CHAT_ID = "-1002630836547";
 
-    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
+    const formattedPhone = data.phone.startsWith("+")
+      ? data.phone
+      : `+${data.phone}`;
+
+    const text = `Новая заявка с сайта (Новосибирск):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
 
     try {
       const response = await fetch("/api/telegram-proxi", {
@@ -120,7 +137,7 @@ export default function ConsultationForm({
 
       if (isSent) {
         if (typeof window !== "undefined" && window.ym) {
-          window.ym(56680159, "reachGoal", "FormNovosibirsk");
+          window.ym(56680159, "reachGoal", "Form");
         }
 
         alert(
@@ -138,6 +155,9 @@ export default function ConsultationForm({
       setIsLoading(false);
     }
   };
+
+  // Проверяем, валидна ли форма для отправки
+  const isFormValid = isPhoneComplete(formData.phone) && isAgreed && !isLoading;
 
   return (
     <section className="section-second" id="form">
@@ -160,13 +180,14 @@ export default function ConsultationForm({
               )}
             </div>
             <div className={styles.input_wrapper}>
-              <input
-                type="tel"
-                placeholder="Ваш телефон *"
-                name="phone"
+              <PhoneInput
+                country={"ru"}
                 value={formData.phone}
                 onChange={handlePhoneInput}
-                className={errors.phone ? styles.input_error : ""}
+                disableDropdown={true}
+                onlyCountries={["ru"]}
+                inputClass={styles.consultation_phone_input}
+                placeholder="Введите номер телефона"
               />
               {errors.phone && (
                 <span className={styles.error_message}>{errors.phone}</span>
@@ -198,11 +219,8 @@ export default function ConsultationForm({
             </label>
           </div>
 
-          {/* Кнопка активна только если чекбокс отмечен и телефон введён */}
-          <button
-            type="submit"
-            disabled={isLoading || !formData.phone.trim() || !isAgreed}
-          >
+          {/* Кнопка активна только если чекбокс отмечен и телефон введён полностью */}
+          <button type="submit" disabled={!isFormValid}>
             <p>{isLoading ? "Отправка..." : "Отправить заявку"}</p>
           </button>
         </form>

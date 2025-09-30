@@ -3,6 +3,8 @@ import styles from "./hero-block.module.scss";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Modal from "@/components/common/modal/modal";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
 
 export default function HeroBlock({
   heroTitle,
@@ -88,6 +90,19 @@ export default function HeroBlock({
   const [isAgreed, setIsAgreed] = useState(false); // Согласие с политикой
   const [isLoading, setIsLoading] = useState(false);
 
+  // Функция проверки полноты номера телефона
+  const isPhoneComplete = (phone) => {
+    if (!phone || phone.trim() === "") return false;
+
+    // Для российских номеров: код страны +7 и 10 цифр номера = минимум 11 символов
+    // Убираем все нецифровые символы для проверки
+    const digitsOnly = phone.replace(/\D/g, "");
+
+    // Российский номер: +7 (XXX) XXX-XX-XX = 11 цифр
+    // Международные номера могут быть длиннее, но для России достаточно 11 цифр
+    return digitsOnly.length >= 11;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -103,18 +118,15 @@ export default function HeroBlock({
     }
   };
 
-  const handlePhoneInput = (e) => {
-    const { value, name } = e.target;
-    const sanitizedValue = value.replace(/[^0-9+]/g, "");
+  const handlePhoneInput = (value) => {
     setFormData((prev) => ({
       ...prev,
-      [name]: sanitizedValue,
+      phone: value,
     }));
-
-    if (errors[name]) {
+    if (errors.phone) {
       setErrors((prev) => ({
         ...prev,
-        [name]: "",
+        phone: "",
       }));
     }
   };
@@ -125,6 +137,9 @@ export default function HeroBlock({
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Пожалуйста, введите ваш телефон";
+      valid = false;
+    } else if (!isPhoneComplete(formData.phone)) {
+      newErrors.phone = "Введите полный номер телефона";
       valid = false;
     } else if (!/^[\d\+][\d\(\)\ -]{4,17}\d$/.test(formData.phone)) {
       newErrors.phone = "Введите корректный номер телефона";
@@ -138,8 +153,10 @@ export default function HeroBlock({
   const sendToTelegram = async (data) => {
     const TELEGRAM_BOT_TOKEN = "7933033563:AAGeVEYEzAQ6NUuVYkxNsXgANSi0xvRN4sg";
     const TELEGRAM_CHAT_ID = "-1002630836547";
-
-    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
+    const formattedPhone = data.phone.startsWith("+")
+      ? data.phone
+      : `+${data.phone}`;
+    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
 
     try {
       const response = await fetch("/api/telegram-proxi", {
@@ -203,6 +220,9 @@ export default function HeroBlock({
     }
   };
 
+  // Проверяем, заполнен ли номер полностью
+  const isFormValid = isPhoneComplete(formData.phone) && isAgreed && !isLoading;
+
   return (
     <div
       className={styles.hero}
@@ -243,13 +263,14 @@ export default function HeroBlock({
                 )}
               </div>
               <div className={styles.input_wrapper}>
-                <input
-                  type="tel"
-                  placeholder="Ваш телефон *"
-                  name="phone"
+                <PhoneInput
+                  country={"ru"}
                   value={formData.phone}
                   onChange={handlePhoneInput}
-                  className={errors.phone ? styles.input_error : ""}
+                  disableDropdown={true}
+                  onlyCountries={["ru"]}
+                  inputClass={styles.hero_phone_input}
+                  placeholder="Введите номер телефона"
                 />
                 {errors.phone && (
                   <span className={styles.error_message}>{errors.phone}</span>
@@ -283,11 +304,8 @@ export default function HeroBlock({
               </label>
             </div>
 
-            {/* Кнопка: активна только при заполнении телефона и согласии */}
-            <button
-              type="submit"
-              disabled={isLoading || !formData.phone.trim() || !isAgreed}
-            >
+            {/* Кнопка: активна только при полном номере телефона и согласии */}
+            <button type="submit" disabled={!isFormValid}>
               <p>{isLoading ? "Отправка..." : "Обращение к юристу"}</p>
             </button>
           </form>

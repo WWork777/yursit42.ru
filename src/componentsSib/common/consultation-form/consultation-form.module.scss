@@ -43,6 +43,31 @@
   position: relative;
   width: 100%;
 }
+.consultation_phone_input {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #a47764 !important;
+  padding: 0.5rem 0 !important;
+  font-size: 1rem !important;
+  font-family: Montserrat, sans-serif !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+  outline: none !important;
+
+  &:focus {
+    border-bottom: 1px solid #d1b19a !important;
+  }
+}
+
+.input_error {
+  border-bottom: 1px solid #ff4d4f !important;
+  animation: shake 0.5s ease-in-out !important;
+
+  &:focus {
+    border-bottom: 1px solid #ff4d4f !important;
+  }
+}
 
 .consultation_form input {
   background: transparent;
@@ -103,9 +128,11 @@
   color: white;
   transition: all 0.3s ease-in-out;
   font-family: var(--font-montserrat);
+
   &:disabled {
     cursor: not-allowed;
   }
+
   p {
     color: white;
     margin: 0;
