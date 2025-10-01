@@ -43,7 +43,7 @@ export default function HomeDiplom({ diplomTitle }) {
           pagination={{
             clickable: true,
           }}
-           breakpoints={{
+          breakpoints={{
             // Mobile (320-599)
             320: {
               slidesPerView: 1,
@@ -82,48 +82,50 @@ export default function HomeDiplom({ diplomTitle }) {
             <SliderCard sliderImageSrc="/home/diplome/diplome16.webp" />
           </SwiperSlide>
           <SwiperSlide className={styles.swiperSlide}>
+            <SliderCard sliderImageSrc="/home/diplome/certificate-1.png" />
+          </SwiperSlide>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome17.webp" />
           </SwiperSlide>
           <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome3.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome4.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome5.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome6.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome7.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome8.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome9.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome10.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome11.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome12.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome13.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome1.webp" />
           </SwiperSlide>
-           <SwiperSlide className={styles.swiperSlide}>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome2.webp" />
           </SwiperSlide>
-
         </Swiper>
         <div className={styles.custom_pagination}></div>
       </div>
