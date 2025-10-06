@@ -82,6 +82,12 @@ export default function HomeDiplom({ diplomTitle }) {
             <SliderCard sliderImageSrc="/home/diplome/diplome16.webp" />
           </SwiperSlide>
           <SwiperSlide className={styles.swiperSlide}>
+            <SliderCard sliderImageSrc="/home/diplome/sertificate.png" />
+          </SwiperSlide>
+          <SwiperSlide className={styles.swiperSlide}>
+            <SliderCard sliderImageSrc="/home/diplome/sertificate2.png" />
+          </SwiperSlide>
+          <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/certificate-1.png" />
           </SwiperSlide>
           <SwiperSlide className={styles.swiperSlide}>
