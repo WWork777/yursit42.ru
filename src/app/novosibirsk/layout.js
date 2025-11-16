@@ -35,7 +35,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <meta name="yandex-verification" content="3b939ecc2772bf96" />
       <body className={`${montserrat.variable}`}>
         <ModalProvider>
           <HeaderSib />
