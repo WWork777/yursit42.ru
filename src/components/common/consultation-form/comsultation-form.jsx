@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import PhoneInputCustom from "../phoneInput/phoneInput";
 
 export default function ConsultationForm({
   consultationTitle,
@@ -51,7 +52,17 @@ export default function ConsultationForm({
     }
   };
 
-  const handlePhoneInput = (value) => {
+  // Обновленная функция для обработки телефона
+  const handlePhoneInput = (value, country, e, formattedValue) => {
+    // Если номер пустой или начинается не с +7(9, принудительно устанавливаем +7(9
+    if (!value || !value.startsWith("+79")) {
+      // Очищаем все, кроме цифр, и проверяем начинается ли с 79
+      const digitsOnly = value.replace(/\D/g, "");
+      if (!digitsOnly.startsWith("79")) {
+        value = "+7(9";
+      }
+    }
+
     setFormData((prev) => ({
       ...prev,
       phone: value,
@@ -65,6 +76,45 @@ export default function ConsultationForm({
     }
   };
 
+  // Функция для обработки ввода с клавиатуры
+  const handlePhoneKeyDown = (e) => {
+    const { value } = e.target;
+
+    // Запрещаем удаление префикса +7(9
+    if (value === "+7(9" && (e.key === "Backspace" || e.key === "Delete")) {
+      e.preventDefault();
+      return;
+    }
+
+    // Если пытаются ввести что-то в начале, когда уже есть +7(9
+    if (e.target.selectionStart <= 4 && value.startsWith("+7(9")) {
+      // Разрешаем только цифры и управляющие клавиши
+      if (!/[\d]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  // Функция для обработки изменения фокуса
+  const handlePhoneFocus = (e) => {
+    const { value } = e.target;
+
+    // Если поле пустое или не начинается с +7(9, устанавливаем префикс
+    if (!value || !value.startsWith("+7(9")) {
+      setFormData((prev) => ({
+        ...prev,
+        phone: "+7(9",
+      }));
+    }
+
+    // Устанавливаем курсор после префикса
+    setTimeout(() => {
+      if (e.target.value === "+7(9") {
+        e.target.setSelectionRange(4, 4);
+      }
+    }, 0);
+  };
+
   const validate = () => {
     let valid = true;
     const newErrors = { name: "", phone: "" };
@@ -72,12 +122,20 @@ export default function ConsultationForm({
     if (!formData.phone.trim()) {
       newErrors.phone = "Пожалуйста, введите ваш телефон";
       valid = false;
-    } else if (!isPhoneComplete(formData.phone)) {
-      newErrors.phone = "Введите полный номер телефона";
-      valid = false;
-    } else if (!/^[\d\+][\d\(\)\ -]{4,17}\d$/.test(formData.phone)) {
-      newErrors.phone = "Введите корректный номер телефона";
-      valid = false;
+    } else {
+      // Нормализуем номер: убираем все нецифровые символы кроме +
+      const normalizedPhone = formData.phone.replace(/\s/g, ""); // убираем пробелы
+
+      if (!normalizedPhone.startsWith("+7(9")) {
+        newErrors.phone = "Номер должен начинаться с +7(9";
+        valid = false;
+      } else if (!isPhoneComplete(formData.phone)) {
+        newErrors.phone = "Введите полный номер телефона";
+        valid = false;
+      } else if (!/^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(normalizedPhone)) {
+        newErrors.phone = "Введите корректный номер телефона";
+        valid = false;
+      }
     }
 
     setErrors(newErrors);
@@ -156,8 +214,12 @@ export default function ConsultationForm({
     }
   };
 
-  // Проверяем, валидна ли форма для отправки
-  const isFormValid = isPhoneComplete(formData.phone) && isAgreed && !isLoading;
+  // Обновленная проверка валидности формы - теперь проверяем наличие префикса +7(9
+  const isFormValid =
+    formData.phone.startsWith("+7 (9") &&
+    isPhoneComplete(formData.phone) &&
+    isAgreed &&
+    !isLoading;
 
   return (
     <section className="section-second" id="form">
@@ -180,14 +242,15 @@ export default function ConsultationForm({
               )}
             </div>
             <div className={styles.input_wrapper}>
-              <PhoneInput
-                country={"ru"}
+              <PhoneInputCustom
                 value={formData.phone}
-                onChange={handlePhoneInput}
-                disableDropdown={true}
-                onlyCountries={["ru"]}
-                inputClass={styles.consultation_phone_input}
-                placeholder="Введите номер телефона"
+                onChange={(val) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    phone: val,
+                  }))
+                }
+                error={errors.phone}
               />
               {errors.phone && (
                 <span className={styles.error_message}>{errors.phone}</span>
@@ -219,7 +282,7 @@ export default function ConsultationForm({
             </label>
           </div>
 
-          {/* Кнопка активна только если чекбокс отмечен и телефон введён полностью */}
+          {/* Кнопка активна только если чекбокс отмечен и телефон введён полностью и начинается с +7(9 */}
           <button type="submit" disabled={!isFormValid}>
             <p>{isLoading ? "Отправка..." : "Отправить заявку"}</p>
           </button>

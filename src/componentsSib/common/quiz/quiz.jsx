@@ -3,7 +3,7 @@ import styles from "./quiz.module.scss";
 import { useState } from "react";
 import Link from "next/link";
 import "react-phone-input-2/lib/style.css";
-import PhoneInput from "react-phone-input-2";
+import PhoneInputCustom from "../../../components/common/phoneInput/phoneInput";
 
 export default function Quiz() {
   const [step, setStep] = useState(0);
@@ -15,7 +15,7 @@ export default function Quiz() {
     name: "",
     phone: "",
   });
-  const [isAgreed, setIsAgreed] = useState(false); // Согласие
+  const [isAgreed, setIsAgreed] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [answers, setAnswers] = useState({
     userType: null,
@@ -34,12 +34,10 @@ export default function Quiz() {
   const isPhoneComplete = (phone) => {
     if (!phone || phone.trim() === "") return false;
 
-    // Для российских номеров: код страны +7 и 10 цифр номера = минимум 11 символов
     // Убираем все нецифровые символы для проверки
     const digitsOnly = phone.replace(/\D/g, "");
 
-    // Российский номер: +7 (XXX) XXX-XX-XX = 11 цифр
-    // Международные номера могут быть длиннее, но для России достаточно 11 цифр
+    // Для российских номеров достаточно 11 цифр
     return digitsOnly.length >= 11;
   };
 
@@ -122,20 +120,12 @@ export default function Quiz() {
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    let processedValue = value;
-
-    if (name === "phone") {
-      processedValue = value.replace(/[^\d]/g, "");
-    } else {
-      processedValue = value.replace(/\s/g, "");
-    }
-
-    setFormData((prev) => ({ ...prev, [name]: processedValue }));
-    setAnswers((prev) => ({ ...prev, [name]: processedValue }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setAnswers((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Новая функция для обработки телефона через PhoneInput
-  const handlePhoneInput = (value) => {
+  // Упрощенная функция для обработки телефона
+  const handlePhoneChange = (value) => {
     setFormData((prev) => ({ ...prev, phone: value }));
     setAnswers((prev) => ({ ...prev, phone: value }));
   };
@@ -152,6 +142,13 @@ export default function Quiz() {
 
     if (!isPhoneComplete(formData.phone)) {
       alert("Пожалуйста, введите полный номер телефона");
+      return;
+    }
+
+    // Упрощенная проверка российского номера
+    const digitsOnly = formData.phone.replace(/\D/g, "");
+    if (!digitsOnly.startsWith("79")) {
+      alert("Номер телефона должен быть российским и начинаться с +7(9...)");
       return;
     }
 
@@ -286,7 +283,7 @@ export default function Quiz() {
     );
   };
 
-  // Проверяем, валидна ли форма для отправки
+  // Обновленная проверка валидности формы
   const isFormValid =
     isPhoneComplete(formData.phone) && formData.name.trim() && isAgreed;
 
@@ -325,14 +322,9 @@ export default function Quiz() {
                     />
                   </div>
                   <div className={styles.form_group}>
-                    <PhoneInput
-                      country={"ru"}
+                    <PhoneInputCustom
                       value={formData.phone}
-                      onChange={handlePhoneInput}
-                      disableDropdown={true}
-                      onlyCountries={["ru"]}
-                      inputClass={styles.quiz_phone_input}
-                      placeholder="Введите номер телефона"
+                      onChange={handlePhoneChange}
                     />
                   </div>
 

@@ -3,8 +3,7 @@ import styles from "./hero-block.module.scss";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Modal from "@/components/common/modal/modal";
-import "react-phone-input-2/lib/style.css";
-import PhoneInput from "react-phone-input-2";
+import PhoneInputCustom from "@/components/common/phoneInput/phoneInput";
 
 export default function HeroBlock({
   heroTitle,
@@ -118,17 +117,81 @@ export default function HeroBlock({
     }
   };
 
-  const handlePhoneInput = (value) => {
+  const handlePhoneInput = (value, country, e, formattedValue) => {
+    // Убираем все нецифровые символы
+    const digitsOnly = value.replace(/\D/g, "");
+
+    // Если номер пустой или начинается не с +7 (9
+    if (!value || !value.startsWith("+7 (9")) {
+      value = "+7 (9";
+    }
+
+    // Если пользователь ввёл 4 цифры после 9, добавляем закрывающую скобку
+    else if (digitsOnly.length === 6 && !value.includes(")")) {
+      value = value + ") ";
+    }
+
+    // Если есть закрывающая скобка, но нет пробела — добавляем его
+    else if (value.includes(")") && !value.includes(") ")) {
+      value = value.replace(")", ") ");
+    }
+
     setFormData((prev) => ({
       ...prev,
       phone: value,
     }));
+
     if (errors.phone) {
       setErrors((prev) => ({
         ...prev,
         phone: "",
       }));
     }
+  };
+
+  // Функция для обработки ввода с клавиатуры
+  const handlePhoneKeyDown = (e) => {
+    const { value } = e.target;
+
+    // Запрещаем удаление префикса +7(9
+    if (value === "+7(9" && (e.key === "Backspace" || e.key === "Delete")) {
+      e.preventDefault();
+      return;
+    }
+
+    // Если пытаются ввести что-то в начале, когда уже есть +7(9
+    if (e.target.selectionStart <= 4 && value.startsWith("+7(9")) {
+      // Разрешаем только цифры и управляющие клавиши
+      if (!/[\d]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  // Функция для обработки изменения фокуса
+  const handlePhoneFocus = (e) => {
+    const { value } = e.target;
+
+    // Если поле пустое или не начинается с +7 (9, устанавливаем правильный префикс
+    if (!value || !value.startsWith("+7 (9")) {
+      setFormData((prev) => ({
+        ...prev,
+        phone: "+7 (9",
+      }));
+    }
+
+    // Устанавливаем курсор сразу после "+7 (9"
+    setTimeout(() => {
+      const input = e.target;
+      if (input.value === "+7 (9") {
+        input.setSelectionRange(6, 6);
+      }
+    }, 0);
+  };
+
+  // Кастомная маска для форматирования
+  const customMask = {
+    ru: "(...) ...-..-..",
   };
 
   const validate = () => {
@@ -138,12 +201,20 @@ export default function HeroBlock({
     if (!formData.phone.trim()) {
       newErrors.phone = "Пожалуйста, введите ваш телефон";
       valid = false;
-    } else if (!isPhoneComplete(formData.phone)) {
-      newErrors.phone = "Введите полный номер телефона";
-      valid = false;
-    } else if (!/^[\d\+][\d\(\)\ -]{4,17}\d$/.test(formData.phone)) {
-      newErrors.phone = "Введите корректный номер телефона";
-      valid = false;
+    } else {
+      // Нормализуем номер: убираем все нецифровые символы кроме +
+      const normalizedPhone = formData.phone.replace(/\s/g, ""); // убираем пробелы
+
+      if (!normalizedPhone.startsWith("+7(9")) {
+        newErrors.phone = "Номер должен начинаться с +7(9";
+        valid = false;
+      } else if (!isPhoneComplete(formData.phone)) {
+        newErrors.phone = "Введите полный номер телефона";
+        valid = false;
+      } else if (!/^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(normalizedPhone)) {
+        newErrors.phone = "Введите корректный номер телефона";
+        valid = false;
+      }
     }
 
     setErrors(newErrors);
@@ -220,8 +291,11 @@ export default function HeroBlock({
     }
   };
 
-  // Проверяем, заполнен ли номер полностью
-  const isFormValid = isPhoneComplete(formData.phone) && isAgreed && !isLoading;
+  const isFormValid =
+    formData.phone.startsWith("+7 (9") &&
+    isPhoneComplete(formData.phone) &&
+    isAgreed &&
+    !isLoading;
 
   return (
     <div
@@ -263,14 +337,15 @@ export default function HeroBlock({
                 )}
               </div>
               <div className={styles.input_wrapper}>
-                <PhoneInput
-                  country={"ru"}
+                <PhoneInputCustom
                   value={formData.phone}
-                  onChange={handlePhoneInput}
-                  disableDropdown={true}
-                  onlyCountries={["ru"]}
-                  inputClass={styles.hero_phone_input}
-                  placeholder="Введите номер телефона"
+                  onChange={(val) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      phone: val,
+                    }))
+                  }
+                  error={errors.phone}
                 />
                 {errors.phone && (
                   <span className={styles.error_message}>{errors.phone}</span>
@@ -304,7 +379,7 @@ export default function HeroBlock({
               </label>
             </div>
 
-            {/* Кнопка: активна только при полном номере телефона и согласии */}
+            {/* Кнопка: активна только при полном номере телефона, начинающемся с +7(9 и согласии */}
             <button type="submit" disabled={!isFormValid}>
               <p>{isLoading ? "Отправка..." : "Обращение к юристу"}</p>
             </button>
