@@ -163,12 +163,12 @@ export default function ConsultationForm({
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-      chatId: `${Phone}@c.us`,
+      chatId: `-71184639158921`,
       message: text,
       }),
     },
     );
-    
+
     try {
       const response = await fetch("/api/telegram-proxi", {
         method: "POST",
