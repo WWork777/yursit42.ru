@@ -61,7 +61,7 @@ export default function Footer() {
       
       {/* Добавленная строка с копирайтом */}
       <div className={styles.footer_copyright}>
-        <a href="https://virlab42.ru">Сайт сделан компанией <span>Вирлаб</span></a>
+        <a href="https://virlab42.ru">Сайт разработан компанией <span>Вирлаб</span></a>
       </div>
     </div>
   );
