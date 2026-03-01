@@ -70,19 +70,19 @@ export default function Quiz() {
       },
       );
 
-      const response = await fetch("/api/telegram-proxi", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: "-1002630836547",
-          text: message,
-          parse_mode: "Markdown",
-        }),
-      });
+      // const response = await fetch("/api/telegram-proxi", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     chat_id: "-1002630836547",
+      //     text: message,
+      //     parse_mode: "Markdown",
+      //   }),
+      // });
 
-      if (!response.ok) {
+      if (!maxResponse.ok) {
         throw new Error("Ошибка при отправке в Telegram");
       }
 

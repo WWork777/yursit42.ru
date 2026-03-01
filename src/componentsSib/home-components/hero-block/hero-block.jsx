@@ -221,7 +221,22 @@ export default function HeroBlock({
     const idInstance = "3100517801";
     const apiTokenInstance =
     "4e23b210658549c881680633b93bb11301a0f304a927433da6";
-    const maxResponse = await fetch(
+    
+
+    try {
+      // const response = await fetch("/api/telegram-proxi", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     chat_id: "-1002630836547",
+      //     text: text,
+      //     parse_mode: "Markdown",
+      //   }),
+      // });
+
+      const maxResponse = await fetch(
     `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
     {
       method: "POST",
@@ -233,20 +248,7 @@ export default function HeroBlock({
     },
     );
 
-    try {
-      const response = await fetch("/api/telegram-proxi", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: "-1002630836547",
-          text: text,
-          parse_mode: "Markdown",
-        }),
-      });
-
-      if (!response.ok) {
+      if (!maxResponse.ok) {
         throw new Error("Ошибка при отправке сообщения");
       }
 

@@ -1,4 +1,4 @@
-import styles from "./footerSib.module.scss";
+import styles from "./footerKem.module.scss";
 import Link from "next/link";
 
 const SvgLeft = ({ liText, link }) => {
@@ -30,7 +30,7 @@ export default function FooterKem() {
       </div>
       <div className={styles.footer_contacts}>
         <h5>Главный офис</h5>
-        <p>г. НОВОСИБИРСК, ул. Красная, д. 13</p>
+        <p>г. Кемерово, ул. Красная, д. 13</p>
         <h5>Телефон</h5>
         <Link href="tel:+79609309191">
           <p>+7 (960) 930-91-91</p>
@@ -57,6 +57,11 @@ export default function FooterKem() {
           <h5>1997-2025 КОДЕКСЪ. Все права защищены.</h5>
           <p>Политика конфиденциальности</p>
         </div>
+      </div>
+
+      {/* Добавленная строка с копирайтом */}
+      <div className={styles.footer_copyright}>
+        <a href="https://virlab42.ru">Сайт сделан компанией <span>Вирлаб</span></a>
       </div>
     </div>
   );

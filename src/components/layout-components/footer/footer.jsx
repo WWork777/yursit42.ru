@@ -40,16 +40,16 @@ export default function Footer() {
           <p>kodeks_yrist@mail.ru</p>
         </Link>
         <div className={styles.footer_social}>
-          <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0">
+          <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0  ">
             <img src="/svg/contacts/wa.svg" className={styles.footer_svg} />
           </Link>
-          <Link href="https://telegram.me/yurist42_kodeks">
+          <Link href="https://telegram.me/yurist42_kodeks  ">
             <img src="/svg/contacts/tg.svg" className={styles.footer_svg} />
           </Link>
-          <Link href="https://vk.com/kodeks42">
+          <Link href="https://vk.com/kodeks42  ">
             <img src="/svg/contacts/vk.svg" className={styles.footer_svg} />
           </Link>
-          <Link href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA">
+          <Link href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA  ">
             <img src="/svg/contacts/max.svg" className={styles.footer_svg} />
           </Link>
         </div>
@@ -57,6 +57,11 @@ export default function Footer() {
           <h5>1997-2025 КОДЕКСЪ. Все права защищены.</h5>
           <p>Политика конфиденциальности</p>
         </div>
+      </div>
+      
+      {/* Добавленная строка с копирайтом */}
+      <div className={styles.footer_copyright}>
+        <a href="https://virlab42.ru">Сайт сделан компанией <span>Вирлаб</span></a>
       </div>
     </div>
   );
