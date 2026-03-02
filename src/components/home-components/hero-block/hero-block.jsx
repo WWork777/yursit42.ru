@@ -41,13 +41,13 @@ export default function HeroBlock({
                 0,
                 parseInt(cleanNumber),
                 2000,
-                isPercentage ? "%" : isPlus ? "+" : ""
+                isPercentage ? "%" : isPlus ? "+" : "",
               );
               observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.3 }
+        { threshold: 0.3 },
       );
 
       numberRefs.current.forEach((ref) => ref && observer.observe(ref));
@@ -74,7 +74,7 @@ export default function HeroBlock({
     animateNumbers();
   }, []);
 
-  // Форма
+  // Состояния формы
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -86,19 +86,14 @@ export default function HeroBlock({
     phone: "",
   });
 
-  const [isAgreed, setIsAgreed] = useState(false); // Согласие с политикой
+  const [isAgreed, setIsAgreed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: "", message: "" });
 
   // Функция проверки полноты номера телефона
   const isPhoneComplete = (phone) => {
     if (!phone || phone.trim() === "") return false;
-
-    // Для российских номеров: код страны +7 и 10 цифр номера = минимум 11 символов
-    // Убираем все нецифровые символы для проверки
     const digitsOnly = phone.replace(/\D/g, "");
-
-    // Российский номер: +7 (XXX) XXX-XX-XX = 11 цифр
-    // Международные номера могут быть длиннее, но для России достаточно 11 цифр
     return digitsOnly.length >= 11;
   };
 
@@ -118,21 +113,13 @@ export default function HeroBlock({
   };
 
   const handlePhoneInput = (value, country, e, formattedValue) => {
-    // Убираем все нецифровые символы
     const digitsOnly = value.replace(/\D/g, "");
 
-    // Если номер пустой или начинается не с +7 (9
     if (!value || !value.startsWith("+7 (9")) {
       value = "+7 (9";
-    }
-
-    // Если пользователь ввёл 4 цифры после 9, добавляем закрывающую скобку
-    else if (digitsOnly.length === 6 && !value.includes(")")) {
+    } else if (digitsOnly.length === 6 && !value.includes(")")) {
       value = value + ") ";
-    }
-
-    // Если есть закрывающая скобка, но нет пробела — добавляем его
-    else if (value.includes(")") && !value.includes(") ")) {
+    } else if (value.includes(")") && !value.includes(") ")) {
       value = value.replace(")", ") ");
     }
 
@@ -149,30 +136,24 @@ export default function HeroBlock({
     }
   };
 
-  // Функция для обработки ввода с клавиатуры
   const handlePhoneKeyDown = (e) => {
     const { value } = e.target;
 
-    // Запрещаем удаление префикса +7(9
     if (value === "+7(9" && (e.key === "Backspace" || e.key === "Delete")) {
       e.preventDefault();
       return;
     }
 
-    // Если пытаются ввести что-то в начале, когда уже есть +7(9
     if (e.target.selectionStart <= 4 && value.startsWith("+7(9")) {
-      // Разрешаем только цифры и управляющие клавиши
       if (!/[\d]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) {
         e.preventDefault();
       }
     }
   };
 
-  // Функция для обработки изменения фокуса
   const handlePhoneFocus = (e) => {
     const { value } = e.target;
 
-    // Если поле пустое или не начинается с +7 (9, устанавливаем правильный префикс
     if (!value || !value.startsWith("+7 (9")) {
       setFormData((prev) => ({
         ...prev,
@@ -180,18 +161,12 @@ export default function HeroBlock({
       }));
     }
 
-    // Устанавливаем курсор сразу после "+7 (9"
     setTimeout(() => {
       const input = e.target;
       if (input.value === "+7 (9") {
         input.setSelectionRange(6, 6);
       }
     }, 0);
-  };
-
-  // Кастомная маска для форматирования
-  const customMask = {
-    ru: "(...) ...-..-..",
   };
 
   const validate = () => {
@@ -202,8 +177,7 @@ export default function HeroBlock({
       newErrors.phone = "Пожалуйста, введите ваш телефон";
       valid = false;
     } else {
-      // Нормализуем номер: убираем все нецифровые символы кроме +
-      const normalizedPhone = formData.phone.replace(/\s/g, ""); // убираем пробелы
+      const normalizedPhone = formData.phone.replace(/\s/g, "");
 
       if (!normalizedPhone.startsWith("+7(9")) {
         newErrors.phone = "Номер должен начинаться с +7(9";
@@ -221,6 +195,7 @@ export default function HeroBlock({
     return valid;
   };
 
+  // Отправка в Telegram (оставляем без изменений)
   const sendToTelegram = async (data) => {
     const TELEGRAM_BOT_TOKEN = "7933033563:AAGeVEYEzAQ6NUuVYkxNsXgANSi0xvRN4sg";
     const TELEGRAM_CHAT_ID = "-1002630836547";
@@ -233,8 +208,7 @@ export default function HeroBlock({
     const Phone = "79609309191";
     const idInstance = "3100517801";
     const apiTokenInstance =
-    "4e23b210658549c881680633b93bb11301a0f304a927433da6";
-    
+      "4e23b210658549c881680633b93bb11301a0f304a927433da6";
 
     try {
       // const response = await fetch("/api/telegram-proxi", {
@@ -250,15 +224,15 @@ export default function HeroBlock({
       // });
 
       const maxResponse = await fetch(
-      `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-        chatId: `-71184639158921`,
-        message: text,
-        }),
-      },
+        `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chatId: `-71184639158921`,
+            message: text,
+          }),
+        },
       );
 
       if (!maxResponse.ok) {
@@ -272,39 +246,91 @@ export default function HeroBlock({
     }
   };
 
+  // Отправка в Битрикс24
+  const sendToBitrix24 = async (data) => {
+    try {
+      const response = await fetch("/api/send-to-bitrix", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          message: data.message,
+          formType: "kemerovo",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Ошибка при отправке в Битрикс24");
+      }
+
+      return { success: true, leadId: result.leadId };
+    } catch (error) {
+      console.error("Ошибка отправки в Битрикс24:", error);
+      return { success: false, error: error.message };
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isAgreed) {
-      alert(
-        "Пожалуйста, подтвердите согласие с политикой обработки персональных данных."
-      );
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Пожалуйста, подтвердите согласие с политикой обработки персональных данных.",
+      });
       return;
     }
 
     if (!validate()) return;
 
     setIsLoading(true);
+    setSubmitStatus({ type: "", message: "" });
 
     try {
+      // Отправляем в Telegram
       const isSent = await sendToTelegram(formData);
+
+      // Отправляем в Битрикс24 (не ждем результата для пользователя)
+      sendToBitrix24(formData).then((result) => {
+        if (result.success) {
+          console.log("Лид в Битрикс24 создан, ID:", result.leadId);
+        } else {
+          console.error("Ошибка Битрикс24:", result.error);
+        }
+      });
 
       if (isSent) {
         if (typeof window !== "undefined" && window.ym) {
           window.ym(56680159, "reachGoal", "HeroForm");
         }
 
-        alert(
-          "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время."
-        );
+        setSubmitStatus({
+          type: "success",
+          message:
+            "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.",
+        });
+
         setFormData({ name: "", phone: "", message: "" });
-        setIsAgreed(false); // сброс чекбокса после отправки (по желанию)
+        setIsAgreed(false);
       } else {
-        alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
+        setSubmitStatus({
+          type: "error",
+          message:
+            "Произошла ошибка при отправке. Пожалуйста, попробуйте позже.",
+        });
       }
     } catch (error) {
       console.error("Ошибка:", error);
-      alert("Произошла ошибка. Пожалуйста, попробуйте еще раз.");
+      setSubmitStatus({
+        type: "error",
+        message: "Произошла ошибка. Пожалуйста, попробуйте еще раз.",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -398,9 +424,29 @@ export default function HeroBlock({
               </label>
             </div>
 
-            {/* Кнопка: активна только при полном номере телефона, начинающемся с +7(9 и согласии */}
+            {/* Статус отправки */}
+            {submitStatus.message && (
+              <div
+                className={
+                  submitStatus.type === "success"
+                    ? styles.success_message
+                    : styles.error_message
+                }
+              >
+                {submitStatus.message}
+              </div>
+            )}
+
+            {/* Кнопка отправки */}
             <button type="submit" disabled={!isFormValid}>
-              <p>{isLoading ? "Отправка..." : "Обращение к юристу"}</p>
+              {isLoading ? (
+                <div className={styles.button_content}>
+                  <span className={styles.loading_spinner}></span>
+                  <p>Отправка...</p>
+                </div>
+              ) : (
+                <p>Обращение к юристу</p>
+              )}
             </button>
           </form>
         </div>

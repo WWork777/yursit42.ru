@@ -3,7 +3,7 @@ import styles from "./quiz.module.scss";
 import { useState } from "react";
 import Link from "next/link";
 import "react-phone-input-2/lib/style.css";
-import PhoneInputCustom from "../../../components/common/phoneInput/phoneInput";
+import PhoneInputCustom from "../phoneInput/phoneInput";
 
 export default function Quiz() {
   const [step, setStep] = useState(0);
@@ -17,6 +17,7 @@ export default function Quiz() {
   });
   const [isAgreed, setIsAgreed] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: "", message: "" });
   const [answers, setAnswers] = useState({
     userType: null,
     topic: null,
@@ -33,11 +34,7 @@ export default function Quiz() {
 
   const isPhoneComplete = (phone) => {
     if (!phone || phone.trim() === "") return false;
-
-    // Убираем все нецифровые символы для проверки
     const digitsOnly = phone.replace(/\D/g, "");
-
-    // Для российских номеров достаточно 11 цифр
     return digitsOnly.length >= 11;
   };
 
@@ -48,39 +45,26 @@ export default function Quiz() {
         Новая заявка с квиза (Кемерово)\n
         Тип клиента: ${answers.userType === "individual" ? "Физическое лицо" : "Юридическое лицо"}\n
         Тема вопроса: ${answers.topic || "Не указано"}\n
-        Комментарий:${answers.comment || "Не указано"}\n
+        Комментарий: ${answers.comment || "Не указано"}\n
         Имя: ${answers.name}\n
         Телефон: ${answers.phone}\n
       `;
 
-      // MAX
-    const Phone = "79609309191";
-    const idInstance = "3100517801";
-    const apiTokenInstance =
-    "4e23b210658549c881680633b93bb11301a0f304a927433da6";
-    const maxResponse = await fetch(
-    `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-      chatId: `-71184639158921`,
-      message: message,
-      }),
-    },
-    );
+      const idInstance = "3100517801";
+      const apiTokenInstance =
+        "4e23b210658549c881680633b93bb11301a0f304a927433da6";
 
-      // const response = await fetch("/api/telegram-proxi", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     chat_id: "-1002630836547",
-      //     text: message,
-      //     parse_mode: "Markdown",
-      //   }),
-      // });
+      const maxResponse = await fetch(
+        `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chatId: `-71184639158921`,
+            message: message,
+          }),
+        },
+      );
 
       if (!maxResponse.ok) {
         throw new Error("Ошибка при отправке в Telegram");
@@ -92,6 +76,49 @@ export default function Quiz() {
       return false;
     } finally {
       setIsSending(false);
+    }
+  };
+
+  // Новая функция для отправки в Битрикс24
+  const sendToBitrix24 = async () => {
+    try {
+      const topicText = answers.topic || "Не указано";
+      const userTypeText =
+        answers.userType === "individual"
+          ? "Физическое лицо"
+          : "Юридическое лицо";
+
+      // Формируем сообщение для комментария
+      const fullMessage = `Комментарий клиента: ${answers.comment || "Не указано"}`;
+
+      const response = await fetch("/api/send-to-bitrix", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: answers.name,
+          phone: answers.phone,
+          message: fullMessage,
+          formType: "quiz_form",
+          userType: answers.userType, // 👋 Добавляем тип клиента
+          topic: answers.topic, // 👋 Добавляем тему вопроса
+        }),
+      });
+
+      const result = await response.json();
+      console.log("Ответ от Битрикс24:", result);
+
+      if (!response.ok) {
+        console.error("Ошибка Битрикс24:", result.error);
+        return false;
+      } else {
+        console.log("Лид в Битрикс24 создан, ID:", result.leadId);
+        return true;
+      }
+    } catch (error) {
+      console.error("Ошибка отправки в Битрикс24:", error);
+      return false;
     }
   };
 
@@ -141,7 +168,6 @@ export default function Quiz() {
     setAnswers((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Упрощенная функция для обработки телефона
   const handlePhoneChange = (value) => {
     setFormData((prev) => ({ ...prev, phone: value }));
     setAnswers((prev) => ({ ...prev, phone: value }));
@@ -151,39 +177,62 @@ export default function Quiz() {
     e.preventDefault();
 
     if (!isAgreed) {
-      alert(
-        "Пожалуйста, подтвердите согласие с политикой обработки персональных данных."
-      );
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Пожалуйста, подтвердите согласие с политикой обработки персональных данных.",
+      });
       return;
     }
 
     if (!isPhoneComplete(formData.phone)) {
-      alert("Пожалуйста, введите полный номер телефона");
+      setSubmitStatus({
+        type: "error",
+        message: "Пожалуйста, введите полный номер телефона",
+      });
       return;
     }
 
-    // Упрощенная проверка российского номера
     const digitsOnly = formData.phone.replace(/\D/g, "");
     if (!digitsOnly.startsWith("79")) {
-      alert("Номер телефона должен быть российским и начинаться с +7(9...)");
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Номер телефона должен быть российским и начинаться с +7(9...)",
+      });
       return;
     }
 
     if (!answers.topic) {
-      alert("Пожалуйста, выберите тему вопроса");
+      setSubmitStatus({
+        type: "error",
+        message: "Пожалуйста, выберите тему вопроса",
+      });
       setStep(2);
       return;
     }
 
+    setIsSending(true);
+    setSubmitStatus({ type: "", message: "" });
+
+    // Отправляем в Telegram
     const isSent = await sendToTelegram();
+
+    // Отправляем в Битрикс24 (не ждем результат)
+    sendToBitrix24();
 
     if (isSent) {
       if (typeof window !== "undefined" && window.ym) {
         window.ym(56680159, "reachGoal", "Quiz");
       }
-      alert(
-        "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время."
-      );
+
+      setSubmitStatus({
+        type: "success",
+        message:
+          "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.",
+      });
+
+      // Сбрасываем форму
       setStep(0);
       setFormData({ name: "", phone: "" });
       setComment("");
@@ -198,8 +247,14 @@ export default function Quiz() {
         phone: "",
       });
     } else {
-      alert("Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.");
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.",
+      });
     }
+
+    setIsSending(false);
   };
 
   const steps = {
@@ -300,7 +355,6 @@ export default function Quiz() {
     );
   };
 
-  // Обновленная проверка валидности формы
   const isFormValid =
     isPhoneComplete(formData.phone) && formData.name.trim() && isAgreed;
 
@@ -327,6 +381,18 @@ export default function Quiz() {
           return (
             <div className={styles.quiz_form_final}>
               <div className={styles.quiz_final_form}>
+                {submitStatus.message && (
+                  <div
+                    className={
+                      submitStatus.type === "success"
+                        ? styles.success_message
+                        : styles.error_message
+                    }
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+
                 <form onSubmit={currentStep.action}>
                   <div className={styles.form_group}>
                     <input
@@ -345,7 +411,6 @@ export default function Quiz() {
                     />
                   </div>
 
-                  {/* Чекбокс в одну строку */}
                   <div className={styles.agreement_checkbox}>
                     <label>
                       <input

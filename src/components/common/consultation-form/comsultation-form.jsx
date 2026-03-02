@@ -156,8 +156,7 @@ export default function ConsultationForm({
     const Phone = "79609309191";
     const idInstance = "3100517801";
     const apiTokenInstance =
-    "4e23b210658549c881680633b93bb11301a0f304a927433da6";
-    
+      "4e23b210658549c881680633b93bb11301a0f304a927433da6";
 
     try {
       // const response = await fetch("/api/telegram-proxi", {
@@ -173,15 +172,15 @@ export default function ConsultationForm({
       // });
 
       const maxResponse = await fetch(
-      `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-        chatId: `-71184639158921`,
-        message: text,
-        }),
-      },
+        `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chatId: `-71184639158921`,
+            message: text,
+          }),
+        },
       );
 
       if (!maxResponse.ok) {
@@ -195,12 +194,40 @@ export default function ConsultationForm({
     }
   };
 
+  // Новая функция для отправки в Битрикс24
+  const sendToBitrix24 = async (data) => {
+    try {
+      const response = await fetch("/api/send-to-bitrix", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          message: data.message,
+          formType: "consultation_form", // указываем тип формы
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        console.error("Ошибка Битрикс24:", result.error);
+      } else {
+        console.log("Лид в Битрикс24 создан, ID:", result.leadId);
+      }
+    } catch (error) {
+      console.error("Ошибка отправки в Битрикс24:", error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isAgreed) {
       alert(
-        "Пожалуйста, подтвердите согласие с политикой обработки персональных данных."
+        "Пожалуйста, подтвердите согласие с политикой обработки персональных данных.",
       );
       return;
     }
@@ -210,7 +237,11 @@ export default function ConsultationForm({
     setIsLoading(true);
 
     try {
+      // Отправляем в Telegram
       const isSent = await sendToTelegram(formData);
+
+      // Отправляем в Битрикс24 (параллельно, не ждем результат)
+      sendToBitrix24(formData);
 
       if (isSent) {
         if (typeof window !== "undefined" && window.ym) {
@@ -218,7 +249,7 @@ export default function ConsultationForm({
         }
 
         alert(
-          "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время."
+          "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.",
         );
         setFormData({ name: "", phone: "", message: "" });
         setIsAgreed(false); // сброс чекбокса после отправки (по желанию)
