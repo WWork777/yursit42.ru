@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 // import { useModal } from "@/components/common/changeSite/ModalProvider";
 
 export default function Header() {
-
   const pathname = usePathname();
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -212,7 +211,7 @@ export default function Header() {
         </div>
         <div className={styles.header_contacts_bottom}>
           <Link
-            href="https://api.whatsapp.com/send/?phone=79609309191"
+            href="https://telegram.me/yurist42_kodeks"
             className={`${styles.header_contacts_link} ${
               isDarkPage ? styles.dark_contacts_link : ""
             }`}
