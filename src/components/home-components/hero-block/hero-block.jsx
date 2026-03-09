@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Modal from "@/components/common/modal/modal";
 import PhoneInputCustom from "@/components/common/phoneInput/phoneInput";
+import { useGeo } from "@/components/layout-components/GeoProvider";
 
 export default function HeroBlock({
   heroTitle,
@@ -18,6 +19,7 @@ export default function HeroBlock({
   backgroundImageLink,
   heroTextMobile,
 }) {
+  const { cityKey } = useGeo();
   const numberRefs = useRef([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
@@ -202,7 +204,9 @@ export default function HeroBlock({
     const formattedPhone = data.phone.startsWith("+")
       ? data.phone
       : `+${data.phone}`;
-    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
+
+    const cityLabel = cityKey === "novosibirsk" ? "Новосибирск" : "Кемерово";
+    const text = `Новая заявка с сайта (${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
 
     // MAX
     const Phone = "79609309191";
@@ -259,6 +263,7 @@ export default function HeroBlock({
           phone: data.phone,
           message: data.message,
           formType: "kemerovo",
+          city: cityKey,
         }),
       });
 
@@ -307,7 +312,7 @@ export default function HeroBlock({
 
       if (isSent) {
         if (typeof window !== "undefined" && window.ym) {
-          window.ym(56680159, "reachGoal", "HeroForm");
+          window.ym(56680159, "reachGoal", "form");
         }
 
         setSubmitStatus({

@@ -3,20 +3,22 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, phone, message, formType, userType, topic } = body;
+    const { name, phone, message, formType, userType, topic, city } = body;
 
     // Определяем заголовок в зависимости от типа формы
-    let title = "Заявка с сайта (Кемерово)";
+    const cityLabel = city === "novosibirsk" ? "Новосибирск" : "Кемерово";
+    
+    let title = `Заявка с сайта (${cityLabel})`;
     let sourceDescription = "Форма на сайте";
 
     if (formType === "hero_form") {
-      title = "Заявка с сайта (Кемерово)";
+      title = `Заявка с сайта (${cityLabel})`;
       sourceDescription = "Форма в hero-блоке";
     } else if (formType === "consultation_form") {
-      title = "Заявка с сайта (Кемерово)";
+      title = `Заявка с сайта (${cityLabel})`;
       sourceDescription = "Форма консультации";
     } else if (formType === "quiz_form") {
-      title = "Заявка квиз (Кемерово)";
+      title = `Заявка квиз (${cityLabel})`;
       sourceDescription = "Квиз-форма";
     }
 

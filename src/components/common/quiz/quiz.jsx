@@ -4,8 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import "react-phone-input-2/lib/style.css";
 import PhoneInputCustom from "../phoneInput/phoneInput";
+import { useGeo } from "@/components/layout-components/GeoProvider";
 
 export default function Quiz() {
+  const { cityKey } = useGeo();
   const [step, setStep] = useState(0);
   const [allSteps, setAllSteps] = useState(4);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -41,8 +43,10 @@ export default function Quiz() {
   const sendToTelegram = async () => {
     setIsSending(true);
     try {
+      const cityLabel = cityKey === "novosibirsk" ? "Новосибирск" : "Кемерово";
+
       const message = `
-        Новая заявка с квиза (Кемерово)\n
+        Новая заявка с квиза (${cityLabel})\n
         Тип клиента: ${answers.userType === "individual" ? "Физическое лицо" : "Юридическое лицо"}\n
         Тема вопроса: ${answers.topic || "Не указано"}\n
         Комментарий: ${answers.comment || "Не указано"}\n
@@ -103,6 +107,7 @@ export default function Quiz() {
           formType: "quiz_form",
           userType: answers.userType, // 👋 Добавляем тип клиента
           topic: answers.topic, // 👋 Добавляем тему вопроса
+          city: cityKey,
         }),
       });
 
@@ -223,7 +228,7 @@ export default function Quiz() {
 
     if (isSent) {
       if (typeof window !== "undefined" && window.ym) {
-        window.ym(56680159, "reachGoal", "Quiz");
+        window.ym(56680159, "reachGoal", "form");
       }
 
       setSubmitStatus({
