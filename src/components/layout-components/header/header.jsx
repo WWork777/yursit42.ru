@@ -149,13 +149,13 @@ export default function Header() {
         <div className={styles.header_contacts_bottom_mobile}>
           {/* Первый ряд */}
           <div className={styles.messenger_row}>
-            <Link
+            {/* <Link
               href="https://api.whatsapp.com/send/?phone=79609309191"
               className={styles.header_contacts_link_mobile}
             >
               <img src={"/svg/mobileheader/wa.svg"} alt="WhatsApp" />
               <h5>Whatsapp</h5>
-            </Link>
+            </Link> */}
 
             <Link
               href="https://telegram.me/yurist42_kodeks"
@@ -217,7 +217,7 @@ export default function Header() {
               isDarkPage ? styles.dark_contacts_link : ""
             }`}
           >
-            <img
+            {/* <img
               src={
                 isDarkPage & !isScrolled
                   ? "/svg/header/waDark.svg"
@@ -232,7 +232,7 @@ export default function Header() {
             className={`${styles.header_contacts_link} ${
               isDarkPage ? styles.dark_contacts_link : ""
             }`}
-          >
+          > */}
             <img
               src={
                 isDarkPage & !isScrolled

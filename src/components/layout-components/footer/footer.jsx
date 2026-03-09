@@ -61,9 +61,9 @@ export default function Footer() {
           <p>kodeks_yrist@mail.ru</p>
         </Link>
         <div className={styles.footer_social}>
-          <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0  ">
+          {/* <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0  ">
             <img src="/svg/contacts/wa.svg" className={styles.footer_svg} />
-          </Link>
+          </Link> */}
           <Link href="https://telegram.me/yurist42_kodeks  ">
             <img src="/svg/contacts/tg.svg" className={styles.footer_svg} />
           </Link>
