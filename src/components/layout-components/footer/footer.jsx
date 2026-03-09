@@ -27,6 +27,7 @@ export default function Footer() {
   // Ждем, пока город не определится (чтобы не было моргания интерфейса)
   if (!isLoaded) return null;
 
+  const currentYear = new Date().getFullYear();
   const activeData = footerData[cityKey];
 
   return (
@@ -37,8 +38,10 @@ export default function Footer() {
           alt="logo"
           className={styles.footer_logo_img}
         />
-        <h5>1997-2026 КОДЕКСЪ. Все права защищены.</h5>
-        <p>Политика конфиденциальности</p>
+        <h5>1997-{currentYear} КОДЕКСЪ. Все права защищены.</h5>
+        <Link href="/privacy">
+          <p>Политика конфиденциальности</p>
+        </Link>
       </div>
       <div className={styles.footer_links}>
         <SvgLeft liText="Услуги" link="/fiz" />
@@ -73,8 +76,10 @@ export default function Footer() {
           </Link>
         </div>
         <div className={styles.footer_bottom}>
-          <h5>1997-2026 КОДЕКСЪ. Все права защищены.</h5>
-          <p>Политика конфиденциальности</p>
+          <h5>1997-{currentYear} КОДЕКСЪ. Все права защищены.</h5>
+          <Link href="/privacy">
+            <p>Политика конфиденциальности</p>
+          </Link>
         </div>
       </div>
 
