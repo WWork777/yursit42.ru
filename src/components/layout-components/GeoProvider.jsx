@@ -26,9 +26,9 @@ export function GeoProvider({ children }) {
         return res.ok ? res.json() : Promise.reject(res);
       })
       .then(data => {
-        console.log("📦 Полный ответ от API 2ip:", data); 
-        console.log("🌐 IP:", data.ip);
-        console.log("🏙️ Город определен:", data.city);
+        // console.log("📦 Полный ответ от API 2ip:", data); 
+        // console.log("🌐 IP:", data.ip);
+        // console.log("🏙️ Город определен:", data.city);
         
         const currentCityKey = (
           data.city === "Стокгольм" || 
