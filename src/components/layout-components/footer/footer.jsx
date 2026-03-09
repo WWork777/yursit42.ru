@@ -1,5 +1,7 @@
+"use client";
 import styles from "./footer.module.scss";
 import Link from "next/link";
+import { useGeo } from "../GeoProvider";
 
 const SvgLeft = ({ liText, link }) => {
   return (
@@ -9,7 +11,26 @@ const SvgLeft = ({ liText, link }) => {
     </Link>
   );
 };
+
+const footerData = {
+      kemerovo: {
+      address: "г. Кемерово, ул. Красная, д. 13",
+    },
+    novosibirsk: {
+      address: "г Новосибирск, Ипподромская ул, 19",
+    }
+  };
+
 export default function Footer() {
+
+  const { cityKey, isLoaded } = useGeo();
+
+  // Ждем, пока город не определится (чтобы не было моргания интерфейса)
+  if (!isLoaded) return null; 
+
+  const activeData = footerData[cityKey];
+
+
   return (
     <div className={styles.footer}>
       <div className={styles.footer_logo}>
@@ -30,7 +51,7 @@ export default function Footer() {
       </div>
       <div className={styles.footer_contacts}>
         <h5>Главный офис</h5>
-        <p>г. Кемерово, ул. Красная, д. 13</p>
+        <p>{activeData.address}</p>
         <h5>Телефон</h5>
         <Link href="tel:+79609309191">
           <p>+7 (960) 930-91-91</p>

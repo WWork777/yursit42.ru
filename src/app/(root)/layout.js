@@ -7,6 +7,7 @@ import YandexMetrika from "@/components/common/YandexMetrika/YandexMEtrika";
 import Script from "next/script";
 import { ModalProvider } from "@/components/common/changeSite/ModalProvider";
 import ChangeSite from "@/components/common/changeSite/changeSite";
+import { GeoProvider } from "@/components/layout-components/GeoProvider";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -36,13 +37,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <meta name="yandex-verification" content="53b108ef91e46109" />
       <body className={`${montserrat.variable}`}>
-        <ModalProvider>
-          <Header />
-          {children}
-          <SocialButton />
-          <Footer />
-          <YandexMetrika />
-        </ModalProvider>
+        {/* <ModalProvider> */}
+          <GeoProvider>
+            <Header />
+            {children}
+            <SocialButton />
+            <Footer />
+            <YandexMetrika />
+          </GeoProvider>
+        {/* </ModalProvider> */}
       </body>
     </html>
   );

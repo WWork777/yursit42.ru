@@ -3,13 +3,14 @@ import styles from "./header.module.scss";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useModal } from "@/components/common/changeSite/ModalProvider";
+// import { useModal } from "@/components/common/changeSite/ModalProvider";
 
 export default function Header() {
+
   const pathname = usePathname();
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { openChangeSiteModal } = useModal();
+  // const { openChangeSiteModal } = useModal();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -127,7 +128,7 @@ export default function Header() {
           <Link href="tel:+79609309191">
             <p>+7 (960) 930-91-91</p>
           </Link>
-          <div
+          {/* <div
             style={{
               display: "flex",
               alignItems: "center",
@@ -142,7 +143,7 @@ export default function Header() {
               />
             </svg>
             <p onClick={openChangeSiteModal}>Кемерово</p>
-          </div>
+          </div> */}
         </div>
 
         <div className={styles.header_contacts_bottom_mobile}>
@@ -205,9 +206,9 @@ export default function Header() {
           <Link href="tel:+79609309191">
             <h5>+7 (960) 930-91-91</h5>
           </Link>
-          <h5 style={{ cursor: "pointer" }} onClick={openChangeSiteModal}>
+          {/* <h5 style={{ cursor: "pointer" }} onClick={openChangeSiteModal}>
             Кемерово
-          </h5>
+          </h5> */}
         </div>
         <div className={styles.header_contacts_bottom}>
           <Link
