@@ -4,24 +4,44 @@ import styles from "./map.module.scss";
 import "./map-second.scss";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import Link from "next/link";
+import { useGeo } from "@/components/layout-components/GeoProvider";
+
+const MapData = {
+  kemerovo: {
+    point: [55.349312, 86.088006],
+    center: [55.363312, 86.088006],
+    address: "г. Кемерово, ул. Красная, д. 13",
+  },
+  novosibirsk: {
+    point: [55.039909, 82.941702],
+    center: [55.039909, 82.941702],
+    address: "г Новосибирск, Ипподромская ул, 19",
+  },
+};
 
 export default function ContactPageYandexMap() {
+  const { cityKey, isLoaded } = useGeo();
+
+  if (!isLoaded) return null;
+
+  const activeData = MapData[cityKey];
+
   return (
     <div className={styles.section_map}>
       <YMaps>
         <div className="ymaps">
           <Map
             className="map"
-            defaultState={{ center: [55.363312, 86.088006], zoom: 13.5 }}
+            defaultState={{ center: activeData.center, zoom: 13.5 }}
           >
             <Placemark
-              geometry={[55.349312, 86.088006]}
+              geometry={activeData.point}
               options={{ preset: "islands#darkBlueDotIcon" }}
             />
           </Map>
           <div className={styles.info_block}>
             <h3>Адрес</h3>
-            <p>г. Кемерово, ул. Красная, д. 13</p>
+            <p>{activeData.address}</p>
             <h3>Мы на связи</h3>
             <Link href="mailto:kodeks_yrist@mail.ru">
               <p>kodeks_yrist@mail.ru</p>

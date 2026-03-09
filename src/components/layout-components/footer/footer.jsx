@@ -1,5 +1,7 @@
+"use client";
 import styles from "./footer.module.scss";
 import Link from "next/link";
+import { useGeo } from "../GeoProvider";
 
 const SvgLeft = ({ liText, link }) => {
   return (
@@ -9,7 +11,24 @@ const SvgLeft = ({ liText, link }) => {
     </Link>
   );
 };
+
+const footerData = {
+  kemerovo: {
+    address: "г. Кемерово, ул. Красная, д. 13",
+  },
+  novosibirsk: {
+    address: "г Новосибирск, Ипподромская ул, 19",
+  },
+};
+
 export default function Footer() {
+  const { cityKey, isLoaded } = useGeo();
+
+  // Ждем, пока город не определится (чтобы не было моргания интерфейса)
+  if (!isLoaded) return null;
+
+  const activeData = footerData[cityKey];
+
   return (
     <div className={styles.footer}>
       <div className={styles.footer_logo}>
@@ -18,7 +37,7 @@ export default function Footer() {
           alt="logo"
           className={styles.footer_logo_img}
         />
-        <h5>1997-2025 КОДЕКСЪ. Все права защищены.</h5>
+        <h5>1997-2026 КОДЕКСЪ. Все права защищены.</h5>
         <p>Политика конфиденциальности</p>
       </div>
       <div className={styles.footer_links}>
@@ -30,7 +49,7 @@ export default function Footer() {
       </div>
       <div className={styles.footer_contacts}>
         <h5>Главный офис</h5>
-        <p>г. Кемерово, ул. Красная, д. 13</p>
+        <p>{activeData.address}</p>
         <h5>Телефон</h5>
         <Link href="tel:+79609309191">
           <p>+7 (960) 930-91-91</p>
@@ -40,9 +59,9 @@ export default function Footer() {
           <p>kodeks_yrist@mail.ru</p>
         </Link>
         <div className={styles.footer_social}>
-          <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0  ">
+          {/* <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0  ">
             <img src="/svg/contacts/wa.svg" className={styles.footer_svg} />
-          </Link>
+          </Link> */}
           <Link href="https://telegram.me/yurist42_kodeks  ">
             <img src="/svg/contacts/tg.svg" className={styles.footer_svg} />
           </Link>
@@ -54,14 +73,16 @@ export default function Footer() {
           </Link>
         </div>
         <div className={styles.footer_bottom}>
-          <h5>1997-2025 КОДЕКСЪ. Все права защищены.</h5>
+          <h5>1997-2026 КОДЕКСЪ. Все права защищены.</h5>
           <p>Политика конфиденциальности</p>
         </div>
       </div>
-      
+
       {/* Добавленная строка с копирайтом */}
       <div className={styles.footer_copyright}>
-        <a href="https://virlab42.ru">Сайт разработан компанией <span>Вирлаб</span></a>
+        <a href="https://virlab42.ru">
+          Сайт разработан компанией <span>Вирлаб</span>
+        </a>
       </div>
     </div>
   );

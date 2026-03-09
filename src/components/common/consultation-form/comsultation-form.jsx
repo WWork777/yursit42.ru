@@ -5,11 +5,14 @@ import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import PhoneInputCustom from "../phoneInput/phoneInput";
+import { useGeo } from "@/components/layout-components/GeoProvider";
 
 export default function ConsultationForm({
   consultationTitle,
   consultationText,
 }) {
+  const { cityKey } = useGeo();
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -150,7 +153,9 @@ export default function ConsultationForm({
       ? data.phone
       : `+${data.phone}`;
 
-    const text = `Новая заявка с сайта (Кемерово):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
+    const cityLabel = cityKey === "novosibirsk" ? "Новосибирск" : "Кемерово";
+
+    const text = `Новая заявка с сайта (${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
 
     // MAX
     const Phone = "79609309191";
@@ -207,6 +212,7 @@ export default function ConsultationForm({
           phone: data.phone,
           message: data.message,
           formType: "consultation_form", // указываем тип формы
+          city: cityKey,
         }),
       });
 
@@ -245,7 +251,7 @@ export default function ConsultationForm({
 
       if (isSent) {
         if (typeof window !== "undefined" && window.ym) {
-          window.ym(56680159, "reachGoal", "Form");
+          window.ym(56680159, "reachGoal", "form");
         }
 
         alert(
