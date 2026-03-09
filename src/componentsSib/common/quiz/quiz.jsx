@@ -42,7 +42,7 @@ export default function Quiz() {
     setIsSending(true);
     try {
       const message = `
-        Новая заявка с квиза (Кемерово)\n
+        Новая заявка с квиза (Новосибирск)\n
         Тип клиента: ${answers.userType === "individual" ? "Физическое лицо" : "Юридическое лицо"}\n
         Тема вопроса: ${answers.topic || "Не указано"}\n
         Комментарий: ${answers.comment || "Не указано"}\n
