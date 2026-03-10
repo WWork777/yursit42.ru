@@ -35,16 +35,45 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <meta name="yandex-verification" content="53b108ef91e46109" />
+      <head>
+        <meta name="yandex-verification" content="53b108ef91e46109" />
+
+        {/* Скрипт Битрикс24 */}
+        <Script id="bitrix24-init" strategy="beforeInteractive">
+          {`
+            (function(w,d,u){
+              var s=d.createElement('script');s.defer=false;s.async=false;s.id='b242ya-script';s.src=u+'?'+(Date.now()/60000|0);
+              var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+            })(window,document,'https://67p.b242ya.ru/static/js/b242ya.js');
+          `}
+        </Script>
+      </head>
       <body className={`${montserrat.variable}`}>
         {/* <ModalProvider> */}
-          <GeoProvider>
-            <Header />
-            {children}
-            <SocialButton />
-            <Footer />
-            <YandexMetrika />
-          </GeoProvider>
+        <GeoProvider>
+          <Header />
+          {children}
+          <SocialButton />
+          <Footer />
+          <YandexMetrika />
+
+          {/* Скрипт для инициализации B242YA после загрузки */}
+          <Script id="bitrix24-init-after" strategy="afterInteractive">
+            {`
+                var b242yaScript = document.querySelector('#b242ya-script');
+                if (b242yaScript) {
+                  b242yaScript.addEventListener('load', function() {
+                    if (typeof B242YAInit !== 'undefined') {
+                      B242YAInit({
+                        portal: 'https://kodeks42.bitrix24.ru/',
+                        pid: '342ff99292620ae8e2d85163aaeafe48'
+                      });
+                    }
+                  });
+                }
+              `}
+          </Script>
+        </GeoProvider>
         {/* </ModalProvider> */}
       </body>
     </html>
