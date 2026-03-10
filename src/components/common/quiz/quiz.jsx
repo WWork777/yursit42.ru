@@ -4,10 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import "react-phone-input-2/lib/style.css";
 import PhoneInputCustom from "../phoneInput/phoneInput";
-import { useGeo } from "@/components/layout-components/GeoProvider";
+// import { useGeo } from "@/components/layout-components/GeoProvider";
 
 export default function Quiz() {
-  const { cityKey } = useGeo();
+  // const { cityKey } = useGeo();
+  const [cityKey, setCityKey] = useState("kemerovo");
   const [step, setStep] = useState(0);
   const [allSteps, setAllSteps] = useState(4);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -43,10 +44,17 @@ export default function Quiz() {
   const sendToTelegram = async () => {
     setIsSending(true);
     try {
-      const cityLabel = cityKey === "novosibirsk" ? "Новосибирск" : "Кемерово";
+      let cityLabel = "Не указан";
+      if (cityKey === "kemerovo") {
+        cityLabel = "Кемерово";
+      } else if (cityKey === "novosibirsk") {
+        cityLabel = "Новосибирск";
+      } else if (cityKey === "other") {
+        cityLabel = "Другой город";
+      }
 
       const message = `
-        Новая заявка с квиза (${cityLabel})\n
+        Новая заявка с квиза (${cityLabel}):\n
         Тип клиента: ${answers.userType === "individual" ? "Физическое лицо" : "Юридическое лицо"}\n
         Тема вопроса: ${answers.topic || "Не указано"}\n
         Комментарий: ${answers.comment || "Не указано"}\n
@@ -399,6 +407,39 @@ export default function Quiz() {
                 )}
 
                 <form onSubmit={currentStep.action}>
+                  {/* === Блок выбора города === */}
+                  <div className={styles.city_selector}>
+                    <label className={styles.city_option}>
+                      <input
+                        type="radio"
+                        name="city"
+                        value="kemerovo"
+                        checked={cityKey === "kemerovo"}
+                        onChange={(e) => setCityKey(e.target.value)}
+                      />
+                      <span>Кемерово</span>
+                    </label>
+                    <label className={styles.city_option}>
+                      <input
+                        type="radio"
+                        name="city"
+                        value="novosibirsk"
+                        checked={cityKey === "novosibirsk"}
+                        onChange={(e) => setCityKey(e.target.value)}
+                      />
+                      <span>Новосибирск</span>
+                    </label>
+                    <label className={styles.city_option}>
+                      <input
+                        type="radio"
+                        name="city"
+                        value="other"
+                        checked={cityKey === "other"}
+                        onChange={(e) => setCityKey(e.target.value)}
+                      />
+                      <span>Другое</span>
+                    </label>
+                  </div>
                   <div className={styles.form_group}>
                     <input
                       type="text"

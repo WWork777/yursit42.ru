@@ -19,6 +19,63 @@
   margin-bottom: 50px;
 }
 
+/* === Стили для выбора города === */
+.city_selector {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
+}
+
+.city_option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+
+  input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #a47764;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      background-color: #a47764;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: all 0.2s;
+    }
+  }
+
+  input[type="radio"]:checked::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  input[type="radio"]:hover {
+    border-color: #d1b19a;
+  }
+}
+/* ================================ */
+
 .consultation_form_top_inputs {
   display: flex;
   flex-direction: row;

@@ -1,47 +1,46 @@
 "use client";
 
 import styles from "./map.module.scss";
-import "./map-second.scss";
+import "./map-second.scss"; // Глобальные стили для скругления карты
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import Link from "next/link";
-import { useGeo } from "@/components/layout-components/GeoProvider";
+// import { useGeo } from "@/components/layout-components/GeoProvider";
 
 const MapData = {
   kemerovo: {
     point: [55.349312, 86.088006],
-    center: [55.363312, 86.088006],
+    center: [55.352312, 86.078006],
     address: "г. Кемерово, ул. Красная, д. 13",
   },
   novosibirsk: {
     point: [55.039909, 82.941702],
-    center: [55.039909, 82.941702],
+    center: [55.040909, 82.938702],
     address: "г Новосибирск, Ипподромская ул, 19",
   },
 };
 
 export default function ContactPageYandexMap() {
-  const { cityKey, isLoaded } = useGeo();
-
-  if (!isLoaded) return null;
-
-  const activeData = MapData[cityKey];
+  // const { cityKey, isLoaded } = useGeo();
+  // if (!isLoaded) return null;
+  // const activeData = MapData[cityKey];
 
   return (
-    <div className={styles.section_map}>
-      <YMaps>
-        <div className="ymaps">
+    <YMaps>
+      <div className={styles.maps_grid_container}>
+        {/* Карта Кемерово */}
+        <div className={styles.section_map}>
           <Map
-            className="map"
-            defaultState={{ center: activeData.center, zoom: 13.5 }}
+            className={styles.map}
+            defaultState={{ center: MapData.kemerovo.center, zoom: 14 }}
           >
             <Placemark
-              geometry={activeData.point}
+              geometry={MapData.kemerovo.point}
               options={{ preset: "islands#darkBlueDotIcon" }}
             />
           </Map>
           <div className={styles.info_block}>
-            <h3>Адрес</h3>
-            <p>{activeData.address}</p>
+            <h3>Филиал в г. Кемерово</h3>
+            <p>{MapData.kemerovo.address}</p>
             <h3>Мы на связи</h3>
             <Link href="mailto:kodeks_yrist@mail.ru">
               <p>kodeks_yrist@mail.ru</p>
@@ -54,20 +53,60 @@ export default function ContactPageYandexMap() {
                 href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0"
                 className={styles.info_block_bottom_item}
               >
-                <img src="/svg/contacts/wa.svg" />
+                <img src="/svg/contacts/wa.svg" alt="Whatsapp" />
                 <p>Whatsapp</p>
               </Link>
               <Link
                 href="https://telegram.me/yurist42_kodeks"
                 className={styles.info_block_bottom_item}
               >
-                <img src="/svg/contacts/tg.svg" />
+                <img src="/svg/contacts/tg.svg" alt="Telegram" />
                 <p>Telegram</p>
               </Link>
             </div>
           </div>
         </div>
-      </YMaps>
-    </div>
+
+        {/* Карта Новосибирска */}
+        <div className={styles.section_map}>
+          <Map
+            className={styles.map}
+            defaultState={{ center: MapData.novosibirsk.center, zoom: 16 }}
+          >
+            <Placemark
+              geometry={MapData.novosibirsk.point}
+              options={{ preset: "islands#darkBlueDotIcon" }}
+            />
+          </Map>
+          <div className={styles.info_block}>
+            <h3>Филиал в г. Новосибирск</h3>
+            <p>{MapData.novosibirsk.address}</p>
+            <h3>Мы на связи</h3>
+            <Link href="mailto:kodeks_yrist@mail.ru">
+              <p>kodeks_yrist@mail.ru</p>
+            </Link>
+            <h5>
+              <Link href="tel:+79609309191">+7 (960) 930‒91‒91</Link>
+            </h5>
+            <div className={styles.info_block_bottom}>
+              <Link
+                href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0"
+                className={styles.info_block_bottom_item}
+              >
+                <img src="/svg/contacts/wa.svg" alt="Whatsapp" />
+                <p>Whatsapp</p>
+              </Link>
+              <Link
+                href="https://telegram.me/yurist42_kodeks"
+                className={styles.info_block_bottom_item}
+              >
+                <img src="/svg/contacts/tg.svg" alt="Telegram" />
+                <p>Telegram</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </YMaps>
   );
 }

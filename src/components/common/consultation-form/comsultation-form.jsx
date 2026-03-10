@@ -5,13 +5,13 @@ import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import PhoneInputCustom from "../phoneInput/phoneInput";
-import { useGeo } from "@/components/layout-components/GeoProvider";
 
 export default function ConsultationForm({
   consultationTitle,
   consultationText,
 }) {
-  const { cityKey } = useGeo();
+  // Локальное состояние для выбранного города
+  const [cityKey, setCityKey] = useState("kemerovo"); // 'kemerovo', 'novosibirsk', 'other'
 
   const [formData, setFormData] = useState({
     name: "",
@@ -153,9 +153,17 @@ export default function ConsultationForm({
       ? data.phone
       : `+${data.phone}`;
 
-    const cityLabel = cityKey === "novosibirsk" ? "Новосибирск" : "Кемерово";
+    let cityLabel = "Не указан";
+    if (cityKey === "kemerovo") {
+      cityLabel = "Кемерово";
+    } else if (cityKey === "novosibirsk") {
+      cityLabel = "Новосибирск";
+    } else if (cityKey === "other") {
+      cityLabel = "Другой город";
+    }
 
-    const text = `Новая заявка с сайта (${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
+    // Обновляем текст сообщения, добавляя выбранный город
+    const text = `Новая заявка с сайта (Форма консультации - ${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
 
     // MAX
     const Phone = "79609309191";
@@ -282,6 +290,41 @@ export default function ConsultationForm({
       <div className={styles.consultation_form_container}>
         <h2 dangerouslySetInnerHTML={{ __html: consultationTitle }}></h2>
         <h4 dangerouslySetInnerHTML={{ __html: consultationText }}></h4>
+
+        {/* === Блок выбора города === */}
+        <div className={styles.city_selector}>
+          <label className={styles.city_option}>
+            <input
+              type="radio"
+              name="city"
+              value="kemerovo"
+              checked={cityKey === "kemerovo"}
+              onChange={(e) => setCityKey(e.target.value)}
+            />
+            <span>Кемерово</span>
+          </label>
+          <label className={styles.city_option}>
+            <input
+              type="radio"
+              name="city"
+              value="novosibirsk"
+              checked={cityKey === "novosibirsk"}
+              onChange={(e) => setCityKey(e.target.value)}
+            />
+            <span>Новосибирск</span>
+          </label>
+          <label className={styles.city_option}>
+            <input
+              type="radio"
+              name="city"
+              value="other"
+              checked={cityKey === "other"}
+              onChange={(e) => setCityKey(e.target.value)}
+            />
+            <span>Другое</span>
+          </label>
+        </div>
+
         <form className={styles.consultation_form} onSubmit={handleSubmit}>
           <div className={styles.consultation_form_top_inputs}>
             <div className={styles.input_wrapper}>

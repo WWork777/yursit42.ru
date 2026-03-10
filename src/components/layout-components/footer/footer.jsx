@@ -51,8 +51,9 @@ export default function Footer() {
         <SvgLeft liText="Контакты" link="/contacts" />
       </div>
       <div className={styles.footer_contacts}>
-        <h5>Главный офис</h5>
-        <p>{activeData.address}</p>
+        <h5>Филиалы</h5>
+        <p>г. Кемерово, ул. Красная, д. 13</p>
+        <p>г. Новосибирск, Ипподромская ул, 19</p>
         <h5>Телефон</h5>
         <Link href="tel:+79609309191">
           <p>+7 (960) 930-91-91</p>
@@ -73,6 +74,9 @@ export default function Footer() {
           </Link>
           <Link href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA  ">
             <img src="/svg/contacts/max.svg" className={styles.footer_svg} />
+          </Link>
+          <Link href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA  ">
+            <img height={45} width={45} src="/svg/contacts/logo-tlg.svg" className={styles.footer_svg} />
           </Link>
         </div>
         <div className={styles.footer_bottom}>

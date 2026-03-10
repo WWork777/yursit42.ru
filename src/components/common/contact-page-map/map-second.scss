@@ -1,18 +1,7 @@
-.ymaps-2-1-79-map{
-    height: 600px !important;
-     border-radius: 15px;
-}
-.ymaps {
-  width: 100%;
-  height: 600px; /* или любой другой размер */
-   border-radius: 15px;
-}
-
+/*
+  Этот файл содержит глобальные стили для переопределения
+  внешнего вида компонентов библиотеки Яндекс.Карт.
+*/
 .ymaps-2-1-79-inner-panes{
     border-radius: 20px;
-}
-.map{
-    width: 100%;
-    height: 500px;
-     border-radius: 15px;
 }

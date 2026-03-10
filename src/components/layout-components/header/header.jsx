@@ -163,6 +163,13 @@ export default function Header() {
               <img src={"/svg/mobileheader/tg.svg"} alt="Telegram" />
               <h5>Telegram</h5>
             </Link>
+            <Link
+              href="https://telegram.me/yurist42_kodeks"
+              className={styles.header_contacts_link_mobile}
+            >
+              <img src={"/svg/header/telegaDark.svg"} alt="Telegram" height={23} width={23}/>
+              <h5>Telega</h5>
+            </Link>
           </div>
 
           {/* Второй ряд */}
@@ -210,13 +217,13 @@ export default function Header() {
           </h5> */}
         </div>
         <div className={styles.header_contacts_bottom}>
-          <Link
-            href="https://telegram.me/yurist42_kodeks"
+          {/* <Link
+            href="https://api.whatsapp.com/send/?phone=79609309191"
             className={`${styles.header_contacts_link} ${
               isDarkPage ? styles.dark_contacts_link : ""
             }`}
           >
-            {/* <img
+            <img
               src={
                 isDarkPage & !isScrolled
                   ? "/svg/header/waDark.svg"
@@ -225,13 +232,13 @@ export default function Header() {
               alt="WhatsApp"
             />
             <h5>Whatsapp</h5>
-          </Link>
+          </Link> */}
           <Link
             href="https://telegram.me/yurist42_kodeks"
             className={`${styles.header_contacts_link} ${
               isDarkPage ? styles.dark_contacts_link : ""
             }`}
-          > */}
+          >
             <img
               src={
                 isDarkPage & !isScrolled
@@ -254,9 +261,18 @@ export default function Header() {
                   ? "/svg/header/maxDark.svg"
                   : "/svg/header/max.svg"
               }
-              alt="Telegram"
+              alt="Max"
             />
             <h5>Max</h5>
+          </Link>
+          <Link
+            href="https://telegram.me/yurist42_kodeks"
+            className={`${styles.header_contacts_link} ${
+              isDarkPage ? styles.dark_contacts_link : ""
+            }`}
+          >
+            <img src={"/svg/header/telega.svg"} alt="Telegram" height={23} width={23}/>
+            <h5>Telega</h5>
           </Link>
         </div>
       </div>

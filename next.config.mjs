@@ -14,10 +14,10 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: [
-          {
-            key: 'Permissions-Policy',
-            value: 'geolocation=(self)',
-          },
+          // {
+          //   key: 'Permissions-Policy',
+          //   value: 'geolocation=(self)',
+          // },
           {
             key: "X-Content-Type-Options",
             value: "nosniff",

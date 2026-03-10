@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Modal from "@/components/common/modal/modal";
 import PhoneInputCustom from "@/components/common/phoneInput/phoneInput";
-import { useGeo } from "@/components/layout-components/GeoProvider";
+// import { useGeo } from "@/components/layout-components/GeoProvider";
 
 export default function HeroBlock({
   heroTitle,
@@ -19,7 +19,8 @@ export default function HeroBlock({
   backgroundImageLink,
   heroTextMobile,
 }) {
-  const { cityKey } = useGeo();
+  // const { cityKey } = useGeo();
+  const [cityKey, setCityKey] = useState("kemerovo"); // 'kemerovo', 'novosibirsk', 'other'
   const numberRefs = useRef([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
@@ -205,8 +206,16 @@ export default function HeroBlock({
       ? data.phone
       : `+${data.phone}`;
 
-    const cityLabel = cityKey === "novosibirsk" ? "Новосибирск" : "Кемерово";
-    const text = `Новая заявка с сайта (${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
+    let cityLabel = "Не указан";
+    if (cityKey === "kemerovo") {
+      cityLabel = "Кемерово";
+    } else if (cityKey === "novosibirsk") {
+      cityLabel = "Новосибирск";
+    } else if (cityKey === "other") {
+      cityLabel = "Другой город";
+    }
+
+    const text = `Новая заявка с сайта (Главный экран - ${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
 
     // MAX
     const Phone = "79609309191";
@@ -262,7 +271,7 @@ export default function HeroBlock({
           name: data.name,
           phone: data.phone,
           message: data.message,
-          formType: "kemerovo",
+          formType: "hero_form",
           city: cityKey,
         }),
       });
@@ -371,6 +380,43 @@ export default function HeroBlock({
 
           <form className={styles.hero_content_right} onSubmit={handleSubmit}>
             <h4 className={styles.consultation_form_title}>Оставьте заявку</h4>
+
+            {/* === Блок выбора города === */}
+            <div className={styles.city_selector}>
+              <label className={styles.city_option}>
+                <input
+                  className={styles.city_radio}
+                  type="radio"
+                  name="city"
+                  value="kemerovo"
+                  checked={cityKey === "kemerovo"}
+                  onChange={(e) => setCityKey(e.target.value)}
+                />
+                <span>Кемерово</span>
+              </label>
+              <label className={styles.city_option}>
+                <input
+                  className={styles.city_radio}
+                  type="radio"
+                  name="city"
+                  value="novosibirsk"
+                  checked={cityKey === "novosibirsk"}
+                  onChange={(e) => setCityKey(e.target.value)}
+                />
+                <span>Новосибирск</span>
+              </label>
+              <label className={styles.city_option}>
+                <input
+                  className={styles.city_radio}
+                  type="radio"
+                  name="city"
+                  value="other"
+                  checked={cityKey === "other"}
+                  onChange={(e) => setCityKey(e.target.value)}
+                />
+                <span>Другое</span>
+              </label>
+            </div>
 
             <div className={styles.consultation_form_top_inputs}>
               <div className={styles.input_wrapper}>
