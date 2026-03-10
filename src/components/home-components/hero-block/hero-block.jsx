@@ -382,41 +382,18 @@ export default function HeroBlock({
             <h4 className={styles.consultation_form_title}>Оставьте заявку</h4>
 
             {/* === Блок выбора города === */}
-            <div className={styles.city_selector}>
-              <label className={styles.city_option}>
-                <input
-                  className={styles.city_radio}
-                  type="radio"
-                  name="city"
-                  value="kemerovo"
-                  checked={cityKey === "kemerovo"}
-                  onChange={(e) => setCityKey(e.target.value)}
-                />
-                <span>Кемерово</span>
-              </label>
-              <label className={styles.city_option}>
-                <input
-                  className={styles.city_radio}
-                  type="radio"
-                  name="city"
-                  value="novosibirsk"
-                  checked={cityKey === "novosibirsk"}
-                  onChange={(e) => setCityKey(e.target.value)}
-                />
-                <span>Новосибирск</span>
-              </label>
-              <label className={styles.city_option}>
-                <input
-                  className={styles.city_radio}
-                  type="radio"
-                  name="city"
-                  value="other"
-                  checked={cityKey === "other"}
-                  onChange={(e) => setCityKey(e.target.value)}
-                />
-                <span>Другое</span>
-              </label>
+            <div className={styles.city_selector_wrapper}>
+              <select
+                className={styles.city_select}
+                value={cityKey}
+                onChange={(e) => setCityKey(e.target.value)}
+              >
+                <option value="kemerovo">Кемерово</option>
+                <option value="novosibirsk">Новосибирск</option>
+                <option value="other">Другой город</option>
+              </select>
             </div>
+            {/* ================================ */}
 
             <div className={styles.consultation_form_top_inputs}>
               <div className={styles.input_wrapper}>
