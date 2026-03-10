@@ -15,6 +15,10 @@ const nextConfig = {
         source: "/:path*",
         headers: [
           {
+            key: 'Permissions-Policy',
+            value: 'geolocation=(self)',
+          },
+          {
             key: "X-Content-Type-Options",
             value: "nosniff",
           },
@@ -33,7 +37,7 @@ const nextConfig = {
           {
             key: "Permissions-Policy",
             value:
-              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+              "camera=(), microphone=(), interest-cohort=()",
           },
         ],
       },
