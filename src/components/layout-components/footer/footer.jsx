@@ -1,7 +1,6 @@
 "use client";
 import styles from "./footer.module.scss";
 import Link from "next/link";
-import { useGeo } from "../GeoProvider";
 
 const SvgLeft = ({ liText, link }) => {
   return (
@@ -12,23 +11,11 @@ const SvgLeft = ({ liText, link }) => {
   );
 };
 
-const footerData = {
-  kemerovo: {
-    address: "г. Кемерово, ул. Красная, д. 13",
-  },
-  novosibirsk: {
-    address: "г Новосибирск, Ипподромская ул, 19",
-  },
-};
 
 export default function Footer() {
-  const { cityKey, isLoaded } = useGeo();
 
-  // Ждем, пока город не определится (чтобы не было моргания интерфейса)
-  if (!isLoaded) return null;
 
   const currentYear = new Date().getFullYear();
-  const activeData = footerData[cityKey];
 
   return (
     <div className={styles.footer}>

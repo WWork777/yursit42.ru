@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${montserrat.variable}`}>
         {/* <ModalProvider> */}
-        <GeoProvider>
+        {/* <GeoProvider> */}
           <Header />
           {children}
           <SocialButton />
@@ -73,7 +73,7 @@ export default function RootLayout({ children }) {
                 }
               `}
           </Script>
-        </GeoProvider>
+        {/* </GeoProvider> */}
         {/* </ModalProvider> */}
       </body>
     </html>
