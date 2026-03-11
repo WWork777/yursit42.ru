@@ -41,6 +41,16 @@ export default function Quiz() {
     return digitsOnly.length >= 11;
   };
 
+  const getYandexClientId = () => {
+    return new Promise((resolve) => {
+      if (typeof window !== "undefined" && window.ym) {
+        window.ym(56680159, "getClientID", (id) => resolve(id));
+      } else {
+        resolve("");
+      }
+    });
+  };
+
   const sendToTelegram = async () => {
     setIsSending(true);
     try {
@@ -92,43 +102,27 @@ export default function Quiz() {
   };
 
   // Новая функция для отправки в Битрикс24
-  const sendToBitrix24 = async () => {
+  const sendToBitrix24 = async (cid) => {
     try {
-      const topicText = answers.topic || "Не указано";
-      const userTypeText =
-        answers.userType === "individual"
-          ? "Физическое лицо"
-          : "Юридическое лицо";
-
-      // Формируем сообщение для комментария
       const fullMessage = `Комментарий клиента: ${answers.comment || "Не указано"}`;
 
       const response = await fetch("/api/send-to-bitrix", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: answers.name,
           phone: answers.phone,
           message: fullMessage,
           formType: "quiz_form",
-          userType: answers.userType, // 👋 Добавляем тип клиента
-          topic: answers.topic, // 👋 Добавляем тему вопроса
+          userType: answers.userType,
+          topic: answers.topic,
           city: cityKey,
+          yandex_cid: cid, // Передаем ID Метрики
         }),
       });
 
       const result = await response.json();
-      console.log("Ответ от Битрикс24:", result);
-
-      if (!response.ok) {
-        console.error("Ошибка Битрикс24:", result.error);
-        return false;
-      } else {
-        console.log("Лид в Битрикс24 создан, ID:", result.leadId);
-        return true;
-      }
+      return response.ok;
     } catch (error) {
       console.error("Ошибка отправки в Битрикс24:", error);
       return false;
@@ -192,8 +186,7 @@ export default function Quiz() {
     if (!isAgreed) {
       setSubmitStatus({
         type: "error",
-        message:
-          "Пожалуйста, подтвердите согласие с политикой обработки персональных данных.",
+        message: "Подтвердите согласие с политикой.",
       });
       return;
     }
@@ -201,73 +194,72 @@ export default function Quiz() {
     if (!isPhoneComplete(formData.phone)) {
       setSubmitStatus({
         type: "error",
-        message: "Пожалуйста, введите полный номер телефона",
+        message: "Введите полный номер телефона",
       });
       return;
     }
 
-    const digitsOnly = formData.phone.replace(/\D/g, "");
-    if (!digitsOnly.startsWith("79")) {
+    // Антиспам (как в предыдущих формах)
+    const linkRegExp = /http|https|www|\.ru|\.com|\.net|\.org/gi;
+    if (linkRegExp.test(answers.comment)) {
       setSubmitStatus({
         type: "error",
-        message:
-          "Номер телефона должен быть российским и начинаться с +7(9...)",
+        message: "Ссылки в комментарии запрещены.",
       });
-      return;
-    }
-
-    if (!answers.topic) {
-      setSubmitStatus({
-        type: "error",
-        message: "Пожалуйста, выберите тему вопроса",
-      });
-      setStep(2);
       return;
     }
 
     setIsSending(true);
     setSubmitStatus({ type: "", message: "" });
 
-    // Отправляем в Telegram
-    const isSent = await sendToTelegram();
+    try {
+      // 1. Получаем ClientID
+      const cid = await getYandexClientId();
 
-    // Отправляем в Битрикс24 (не ждем результат)
-    sendToBitrix24();
+      // 2. Отправляем параллельно
+      const [tgSent, bitrixSent] = await Promise.all([
+        sendToTelegram(),
+        sendToBitrix24(cid),
+      ]);
 
-    if (isSent) {
-      if (typeof window !== "undefined" && window.ym) {
-        window.ym(56680159, "reachGoal", "form");
+      if (tgSent || bitrixSent) {
+        if (typeof window !== "undefined" && window.ym) {
+          window.ym(56680159, "reachGoal", "form");
+        }
+
+        setSubmitStatus({
+          type: "success",
+          message:
+            "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.",
+        });
+
+        // Сброс состояния
+        setTimeout(() => {
+          setStep(0);
+          setFormData({ name: "", phone: "" });
+          setComment("");
+          setSelectedOption(null);
+          setUserType(null);
+          setIsAgreed(false);
+          setAnswers({
+            userType: null,
+            topic: null,
+            comment: "",
+            name: "",
+            phone: "",
+          });
+        }, 2000);
+      } else {
+        throw new Error("Ошибка сервисов");
       }
-
-      setSubmitStatus({
-        type: "success",
-        message:
-          "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.",
-      });
-
-      // Сбрасываем форму
-      setStep(0);
-      setFormData({ name: "", phone: "" });
-      setComment("");
-      setSelectedOption(null);
-      setUserType(null);
-      setIsAgreed(false);
-      setAnswers({
-        userType: null,
-        topic: null,
-        comment: "",
-        name: "",
-        phone: "",
-      });
-    } else {
+    } catch (error) {
       setSubmitStatus({
         type: "error",
-        message:
-          "Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.",
+        message: "Ошибка отправки. Попробуйте еще раз.",
       });
+    } finally {
+      setIsSending(false);
     }
-
-    setIsSending(false);
   };
 
   const steps = {

@@ -259,8 +259,19 @@ export default function HeroBlock({
     }
   };
 
+  const getYandexClientId = () => {
+    return new Promise((resolve) => {
+      if (typeof window !== "undefined" && window.ym) {
+        window.ym(56680159, "getClientID", (id) => resolve(id));
+      } else {
+        resolve(""); // Если Метрика не загружена
+      }
+    });
+  };
+
   // Отправка в Битрикс24
-  const sendToBitrix24 = async (data) => {
+  // Добавьте 'cid' в аргументы функции
+  const sendToBitrix24 = async (data, cid) => {
     try {
       const response = await fetch("/api/send-to-bitrix", {
         method: "POST",
@@ -273,11 +284,11 @@ export default function HeroBlock({
           message: data.message,
           formType: "hero_form",
           city: cityKey,
+          yandex_cid: cid, // Используем аргумент 'cid'
         }),
       });
 
       const result = await response.json();
-
       if (!response.ok) {
         throw new Error(result.error || "Ошибка при отправке в Битрикс24");
       }
@@ -292,6 +303,7 @@ export default function HeroBlock({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 1. Проверка согласия с политикой
     if (!isAgreed) {
       setSubmitStatus({
         type: "error",
@@ -301,49 +313,66 @@ export default function HeroBlock({
       return;
     }
 
+    // 2. Валидация полей (телефон и имя)
     if (!validate()) return;
+
+    // 3. АНТИСПАМ ФИЛЬТР
+    // Если в сообщении есть ссылки (http, .ru, .com и т.д.) — блокируем, так как это боты
+    const linkRegExp = /http|https|www|\.ru|\.com|\.net|\.org/gi;
+    if (linkRegExp.test(formData.message)) {
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Использование ссылок в сообщении запрещено. Пожалуйста, удалите их.",
+      });
+      return;
+    }
 
     setIsLoading(true);
     setSubmitStatus({ type: "", message: "" });
 
     try {
-      // Отправляем в Telegram
-      const isSent = await sendToTelegram(formData);
+      // Шаг 1: Получаем ClientID от Яндекс.Метрики
+      const cid = await getYandexClientId();
 
-      // Отправляем в Битрикс24 (не ждем результата для пользователя)
-      sendToBitrix24(formData).then((result) => {
-        if (result.success) {
-          console.log("Лид в Битрикс24 создан, ID:", result.leadId);
-        } else {
-          console.error("Ошибка Битрикс24:", result.error);
-        }
-      });
+      // Шаг 2: Запускаем отправку в Telegram и Битрикс одновременно
+      // Мы используем cid, полученный выше, и передаем его в sendToBitrix24
+      const [tgSuccess, bitrixResult] = await Promise.all([
+        sendToTelegram(formData),
+        sendToBitrix24(formData, cid),
+      ]);
 
-      if (isSent) {
+      // Шаг 3: Проверяем, что хотя бы один сервис принял заявку
+      if (tgSuccess || bitrixResult.success) {
+        // Фиксируем цель в Яндекс.Метрике (браузерное событие)
         if (typeof window !== "undefined" && window.ym) {
           window.ym(56680159, "reachGoal", "form");
         }
 
+        // Выводим сообщение об успехе
         setSubmitStatus({
           type: "success",
           message:
             "Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.",
         });
 
+        // Очищаем форму и состояние согласия
         setFormData({ name: "", phone: "", message: "" });
         setIsAgreed(false);
+
+        console.log(
+          "Заявка успешно обработана. Bitrix ID:",
+          bitrixResult.leadId,
+        );
       } else {
-        setSubmitStatus({
-          type: "error",
-          message:
-            "Произошла ошибка при отправке. Пожалуйста, попробуйте позже.",
-        });
+        throw new Error("Ошибка при отправке данных в сервисы");
       }
     } catch (error) {
-      console.error("Ошибка:", error);
+      console.error("Ошибка при выполнении handleSubmit:", error);
       setSubmitStatus({
         type: "error",
-        message: "Произошла ошибка. Пожалуйста, попробуйте еще раз.",
+        message:
+          "Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз позже.",
       });
     } finally {
       setIsLoading(false);

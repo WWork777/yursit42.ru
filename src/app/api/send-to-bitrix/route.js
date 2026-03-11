@@ -3,11 +3,20 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, phone, message, formType, userType, topic, city } = body;
+    const {
+      name,
+      phone,
+      message,
+      formType,
+      userType,
+      topic,
+      city,
+      yandex_cid,
+    } = body;
 
     // Определяем заголовок в зависимости от типа формы
     const cityLabel = city === "novosibirsk" ? "Новосибирск" : "Кемерово";
-    
+
     let title = `Заявка с сайта (${cityLabel})`;
     let sourceDescription = "Форма на сайте";
 
@@ -60,7 +69,7 @@ export async function POST(request) {
         SOURCE_ID: "WEB", // Источник - сайт
         SOURCE_DESCRIPTION: sourceDescription, // Описание источника
         COMMENTS: fullComment, // Расширенный комментарий
-
+        UF_CRM_YA_CID: yandex_cid,
         // 👇 Назначаем ответственного
         ASSIGNED_BY_ID: RESPONSIBLE_ID,
 

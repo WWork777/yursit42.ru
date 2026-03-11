@@ -10,275 +10,148 @@ export default function ConsultationForm({
   consultationTitle,
   consultationText,
 }) {
-  // Локальное состояние для выбранного города
-  const [cityKey, setCityKey] = useState("kemerovo"); // 'kemerovo', 'novosibirsk', 'other'
-
+  const [cityKey, setCityKey] = useState("kemerovo");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     message: "",
   });
-
-  const [errors, setErrors] = useState({
-    name: "",
-    phone: "",
-  });
-
-  const [isAgreed, setIsAgreed] = useState(false); // Состояние для чекбокса
+  const [errors, setErrors] = useState({ name: "", phone: "" });
+  const [isAgreed, setIsAgreed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Функция проверки полноты номера телефона
+  // --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
+
   const isPhoneComplete = (phone) => {
     if (!phone || phone.trim() === "") return false;
-
-    // Для российских номеров: код страны +7 и 10 цифр номера = минимум 11 символов
-    // Убираем все нецифровые символы для проверки
     const digitsOnly = phone.replace(/\D/g, "");
-
-    // Российский номер: +7 (XXX) XXX-XX-XX = 11 цифр
-    // Международные номера могут быть длиннее, но для России достаточно 11 цифр
     return digitsOnly.length >= 11;
+  };
+
+  const getYandexClientId = () => {
+    return new Promise((resolve) => {
+      if (typeof window !== "undefined" && window.ym) {
+        window.ym(56680159, "getClientID", (id) => resolve(id));
+      } else {
+        resolve("");
+      }
+    });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
-
-  // Обновленная функция для обработки телефона
-  const handlePhoneInput = (value, country, e, formattedValue) => {
-    // Если номер пустой или начинается не с +7(9, принудительно устанавливаем +7(9
-    if (!value || !value.startsWith("+79")) {
-      // Очищаем все, кроме цифр, и проверяем начинается ли с 79
-      const digitsOnly = value.replace(/\D/g, "");
-      if (!digitsOnly.startsWith("79")) {
-        value = "+7(9";
-      }
-    }
-
-    setFormData((prev) => ({
-      ...prev,
-      phone: value,
-    }));
-
-    if (errors.phone) {
-      setErrors((prev) => ({
-        ...prev,
-        phone: "",
-      }));
-    }
-  };
-
-  // Функция для обработки ввода с клавиатуры
-  const handlePhoneKeyDown = (e) => {
-    const { value } = e.target;
-
-    // Запрещаем удаление префикса +7(9
-    if (value === "+7(9" && (e.key === "Backspace" || e.key === "Delete")) {
-      e.preventDefault();
-      return;
-    }
-
-    // Если пытаются ввести что-то в начале, когда уже есть +7(9
-    if (e.target.selectionStart <= 4 && value.startsWith("+7(9")) {
-      // Разрешаем только цифры и управляющие клавиши
-      if (!/[\d]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) {
-        e.preventDefault();
-      }
-    }
-  };
-
-  // Функция для обработки изменения фокуса
-  const handlePhoneFocus = (e) => {
-    const { value } = e.target;
-
-    // Если поле пустое или не начинается с +7(9, устанавливаем префикс
-    if (!value || !value.startsWith("+7(9")) {
-      setFormData((prev) => ({
-        ...prev,
-        phone: "+7(9",
-      }));
-    }
-
-    // Устанавливаем курсор после префикса
-    setTimeout(() => {
-      if (e.target.value === "+7(9") {
-        e.target.setSelectionRange(4, 4);
-      }
-    }, 0);
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validate = () => {
     let valid = true;
     const newErrors = { name: "", phone: "" };
-
     if (!formData.phone.trim()) {
       newErrors.phone = "Пожалуйста, введите ваш телефон";
       valid = false;
-    } else {
-      // Нормализуем номер: убираем все нецифровые символы кроме +
-      const normalizedPhone = formData.phone.replace(/\s/g, ""); // убираем пробелы
-
-      if (!normalizedPhone.startsWith("+7(9")) {
-        newErrors.phone = "Номер должен начинаться с +7(9";
-        valid = false;
-      } else if (!isPhoneComplete(formData.phone)) {
-        newErrors.phone = "Введите полный номер телефона";
-        valid = false;
-      } else if (!/^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(normalizedPhone)) {
-        newErrors.phone = "Введите корректный номер телефона";
-        valid = false;
-      }
+    } else if (!isPhoneComplete(formData.phone)) {
+      newErrors.phone = "Введите полный номер телефона";
+      valid = false;
     }
-
     setErrors(newErrors);
     return valid;
   };
 
+  // --- ОТПРАВКА ДАННЫХ ---
+
   const sendToTelegram = async (data) => {
-    const TELEGRAM_BOT_TOKEN = "7933033563:AAGeVEYEzAQ6NUuVYkxNsXgANSi0xvRN4sg";
-    const TELEGRAM_CHAT_ID = "-1002630836547";
-
-    const formattedPhone = data.phone.startsWith("+")
-      ? data.phone
-      : `+${data.phone}`;
-
-    let cityLabel = "Не указан";
-    if (cityKey === "kemerovo") {
-      cityLabel = "Кемерово";
-    } else if (cityKey === "novosibirsk") {
-      cityLabel = "Новосибирск";
-    } else if (cityKey === "other") {
-      cityLabel = "Другой город";
-    }
-
-    // Обновляем текст сообщения, добавляя выбранный город
-    const text = `Новая заявка с сайта (Форма консультации - ${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${formattedPhone}\nСообщение: ${data.message || "не указано"}`;
-
-    // MAX
-    const Phone = "79609309191";
-    const idInstance = "3100517801";
-    const apiTokenInstance =
-      "4e23b210658549c881680633b93bb11301a0f304a927433da6";
+    let cityLabel =
+      cityKey === "kemerovo"
+        ? "Кемерово"
+        : cityKey === "novosibirsk"
+          ? "Новосибирск"
+          : "Другой город";
+    const text = `Новая заявка (Форма консультации - ${cityLabel}):\n\nИмя: ${data.name}\nТелефон: ${data.phone}\nСообщение: ${data.message || "не указано"}`;
 
     try {
-      // const response = await fetch("/api/telegram-proxi", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     chat_id: "-1002630836547",
-      //     text: text,
-      //     parse_mode: "Markdown",
-      //   }),
-      // });
-
       const maxResponse = await fetch(
-        `https://api.green-api.com/waInstance${idInstance}/SendMessage/${apiTokenInstance}`,
+        `https://api.green-api.com/waInstance3100517801/SendMessage/4e23b210658549c881680633b93bb11301a0f304a927433da6`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chatId: `-71184639158921`,
-            message: text,
-          }),
+          body: JSON.stringify({ chatId: "-71184639158921", message: text }),
         },
       );
-
-      if (!maxResponse.ok) {
-        throw new Error("Ошибка при отправке сообщения");
-      }
-
-      return true;
+      return maxResponse.ok;
     } catch (error) {
-      console.error("Ошибка отправки в Telegram:", error);
       return false;
     }
   };
 
-  // Новая функция для отправки в Битрикс24
-  const sendToBitrix24 = async (data) => {
+  const sendToBitrix24 = async (data, cid) => {
     try {
       const response = await fetch("/api/send-to-bitrix", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.name,
           phone: data.phone,
           message: data.message,
-          formType: "consultation_form", // указываем тип формы
+          formType: "consultation_form",
           city: cityKey,
+          yandex_cid: cid, // Передаем ClientID
         }),
       });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        console.error("Ошибка Битрикс24:", result.error);
-      } else {
-        console.log("Лид в Битрикс24 создан, ID:", result.leadId);
-      }
+      return await response.json();
     } catch (error) {
-      console.error("Ошибка отправки в Битрикс24:", error);
+      console.error("Ошибка Битрикс24:", error);
     }
   };
+
+  // --- ГЛАВНЫЙ ОБРАБОТЧИК ---
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isAgreed) {
-      alert(
-        "Пожалуйста, подтвердите согласие с политикой обработки персональных данных.",
-      );
+      alert("Пожалуйста, подтвердите согласие с политикой данных.");
       return;
     }
 
     if (!validate()) return;
 
+    // --- АНТИСПАМ ФИЛЬТР ---
+    const linkRegExp = /http|https|www|\.ru|\.com|\.net|\.org/gi;
+    if (linkRegExp.test(formData.message)) {
+      alert("Ссылки в сообщении запрещены.");
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // Отправляем в Telegram
-      const isSent = await sendToTelegram(formData);
+      // 1. Получаем ClientID
+      const cid = await getYandexClientId();
 
-      // Отправляем в Битрикс24 (параллельно, не ждем результат)
-      sendToBitrix24(formData);
+      // 2. Отправляем параллельно
+      const [tgSent] = await Promise.all([
+        sendToTelegram(formData),
+        sendToBitrix24(formData, cid),
+      ]);
 
-      if (isSent) {
+      if (tgSent) {
         if (typeof window !== "undefined" && window.ym) {
           window.ym(56680159, "reachGoal", "form");
         }
-
-        alert(
-          "Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.",
-        );
+        alert("Форма успешно отправлена!");
         setFormData({ name: "", phone: "", message: "" });
-        setIsAgreed(false); // сброс чекбокса после отправки (по желанию)
+        setIsAgreed(false);
       } else {
-        alert("Произошла ошибка при отправке. Пожалуйста, попробуйте позже.");
+        alert("Ошибка при отправке. Попробуйте позже.");
       }
     } catch (error) {
-      console.error("Ошибка:", error);
       alert("Произошла ошибка. Пожалуйста, попробуйте еще раз.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Обновленная проверка валидности формы - теперь проверяем наличие префикса +7(9
   const isFormValid =
     formData.phone.startsWith("+7 (9") &&
     isPhoneComplete(formData.phone) &&
@@ -291,38 +164,25 @@ export default function ConsultationForm({
         <h2 dangerouslySetInnerHTML={{ __html: consultationTitle }}></h2>
         <h4 dangerouslySetInnerHTML={{ __html: consultationText }}></h4>
 
-        {/* === Блок выбора города === */}
         <div className={styles.city_selector}>
-          <label className={styles.city_option}>
-            <input
-              type="radio"
-              name="city"
-              value="kemerovo"
-              checked={cityKey === "kemerovo"}
-              onChange={(e) => setCityKey(e.target.value)}
-            />
-            <span>Кемерово</span>
-          </label>
-          <label className={styles.city_option}>
-            <input
-              type="radio"
-              name="city"
-              value="novosibirsk"
-              checked={cityKey === "novosibirsk"}
-              onChange={(e) => setCityKey(e.target.value)}
-            />
-            <span>Новосибирск</span>
-          </label>
-          <label className={styles.city_option}>
-            <input
-              type="radio"
-              name="city"
-              value="other"
-              checked={cityKey === "other"}
-              onChange={(e) => setCityKey(e.target.value)}
-            />
-            <span>Другое</span>
-          </label>
+          {["kemerovo", "novosibirsk", "other"].map((city) => (
+            <label key={city} className={styles.city_option}>
+              <input
+                type="radio"
+                name="city"
+                value={city}
+                checked={cityKey === city}
+                onChange={(e) => setCityKey(e.target.value)}
+              />
+              <span>
+                {city === "kemerovo"
+                  ? "Кемерово"
+                  : city === "novosibirsk"
+                    ? "Новосибирск"
+                    : "Другое"}
+              </span>
+            </label>
+          ))}
         </div>
 
         <form className={styles.consultation_form} onSubmit={handleSubmit}>
@@ -344,10 +204,7 @@ export default function ConsultationForm({
               <PhoneInputCustom
                 value={formData.phone}
                 onChange={(val) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    phone: val,
-                  }))
+                  setFormData((prev) => ({ ...prev, phone: val }))
                 }
                 error={errors.phone}
               />
@@ -366,7 +223,6 @@ export default function ConsultationForm({
             />
           </div>
 
-          {/* Чекбокс согласия */}
           <div className={styles.agreement_checkbox}>
             <label>
               <input
@@ -376,12 +232,11 @@ export default function ConsultationForm({
               />
               Я согласен с{" "}
               <Link href="/privacy" style={{ color: "#A47764" }}>
-                политикой обработки персональных данных
+                политикой данных
               </Link>
             </label>
           </div>
 
-          {/* Кнопка активна только если чекбокс отмечен и телефон введён полностью и начинается с +7(9 */}
           <button type="submit" disabled={!isFormValid}>
             <p>{isLoading ? "Отправка..." : "Отправить заявку"}</p>
           </button>
