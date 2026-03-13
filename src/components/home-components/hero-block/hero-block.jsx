@@ -412,14 +412,15 @@ export default function HeroBlock({
 
             {/* === Блок выбора города === */}
             <div className={styles.city_selector_wrapper}>
+              <p className={styles.city_selector_title}>Выберите регион:</p>
               <select
                 className={styles.city_select}
                 value={cityKey}
                 onChange={(e) => setCityKey(e.target.value)}
               >
-                <option value="kemerovo">Кемерово</option>
-                <option value="novosibirsk">Новосибирск</option>
-                <option value="other">Другой город</option>
+                <option value="kemerovo">Кузбасс-Кемеровская обл.</option>
+                <option value="novosibirsk">Новосибирская обл.</option>
+                <option value="other">Другой регион</option>
               </select>
             </div>
             {/* ================================ */}

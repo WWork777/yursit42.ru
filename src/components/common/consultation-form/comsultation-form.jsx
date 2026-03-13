@@ -165,6 +165,7 @@ export default function ConsultationForm({
         <h4 dangerouslySetInnerHTML={{ __html: consultationText }}></h4>
 
         <div className={styles.city_selector}>
+          <p className={styles.city_selector_title}>Выберите регион:</p>
           {["kemerovo", "novosibirsk", "other"].map((city) => (
             <label key={city} className={styles.city_option}>
               <input
@@ -176,10 +177,10 @@ export default function ConsultationForm({
               />
               <span>
                 {city === "kemerovo"
-                  ? "Кемерово"
+                  ? "Кузбасс-Кемеровская обл."
                   : city === "novosibirsk"
-                    ? "Новосибирск"
-                    : "Другое"}
+                    ? "Новосибирская обл."
+                    : "Другой регион"}
               </span>
             </label>
           ))}

@@ -400,6 +400,7 @@ export default function Quiz() {
 
                 <form onSubmit={currentStep.action}>
                   {/* === Блок выбора города === */}
+                  <p className={styles.city_selector_title}>Выберите регион:</p>
                   <div className={styles.city_selector}>
                     <label className={styles.city_option}>
                       <input
@@ -409,7 +410,7 @@ export default function Quiz() {
                         checked={cityKey === "kemerovo"}
                         onChange={(e) => setCityKey(e.target.value)}
                       />
-                      <span>Кемерово</span>
+                      <span>Кемеровская обл.</span>
                     </label>
                     <label className={styles.city_option}>
                       <input
@@ -419,7 +420,7 @@ export default function Quiz() {
                         checked={cityKey === "novosibirsk"}
                         onChange={(e) => setCityKey(e.target.value)}
                       />
-                      <span>Новосибирск</span>
+                      <span>Новосибирская обл.</span>
                     </label>
                     <label className={styles.city_option}>
                       <input
@@ -429,7 +430,7 @@ export default function Quiz() {
                         checked={cityKey === "other"}
                         onChange={(e) => setCityKey(e.target.value)}
                       />
-                      <span>Другое</span>
+                      <span>Другой регион</span>
                     </label>
                   </div>
                   <div className={styles.form_group}>
