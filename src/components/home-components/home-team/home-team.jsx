@@ -105,7 +105,7 @@ export default function HomeTeam({ teamTitle }) {
             <SliderCard
               sliderImageSrc="/home/team/team3.webp"
               sliderTitle="Котилевская Диана"
-              sliderText="Специалист в области права с акцентом на семейные и корпоративные дела. Обладает уникальным подходом к каждому клиенту."
+              sliderText="Специалист в области права с акцентом на семейные и корпоративные дела. Обладает уникальным подходом к каждому клиенту"
               imageClass={styles.team_img3}
             />
           </SwiperSlide>
@@ -115,6 +115,14 @@ export default function HomeTeam({ teamTitle }) {
               sliderTitle="Саймойлова Веста"
               sliderText="Хранитель процессуального кодекса. Отлично владеет знанием законодательства, идеально подбирает судебную практику"
               imageClass={styles.team_img4}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <SliderCard
+              sliderImageSrc="/home/team/team5.webp"
+              sliderTitle="Рамиля Прозорова"
+              sliderText="Ведущий эксперт по сложным гражданским делам. Мастер юридической стратегии, способный найти выход из самых запутанных правовых ситуаций"
+              imageClass={styles.team_img5}
             />
           </SwiperSlide>
         </Swiper>
