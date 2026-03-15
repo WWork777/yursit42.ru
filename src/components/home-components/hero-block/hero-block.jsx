@@ -20,7 +20,7 @@ export default function HeroBlock({
   heroTextMobile,
 }) {
   // const { cityKey } = useGeo();
-  const [cityKey, setCityKey] = useState("kemerovo"); // 'kemerovo', 'novosibirsk', 'other'
+  const [cityKey, setCityKey] = useState(""); // '', 'kemerovo', 'novosibirsk', 'other'
   const numberRefs = useRef([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
@@ -412,12 +412,15 @@ export default function HeroBlock({
 
             {/* === Блок выбора города === */}
             <div className={styles.city_selector_wrapper}>
-              <p className={styles.city_selector_title}>Выберите регион:</p>
+              {/* <p className={styles.city_selector_title}>Выберите регион:</p> */}
               <select
                 className={styles.city_select}
                 value={cityKey}
                 onChange={(e) => setCityKey(e.target.value)}
               >
+                <option value="" disabled>
+                  Выберите регион
+                </option>
                 <option value="kemerovo">Кузбасс-Кемеровская обл.</option>
                 <option value="novosibirsk">Новосибирская обл.</option>
                 <option value="other">Другой регион</option>
