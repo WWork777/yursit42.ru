@@ -72,6 +72,11 @@
     width: 350px;
     padding: 15px;
   } 
+   @media (max-width: 400px) {
+    height: 270px;
+    width: 300px;
+    padding: 15px;
+  } 
 }
 
 .info_block_bottom {
@@ -83,7 +88,8 @@
   margin-top: 20px;
   @media (max-width: 600px) {
     margin-top: 0px;
-    justify-content: center;
+    justify-content: left;
+    flex-wrap: wrap;
     // gap: 15%;
   }
 }
