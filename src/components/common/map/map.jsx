@@ -50,11 +50,11 @@ export default function YandexMap() {
             </h5>
             <div className={styles.info_block_bottom}>
               <Link
-                href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0"
+                href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA"
                 className={styles.info_block_bottom_item}
               >
-                <img src="/svg/contacts/wa.svg" alt="Whatsapp" />
-                <p>Whatsapp</p>
+                <img src="/svg/contacts/max.svg" alt="Whatsapp" />
+                <p>Max</p>
               </Link>
               <Link
                 href="https://telegram.me/yurist42_kodeks"
@@ -62,6 +62,13 @@ export default function YandexMap() {
               >
                 <img src="/svg/contacts/tg.svg" alt="Telegram" />
                 <p>Telegram</p>
+              </Link>
+              <Link
+                href="https://telegram.me/yurist42_kodeks"
+                className={styles.info_block_bottom_item}
+              >
+                <img src="/svg/header/telegaDark.svg" alt="Telegram"  height={23} width={23}/>
+                <p>Telega</p>
               </Link>
             </div>
           </div>
@@ -90,11 +97,11 @@ export default function YandexMap() {
             </h5>
             <div className={styles.info_block_bottom}>
               <Link
-                href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0"
+                href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA"
                 className={styles.info_block_bottom_item}
               >
-                <img src="/svg/contacts/wa.svg" alt="Whatsapp" />
-                <p>Whatsapp</p>
+                <img src="/svg/contacts/max.svg" alt="Whatsapp" />
+                <p>Max</p>
               </Link>
               <Link
                 href="https://telegram.me/yurist42_kodeks"
@@ -102,6 +109,13 @@ export default function YandexMap() {
               >
                 <img src="/svg/contacts/tg.svg" alt="Telegram" />
                 <p>Telegram</p>
+              </Link>
+              <Link
+                href="https://telegram.me/yurist42_kodeks"
+                className={styles.info_block_bottom_item}
+              >
+                <img src="/svg/header/telegaDark.svg" alt="Telegram"  height={23} width={23}/>
+                <p>Telega</p>
               </Link>
             </div>
           </div>
