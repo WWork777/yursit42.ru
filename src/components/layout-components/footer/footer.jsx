@@ -53,7 +53,7 @@ export default function Footer() {
           {/* <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0  ">
             <img src="/svg/contacts/wa.svg" className={styles.footer_svg} />
           </Link> */}
-          <Link href="https://telegram.me/yurist42_kodeks  ">
+          <Link href="https://telegram.me/yurist42_kodeks">
             <img src="/svg/contacts/tg.svg" className={styles.footer_svg} />
           </Link>
           <Link href="https://vk.com/kodeks42  ">
@@ -62,7 +62,7 @@ export default function Footer() {
           <Link href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA  ">
             <img src="/svg/contacts/max.svg" className={styles.footer_svg} />
           </Link>
-          <Link href="https://max.ru/u/f9LHodD0cOKU3qvldFKHsXB1Hs0cS8Ve_tQtUFZ5F6BOwi4vntNqXHG2MiA  ">
+          <Link href="https://telegram.me/yurist42_kodeks">
             <img height={45} width={45} src="/svg/contacts/logo-tlg.svg" className={styles.footer_svg} />
           </Link>
         </div>
