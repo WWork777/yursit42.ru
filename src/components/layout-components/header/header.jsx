@@ -121,8 +121,8 @@ export default function Header() {
         </div>
 
         <div className={styles.mobile_contacts_mobile}>
-          <Link href="mailto:kodeks_yrist@mail.ru">
-            <p>kodeks_yrist@mail.ru</p>
+          <Link href="mailto:kodeks-yurist@yandex.ru">
+            <p>kodeks-yurist@yandex.ru</p>
           </Link>
           <Link href="tel:+79609309191">
             <p>+7 (960) 930-91-91</p>
@@ -206,8 +206,8 @@ export default function Header() {
 
       <div className={styles.header_contacts}>
         <div className={styles.header_contacts_top}>
-          <Link href="mailto:kodeks_yrist@mail.ru">
-            <h5>kodeks_yrist@mail.ru</h5>
+          <Link href="mailto:kodeks-yurist@yandex.ru">
+            <h5>kodeks-yurist@yandex.ru</h5>
           </Link>
           <Link href="tel:+79609309191">
             <h5>+7 (960) 930-91-91</h5>

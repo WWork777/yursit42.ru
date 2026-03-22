@@ -46,8 +46,8 @@ export default function Footer() {
           <p>+7 (960) 930-91-91</p>
         </Link>
         <h5>Почта</h5>
-        <Link href="mailto:kodeks_yrist@mail.ru">
-          <p>kodeks_yrist@mail.ru</p>
+        <Link href="mailto:kodeks-yurist@yandex.ru">
+          <p>kodeks-yurist@yandex.ru</p>
         </Link>
         <div className={styles.footer_social}>
           {/* <Link href="https://api.whatsapp.com/send/?phone=79609309191&text&type=phone_number&app_absent=0  ">

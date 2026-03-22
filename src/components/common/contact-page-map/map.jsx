@@ -42,8 +42,8 @@ export default function ContactPageYandexMap() {
             <h3>Филиал в г. Кемерово</h3>
             <p>{MapData.kemerovo.address}</p>
             <h3>Мы на связи</h3>
-            <Link href="mailto:kodeks_yrist@mail.ru">
-              <p>kodeks_yrist@mail.ru</p>
+            <Link href="mailto:kodeks-yurist@yandex.ru">
+              <p>kodeks-yurist@yandex.ru</p>
             </Link>
             <h5>
               <Link href="tel:+79609309191">+7 (960) 930‒91‒91</Link>
@@ -89,8 +89,8 @@ export default function ContactPageYandexMap() {
             <h3>Филиал в г. Новосибирск</h3>
             <p>{MapData.novosibirsk.address}</p>
             <h3>Мы на связи</h3>
-            <Link href="mailto:kodeks_yrist@mail.ru">
-              <p>kodeks_yrist@mail.ru</p>
+            <Link href="mailto:kodeks-yurist@yandex.ru">
+              <p>kodeks-yurist@yandex.ru</p>
             </Link>
             <h5>
               <Link href="tel:+79609309191">+7 (960) 930‒91‒91</Link>

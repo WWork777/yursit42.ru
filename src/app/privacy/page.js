@@ -186,7 +186,7 @@ export default function Policy() {
 				информационных сообщений, направив Оператору письмо на адрес электронной
 				почты
 				<u>
-					<a href='mailto:kodeks_yrist@mail.ru'>kodeks_yrist@mail.ru</a>
+					<a href='mailto:kodeks-yurist@yandex.ru'>kodeks-yurist@yandex.ru</a>
 				</u>{' '}
 				с пометкой «Отказ от уведомлениях о новых продуктах и услугах и
 				специальных предложениях».
@@ -247,7 +247,7 @@ export default function Policy() {
 				может актуализировать их самостоятельно, путем направления Оператору
 				уведомление на адрес электронной почты Оператора
 				<u>
-					<a href='mailto:kodeks_yrist@mail.ru'>kodeks_yrist@mail.ru</a>
+					<a href='mailto:kodeks-yurist@yandex.ru'>kodeks-yurist@yandex.ru</a>
 				</u>{' '}
 				с пометкой «Актуализация персональных данных».
 			</p>
@@ -258,7 +258,7 @@ export default function Policy() {
 				персональных данных, направив Оператору уведомление посредством
 				электронной почты на электронный адрес Оператора
 				<u>
-					<a href='mailto:kodeks_yrist@mail.ru'>kodeks_yrist@mail.ru</a>
+					<a href='mailto:kodeks-yurist@yandex.ru'>kodeks-yurist@yandex.ru</a>
 				</u>{' '}
 				с пометкой «Отзыв согласия на обработку персональных данных».
 			</p>
@@ -291,7 +291,7 @@ export default function Policy() {
 				вопросам, касающимся обработки его персональных данных, обратившись к
 				Оператору с помощью электронной почты
 				<u>
-					<a href='mailto:kodeks_yrist@mail.ru'>kodeks_yrist@mail.ru</a>
+					<a href='mailto:kodeks-yurist@yandex.ru'>kodeks-yurist@yandex.ru</a>
 				</u>
 				.
 			</p>
