@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 
 export default function PhoneInputCustom({ value, onChange, error }) {
   const [isFocused, setIsFocused] = useState(false);
+  
 
   const formatPhone = (val) => {
     const digits = val.replace(/\D/g, "");
@@ -39,6 +40,11 @@ export default function PhoneInputCustom({ value, onChange, error }) {
 
     if (digits.length === 0) {
       onChange("");
+      return;
+    }
+
+    // Запрет на ввод, если начинается на 7910
+    if (digits.startsWith("7910")) {
       return;
     }
 
