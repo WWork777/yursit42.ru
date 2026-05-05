@@ -24,14 +24,14 @@ export default function HomePractice({ practiceTitle }) {
           className={styles.home_practice_image}
         >
           <Image
-            src="/home/practice/practiceimage (2).webp"
+            src="/home/practice/practiceimage3.webp"
             alt="Практика"
             width={1000}
-            height={1000}
+            height={1200}
             className={styles.home_practice_image_image}
-            style={{
-              objectFit: "cover",
-            }}
+            // style={{
+            //   objectFit: "cover",
+            // }}
           />
         </motion.div>
         <motion.div
