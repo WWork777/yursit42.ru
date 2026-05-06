@@ -75,12 +75,12 @@ export default function HomeDiplom({ diplomTitle }) {
           <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome14.webp" />
           </SwiperSlide>
-          <SwiperSlide className={styles.swiperSlide}>
+          {/* <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome15.webp" />
-          </SwiperSlide>
-          <SwiperSlide className={styles.swiperSlide}>
+          </SwiperSlide> */}
+          {/* <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome16.webp" />
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/sertificate.png" />
           </SwiperSlide>
@@ -90,9 +90,9 @@ export default function HomeDiplom({ diplomTitle }) {
           <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/certificate-1.png" />
           </SwiperSlide>
-          <SwiperSlide className={styles.swiperSlide}>
+          {/* <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome17.webp" />
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide className={styles.swiperSlide}>
             <SliderCard sliderImageSrc="/home/diplome/diplome3.webp" />
           </SwiperSlide>
