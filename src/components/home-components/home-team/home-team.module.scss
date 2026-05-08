@@ -17,6 +17,12 @@
 .custom_navigation {
   display: flex;
   gap: 15px;
+
+  display: none;
+
+  @media (max-width: 992px) {
+    display: flex;
+  }
 }
 
 .mySwiper {
@@ -100,21 +106,21 @@
 .home_team_slider_card_image {
   position: relative !important;
   width: 100% !important;
-  height: 100% !important;  
+  height: 100% !important;
   object-fit: contain;
   transition: all 0.3s ease-in-out;
 }
 
-.team_img1{
+.team_img1 {
   margin-top: 100px;
 }
 
-.team_img4{
+.team_img4 {
   width: 100% !important;
   height: 100% !important;
 }
 
-.team_img5{
+.team_img5 {
   width: unset !important;
 }
 

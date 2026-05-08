@@ -78,7 +78,7 @@ export default function HomeTeam({ teamTitle }) {
             1600: {
               slidesPerView: 3,
               spaceBetween: 350,
-            }
+            },
           }}
           onInit={(swiper) => {
             swiper.navigation.init();
@@ -93,30 +93,30 @@ export default function HomeTeam({ teamTitle }) {
               imageClass={styles.team_img1}
             />
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <SliderCard
               sliderImageSrc="/home/team/team2.webp"
               sliderTitle="Масленников Дмитрий"
               sliderText="Самый педантичный и внимательный юрист. Имеет разносторонний опыт по юридической специальности"
               imageClass={styles.team_img2}
             />
-          </SwiperSlide>
-          <SwiperSlide>
+          </SwiperSlide> */}
+          {/* <SwiperSlide>
             <SliderCard
               sliderImageSrc="/home/team/team3.webp"
               sliderTitle="Котилевская Диана"
               sliderText="Специалист в области права с акцентом на семейные и корпоративные дела. Обладает уникальным подходом к каждому клиенту"
               imageClass={styles.team_img3}
             />
-          </SwiperSlide>
-          <SwiperSlide>
+          </SwiperSlide> */}
+          {/* <SwiperSlide>
             <SliderCard
               sliderImageSrc="/home/team/team4.webp"
               sliderTitle="Саймойлова Веста"
               sliderText="Хранитель процессуального кодекса. Отлично владеет знанием законодательства, идеально подбирает судебную практику"
               imageClass={styles.team_img4}
             />
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide>
             <SliderCard
               sliderImageSrc="/home/team/team5.webp"
